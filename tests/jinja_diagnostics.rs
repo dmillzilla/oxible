@@ -116,7 +116,9 @@ fn jinja_else_errors_match_reference_fields_and_closed_branches_stay_clean() {
     assert_template_cases(cases);
 }
 
-fn assert_template_cases(cases: &[(&str, &str, Option<(&str, &str)>)]) {
+type TemplateCase<'a> = (&'a str, &'a str, Option<(&'a str, &'a str)>);
+
+fn assert_template_cases(cases: &[TemplateCase<'_>]) {
     let directory = tempfile::tempdir().unwrap();
     fs::create_dir(directory.path().join("tasks")).unwrap();
     fs::write(directory.path().join(".ansible-lint"), "offline: true\n").unwrap();
