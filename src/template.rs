@@ -450,10 +450,14 @@ pub(crate) fn play_variables(
     }
 }
 
-pub fn without_expressions(value: &str) -> String {
+/// Keep literal shell text while masking template expressions and statements.
+/// Nonempty words prevent separate shell operators from joining across a
+/// template expression. Template comments disappear as they do when rendered.
+pub(crate) fn mask_expressions(value: &str) -> String {
     tokenize(value, false, Default::default())
         .filter_map(|token| match token {
             Ok((Token::TemplateData(text), _)) => Some(text.to_owned()),
+            Ok((Token::VariableStart | Token::BlockStart, _)) => Some("JINJA".into()),
             Err(_) => Some("$".into()), // Keep uncertain shell syntax conservative.
             _ => None,
         })

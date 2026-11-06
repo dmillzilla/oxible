@@ -203,6 +203,7 @@ pub fn task<'a>(task: &'a Node, action: &Action<'a>, emit: &mut impl FnMut(&str,
     if module == "shell"
         && let Some(command) = action.command()
     {
+        let command = crate::template::mask_expressions(command);
         let has_pipefail = command.split([';', '\n']).any(|statement| {
             let words: Vec<_> = statement.split_whitespace().collect();
             words.first() == Some(&"set")
@@ -213,16 +214,14 @@ pub fn task<'a>(task: &'a Node, action: &Action<'a>, emit: &mut impl FnMut(&str,
         let powershell = action
             .argument("executable")
             .is_some_and(|value| value.contains("pwsh") || value.contains("powershell"));
-        if !powershell && has_pipeline(command) && !has_pipefail {
+        if !powershell && has_pipeline(&command) && !has_pipefail {
             emit(
                 "risky-shell-pipe",
                 "Set pipefail so an earlier pipeline failure is not hidden",
                 action.node,
             );
         }
-        if !crate::template::without_expressions(command)
-            .chars()
-            .any(|ch| "&|<>;$\n*[]{}?`!".contains(ch))
+        if !command.chars().any(|ch| "&|<>;$\n*[]{}?`!".contains(ch))
             && !action.has_argument("executable")
         {
             emit(
@@ -383,9 +382,6 @@ fn invalid_permission(mode: u64) -> bool {
 }
 
 fn has_pipeline(text: &str) -> bool {
-    if text.contains("{{") || text.contains("{%") {
-        return false;
-    }
     let mut quote = None;
     let mut escape = false;
     let mut comment = false;
