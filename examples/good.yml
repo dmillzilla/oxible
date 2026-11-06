@@ -1,0 +1,25 @@
+---
+- name: Configure the application
+  hosts: localhost
+  become: true
+  become_user: root
+  tasks:
+    - name: Ensure nginx is installed
+      ansible.builtin.apt:
+        name: nginx
+        state: present
+
+    - name: Read the current release
+      ansible.builtin.command: cat /etc/os-release
+      changed_when: false
+
+    - name: Check out a reviewed application revision
+      ansible.builtin.git:
+        repo: https://example.com/application.git
+        dest: /srv/application
+        version: v1.2.3
+
+    - name: Restart the application
+      ansible.builtin.service:
+        name: application
+        state: restarted

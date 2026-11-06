@@ -1,0 +1,31 @@
+---
+- name: Deploy application configuration
+  hosts: application
+  gather_facts: false
+  vars_files: [vars/site.yml]
+  module_defaults:
+    ansible.builtin.copy:
+      backup: true
+  tasks:
+    - name: Create deployment directory
+      ansible.builtin.file:
+        path: /srv/example
+        state: directory
+        mode: '0755'
+    - name: Write deployment configuration
+      ansible.builtin.copy:
+        content: '{{ app_name }}'
+        dest: /srv/example/configuration
+        mode: '0644'
+      notify: Restart example service
+    - name: Inspect deployment configuration
+      ansible.builtin.debug:
+        msg: '{{ app_name }}'
+    - name: Inspect service health
+      ansible.builtin.command: /usr/bin/true
+      changed_when: false
+  handlers:
+    - name: Restart example service
+      ansible.builtin.service:
+        name: example
+        state: restarted

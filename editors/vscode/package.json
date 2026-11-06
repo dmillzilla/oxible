@@ -1,0 +1,62 @@
+{
+  "name": "oxible",
+  "displayName": "Oxible",
+  "description": "Native Ansible diagnostics and safe quick fixes through the Oxible language server.",
+  "version": "0.1.0",
+  "publisher": "oxible",
+  "private": true,
+  "license": "GPL-3.0-or-later",
+  "engines": {
+    "vscode": "^1.105.0"
+  },
+  "categories": [
+    "Linters",
+    "Programming Languages"
+  ],
+  "activationEvents": [
+    "onLanguage:yaml",
+    "onLanguage:ansible"
+  ],
+  "main": "./extension.js",
+  "contributes": {
+    "commands": [
+      {
+        "command": "oxible.restart",
+        "title": "Oxible: Restart Language Server"
+      }
+    ],
+    "configuration": {
+      "title": "Oxible",
+      "properties": {
+        "oxible.path": {
+          "type": "string",
+          "default": "oxible",
+          "scope": "machine",
+          "description": "Path to the Oxible executable. No shell command or arguments."
+        }
+      }
+    }
+  },
+  "scripts": {
+    "check": "node --check extension.js",
+    "test": "node --test extension.test.js",
+    "test:live": "node run-live-test.js"
+  },
+  "dependencies": {
+    "vscode-languageclient": "^11.0.0"
+  },
+  "overrides": {
+    "minimatch": "^11.0.1"
+  },
+  "devDependencies": {
+    "@vscode/test-electron": "2.5.2"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/dmillzilla/oxible.git"
+  },
+  "homepage": "https://github.com/dmillzilla/oxible",
+  "bugs": {
+    "url": "https://github.com/dmillzilla/oxible/issues"
+  }
+}

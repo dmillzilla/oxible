@@ -1,0 +1,129 @@
+{
+  "basic": {
+    "description": "The `basic` profile prevents common coding issues and enforces standard styles and formatting.\n",
+    "extends": "min",
+    "rules": {
+      "command-instead-of-module": null,
+      "command-instead-of-shell": null,
+      "deprecated-bare-vars": null,
+      "deprecated-local-action": null,
+      "deprecated-module": null,
+      "inline-env-var": null,
+      "jinja": null,
+      "key-order": null,
+      "literal-compare": null,
+      "name": null,
+      "no-free-form": {
+        "url": "https://github.com/ansible/ansible-lint/issues/2117"
+      },
+      "no-jinja-when": null,
+      "no-tabs": null,
+      "partial-become": null,
+      "playbook-extension": null,
+      "role-name": null,
+      "schema": null,
+      "var-naming": null,
+      "yaml": null
+    },
+    "skip_list": [
+      "name[template]",
+      "name[casing]"
+    ]
+  },
+  "min": {
+    "description": "The `min` profile ensures that Ansible can load content. Rules in this profile are mandatory because they prevent fatal errors. You can add files to the exclude list or provide dependencies to load the correct files.\n",
+    "extends": null,
+    "rules": {
+      "internal-error": null,
+      "load-failure": null,
+      "parser-error": null,
+      "syntax-check": null
+    }
+  },
+  "moderate": {
+    "description": "The `moderate` profile ensures that content adheres to best practices for making content easier to read and maintain.\n",
+    "extends": "basic",
+    "rules": {
+      "name[casing]": null,
+      "name[imperative]": {
+        "url": "https://github.com/ansible/ansible-lint/issues/2170"
+      },
+      "name[template]": null,
+      "spell-var-name": {
+        "url": "https://github.com/ansible/ansible-lint/issues/2168"
+      }
+    }
+  },
+  "production": {
+    "description": "The `production` profile ensures that content meets requirements for inclusion in [Ansible Automation Platform (AAP)](https://www.redhat.com/en/technologies/management/ansible) as validated or certified content.\n",
+    "extends": "shared",
+    "rules": {
+      "avoid-dot-notation": {
+        "url": "https://github.com/ansible/ansible-lint/issues/2174"
+      },
+      "fqcn": null,
+      "import-task-no-when": {
+        "url": "https://github.com/ansible/ansible-lint/issues/2219"
+      },
+      "meta-no-dependencies": {
+        "url": "https://github.com/ansible/ansible-lint/issues/2159"
+      },
+      "sanity": {
+        "url": "https://github.com/ansible/ansible-lint/issues/2121"
+      },
+      "single-entry-point": {
+        "url": "https://github.com/ansible/ansible-lint/issues/2242"
+      },
+      "use-loop": {
+        "url": "https://github.com/ansible/ansible-lint/issues/2204"
+      }
+    }
+  },
+  "safety": {
+    "description": "The `safety` profile avoids module calls that can have non-determinant outcomes or security concerns.\n",
+    "extends": "moderate",
+    "rules": {
+      "avoid-implicit": null,
+      "latest": null,
+      "package-latest": null,
+      "risky-file-permissions": null,
+      "risky-octal": null,
+      "risky-shell-pipe": null
+    }
+  },
+  "shared": {
+    "description": "The `shared` profile ensures that content follows best practices for packaging and publishing. This profile is intended for content creators who want to make Ansible playbooks, roles, or collections available from [galaxy.ansible.com](https://galaxy.ansible.com/), [automation-hub](https://console.redhat.com/ansible/automation-hub), or a private instance.\n",
+    "extends": "safety",
+    "rules": {
+      "galaxy": null,
+      "ignore-errors": null,
+      "layout": {
+        "url": "https://github.com/ansible/ansible-lint/issues/1900"
+      },
+      "max-block-depth": {
+        "url": "https://github.com/ansible/ansible-lint/issues/2173"
+      },
+      "max-tasks": {
+        "url": "https://github.com/ansible/ansible-lint/issues/2172"
+      },
+      "meta-incorrect": null,
+      "meta-no-tags": null,
+      "meta-runtime": {
+        "url": "https://github.com/ansible/ansible-lint/issues/2102"
+      },
+      "meta-version": {
+        "url": "https://github.com/ansible/ansible-lint/issues/2103"
+      },
+      "meta-video-links": null,
+      "no-changed-when": null,
+      "no-changelog": {
+        "url": "https://github.com/ansible/ansible-lint/issues/2101"
+      },
+      "no-handler": null,
+      "no-relative-paths": null,
+      "unsafe-loop": {
+        "url": "https://github.com/ansible/ansible-lint/issues/2038"
+      }
+    }
+  }
+}

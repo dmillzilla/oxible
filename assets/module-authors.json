@@ -1,0 +1,215 @@
+{
+  "ansible.builtin.add_host": [
+    "Ansible Core Team",
+    "Seth Vidal (@skvidal)"
+  ],
+  "ansible.builtin.apt": "Matthew Williams (@mgwilliams)",
+  "ansible.builtin.apt_key": [
+    "Jayson Vantuyl (@jvantuyl)"
+  ],
+  "ansible.builtin.apt_repository": [
+    "Alexander Saltanov (@sashka)"
+  ],
+  "ansible.builtin.assemble": [
+    "Stephen Fromm (@sfromm)"
+  ],
+  "ansible.builtin.assert": [
+    "Ansible Core Team",
+    "Michael DeHaan"
+  ],
+  "ansible.builtin.async_status": [
+    "Ansible Core Team",
+    "Michael DeHaan"
+  ],
+  "ansible.builtin.blockinfile": [
+    "Yaegashi Takeshi (@yaegashi)"
+  ],
+  "ansible.builtin.command": [
+    "Ansible Core Team",
+    "Michael DeHaan"
+  ],
+  "ansible.builtin.copy": [
+    "Ansible Core Team",
+    "Michael DeHaan"
+  ],
+  "ansible.builtin.cron": [
+    "Dane Summers (@dsummersl)",
+    "Mike Grozak (@rhaido)",
+    "Patrick Callahan (@dirtyharrycallahan)",
+    "Evan Kaufman (@EvanK)",
+    "Luca Berruti (@lberruti)"
+  ],
+  "ansible.builtin.deb822_repository": "Ansible Core Team (@ansible)",
+  "ansible.builtin.debconf": [
+    "Brian Coca (@bcoca)"
+  ],
+  "ansible.builtin.debug": [
+    "Dag Wieers (@dagwieers)",
+    "Michael DeHaan"
+  ],
+  "ansible.builtin.dnf": [
+    "Igor Gnatenko (@ignatenkobrain) <i.gnatenko.brain@gmail.com>",
+    "Cristian van Ee (@DJMuggs) <cristian at cvee.org>",
+    "Berend De Schouwer (@berenddeschouwer)",
+    "Adam Miller (@maxamillion) <admiller@redhat.com>"
+  ],
+  "ansible.builtin.dnf5": "Ansible Core Team",
+  "ansible.builtin.dpkg_selections": [
+    "Brian Brazil (@brian-brazil)  <brian.brazil@boxever.com>"
+  ],
+  "ansible.builtin.expect": "Matt Martz (@sivel)",
+  "ansible.builtin.fail": [
+    "Dag Wieers (@dagwieers)"
+  ],
+  "ansible.builtin.fetch": [
+    "Ansible Core Team",
+    "Michael DeHaan"
+  ],
+  "ansible.builtin.file": [
+    "Ansible Core Team",
+    "Michael DeHaan"
+  ],
+  "ansible.builtin.find": "Brian Coca (@bcoca)",
+  "ansible.builtin.gather_facts": [
+    "Ansible Core Team"
+  ],
+  "ansible.builtin.get_url": [
+    "Jan-Piet Mens (@jpmens)"
+  ],
+  "ansible.builtin.getent": [
+    "Brian Coca (@bcoca)"
+  ],
+  "ansible.builtin.git": [
+    "Ansible Core Team",
+    "Michael DeHaan"
+  ],
+  "ansible.builtin.group": [
+    "Stephen Fromm (@sfromm)"
+  ],
+  "ansible.builtin.group_by": [
+    "Jeroen Hoekx (@jhoekx)"
+  ],
+  "ansible.builtin.hostname": [
+    "Adrian Likins (@alikins)",
+    "Hideki Saito (@saito-hideki)"
+  ],
+  "ansible.builtin.import_playbook": "Ansible Core Team (@ansible)",
+  "ansible.builtin.import_role": "Ansible Core Team (@ansible)",
+  "ansible.builtin.import_tasks": "Ansible Core Team (@ansible)",
+  "ansible.builtin.include_role": "Ansible Core Team (@ansible)",
+  "ansible.builtin.include_tasks": "Ansible Core Team (@ansible)",
+  "ansible.builtin.include_vars": "Allen Sanabria (@linuxdynasty)",
+  "ansible.builtin.iptables": [
+    "Linus Unneb\u00e4ck (@LinusU) <linus@folkdatorn.se>",
+    "S\u00e9bastien DA ROCHA (@sebastiendarocha)"
+  ],
+  "ansible.builtin.known_hosts": [
+    "Matthew Vernon (@mcv21)"
+  ],
+  "ansible.builtin.lineinfile": [
+    "Daniel Hokka Zakrissoni (@dhozac)",
+    "Ahti Kitsik (@ahtik)",
+    "Jose Angel Munoz (@imjoseangel)"
+  ],
+  "ansible.builtin.meta": [
+    "Ansible Core Team"
+  ],
+  "ansible.builtin.mount_facts": [
+    "Ansible Core Team",
+    "Sloane Hertel (@s-hertel)"
+  ],
+  "ansible.builtin.package": [
+    "Ansible Core Team"
+  ],
+  "ansible.builtin.package_facts": [
+    "Matthew Jones (@matburt)",
+    "Brian Coca (@bcoca)",
+    "Adam Miller (@maxamillion)"
+  ],
+  "ansible.builtin.pause": "Tim Bielawa (@tbielawa)",
+  "ansible.builtin.ping": [
+    "Ansible Core Team",
+    "Michael DeHaan"
+  ],
+  "ansible.builtin.pip": [
+    "Matt Wright (@mattupstate)"
+  ],
+  "ansible.builtin.raw": [
+    "Ansible Core Team",
+    "Michael DeHaan"
+  ],
+  "ansible.builtin.reboot": [
+    "Matt Davis (@nitzmahone)",
+    "Sam Doran (@samdoran)"
+  ],
+  "ansible.builtin.replace": "Evan Kaufman (@EvanK)",
+  "ansible.builtin.rpm_key": [
+    "Hector Acosta (@hacosta) <hector.acosta@gazzang.com>"
+  ],
+  "ansible.builtin.script": [
+    "Ansible Core Team",
+    "Michael DeHaan"
+  ],
+  "ansible.builtin.service": [
+    "Ansible Core Team",
+    "Michael DeHaan"
+  ],
+  "ansible.builtin.service_facts": [
+    "Adam Miller (@maxamillion)"
+  ],
+  "ansible.builtin.set_fact": [
+    "Dag Wieers (@dagwieers)"
+  ],
+  "ansible.builtin.set_stats": "Brian Coca (@bcoca)",
+  "ansible.builtin.setup": [
+    "Ansible Core Team",
+    "Michael DeHaan"
+  ],
+  "ansible.builtin.shell": [
+    "Ansible Core Team",
+    "Michael DeHaan"
+  ],
+  "ansible.builtin.slurp": [
+    "Ansible Core Team",
+    "Michael DeHaan (@mpdehaan)"
+  ],
+  "ansible.builtin.stat": "Bruce Pennypacker (@bpennypacker)",
+  "ansible.builtin.subversion": [
+    "Dane Summers (@dsummersl) <njharman@gmail.com>"
+  ],
+  "ansible.builtin.systemd": [
+    "Ansible Core Team"
+  ],
+  "ansible.builtin.systemd_service": [
+    "Ansible Core Team"
+  ],
+  "ansible.builtin.sysvinit": [
+    "Ansible Core Team"
+  ],
+  "ansible.builtin.tempfile": [
+    "Krzysztof Magosa (@krzysztof-magosa)"
+  ],
+  "ansible.builtin.template": [
+    "Ansible Core Team",
+    "Michael DeHaan"
+  ],
+  "ansible.builtin.unarchive": "Michael DeHaan",
+  "ansible.builtin.uri": [
+    "Romeo Theriault (@romeotheriault)"
+  ],
+  "ansible.builtin.user": [
+    "Stephen Fromm (@sfromm)"
+  ],
+  "ansible.builtin.validate_argument_spec": [
+    "Ansible Core Team"
+  ],
+  "ansible.builtin.wait_for": [
+    "Jeroen Hoekx (@jhoekx)",
+    "John Jarvis (@jarv)",
+    "Andrii Radyk (@AnderEnder)"
+  ],
+  "ansible.builtin.wait_for_connection": [
+    "Dag Wieers (@dagwieers)"
+  ],
+  "ansible.builtin.yum_repository": "Jiri Tyr (@jtyr)"
+}

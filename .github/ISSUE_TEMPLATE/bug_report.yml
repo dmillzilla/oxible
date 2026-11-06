@@ -1,0 +1,43 @@
+name: Bug or compatibility discrepancy
+description: Report a reproducible Oxible problem without credentials or private source.
+title: "[Bug]: "
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Report vulnerabilities privately using SECURITY.md. Do not paste Vault passwords,
+        registry tokens, private keys or private infrastructure details here.
+  - type: input
+    id: version
+    attributes:
+      label: Oxible version or commit
+      description: Include the output of oxible --version.
+    validations:
+      required: true
+  - type: input
+    id: platform
+    attributes:
+      label: Operating system and installation method
+    validations:
+      required: true
+  - type: textarea
+    id: reproduction
+    attributes:
+      label: Minimal reproduction
+      description: Include the exact command and synthetic playbook/config files.
+    validations:
+      required: true
+  - type: textarea
+    id: expected
+    attributes:
+      label: Expected behavior
+      description: For compatibility reports, include ansible-lint and ansible-core versions and reference output.
+    validations:
+      required: true
+  - type: textarea
+    id: actual
+    attributes:
+      label: Actual behavior
+      description: Include exit status, findings and relevant analysis notices. Redact credentials.
+    validations:
+      required: true

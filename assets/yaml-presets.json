@@ -1,0 +1,284 @@
+{
+  "ansible": {
+    "rules": {
+      "anchors": {
+        "forbid-duplicated-anchors": false,
+        "forbid-undeclared-aliases": true,
+        "forbid-unused-anchors": false,
+        "level": "error"
+      },
+      "braces": {
+        "forbid": false,
+        "level": "error",
+        "max-spaces-inside": 1,
+        "max-spaces-inside-empty": -1,
+        "min-spaces-inside": 0,
+        "min-spaces-inside-empty": -1
+      },
+      "brackets": {
+        "forbid": false,
+        "level": "error",
+        "max-spaces-inside": 0,
+        "max-spaces-inside-empty": -1,
+        "min-spaces-inside": 0,
+        "min-spaces-inside-empty": -1
+      },
+      "colons": {
+        "level": "error",
+        "max-spaces-after": 1,
+        "max-spaces-before": 0
+      },
+      "commas": {
+        "level": "error",
+        "max-spaces-after": 1,
+        "max-spaces-before": 0,
+        "min-spaces-after": 1
+      },
+      "comments": {
+        "ignore-shebangs": true,
+        "level": "warning",
+        "min-spaces-from-content": 1,
+        "require-starting-space": true
+      },
+      "comments-indentation": false,
+      "document-end": false,
+      "document-start": false,
+      "empty-lines": {
+        "level": "error",
+        "max": 2,
+        "max-end": 0,
+        "max-start": 0
+      },
+      "empty-values": false,
+      "float-values": false,
+      "hyphens": {
+        "level": "error",
+        "max-spaces-after": 1
+      },
+      "indentation": {
+        "check-multi-line-strings": false,
+        "indent-sequences": true,
+        "level": "error",
+        "spaces": "consistent"
+      },
+      "key-duplicates": {
+        "forbid-duplicated-merge-keys": false,
+        "level": "error"
+      },
+      "key-ordering": false,
+      "line-length": {
+        "allow-non-breakable-inline-mappings": false,
+        "allow-non-breakable-words": true,
+        "level": "error",
+        "max": 160
+      },
+      "new-line-at-end-of-file": {
+        "level": "error"
+      },
+      "new-lines": {
+        "level": "error",
+        "type": "unix"
+      },
+      "octal-values": {
+        "forbid-explicit-octal": true,
+        "forbid-implicit-octal": true,
+        "level": "error"
+      },
+      "quoted-strings": false,
+      "trailing-spaces": {
+        "level": "error"
+      },
+      "truthy": {
+        "allowed-values": [
+          "true",
+          "false"
+        ],
+        "check-keys": true,
+        "level": "warning"
+      }
+    }
+  },
+  "default": {
+    "rules": {
+      "anchors": {
+        "forbid-duplicated-anchors": false,
+        "forbid-undeclared-aliases": true,
+        "forbid-unused-anchors": false,
+        "level": "error"
+      },
+      "braces": {
+        "forbid": false,
+        "level": "error",
+        "max-spaces-inside": 0,
+        "max-spaces-inside-empty": -1,
+        "min-spaces-inside": 0,
+        "min-spaces-inside-empty": -1
+      },
+      "brackets": {
+        "forbid": false,
+        "level": "error",
+        "max-spaces-inside": 0,
+        "max-spaces-inside-empty": -1,
+        "min-spaces-inside": 0,
+        "min-spaces-inside-empty": -1
+      },
+      "colons": {
+        "level": "error",
+        "max-spaces-after": 1,
+        "max-spaces-before": 0
+      },
+      "commas": {
+        "level": "error",
+        "max-spaces-after": 1,
+        "max-spaces-before": 0,
+        "min-spaces-after": 1
+      },
+      "comments": {
+        "ignore-shebangs": true,
+        "level": "warning",
+        "min-spaces-from-content": 2,
+        "require-starting-space": true
+      },
+      "comments-indentation": {
+        "level": "warning"
+      },
+      "document-end": false,
+      "document-start": {
+        "level": "warning",
+        "present": true
+      },
+      "empty-lines": {
+        "level": "error",
+        "max": 2,
+        "max-end": 0,
+        "max-start": 0
+      },
+      "empty-values": false,
+      "float-values": false,
+      "hyphens": {
+        "level": "error",
+        "max-spaces-after": 1
+      },
+      "indentation": {
+        "check-multi-line-strings": false,
+        "indent-sequences": true,
+        "level": "error",
+        "spaces": "consistent"
+      },
+      "key-duplicates": {
+        "forbid-duplicated-merge-keys": false,
+        "level": "error"
+      },
+      "key-ordering": false,
+      "line-length": {
+        "allow-non-breakable-inline-mappings": false,
+        "allow-non-breakable-words": true,
+        "level": "error",
+        "max": 80
+      },
+      "new-line-at-end-of-file": {
+        "level": "error"
+      },
+      "new-lines": {
+        "level": "error",
+        "type": "unix"
+      },
+      "octal-values": false,
+      "quoted-strings": false,
+      "trailing-spaces": {
+        "level": "error"
+      },
+      "truthy": {
+        "allowed-values": [
+          "true",
+          "false"
+        ],
+        "check-keys": true,
+        "level": "warning"
+      }
+    }
+  },
+  "relaxed": {
+    "rules": {
+      "anchors": {
+        "forbid-duplicated-anchors": false,
+        "forbid-undeclared-aliases": true,
+        "forbid-unused-anchors": false,
+        "level": "error"
+      },
+      "braces": {
+        "forbid": false,
+        "level": "warning",
+        "max-spaces-inside": 1,
+        "max-spaces-inside-empty": -1,
+        "min-spaces-inside": 0,
+        "min-spaces-inside-empty": -1
+      },
+      "brackets": {
+        "forbid": false,
+        "level": "warning",
+        "max-spaces-inside": 1,
+        "max-spaces-inside-empty": -1,
+        "min-spaces-inside": 0,
+        "min-spaces-inside-empty": -1
+      },
+      "colons": {
+        "level": "warning",
+        "max-spaces-after": 1,
+        "max-spaces-before": 0
+      },
+      "commas": {
+        "level": "warning",
+        "max-spaces-after": 1,
+        "max-spaces-before": 0,
+        "min-spaces-after": 1
+      },
+      "comments": false,
+      "comments-indentation": false,
+      "document-end": false,
+      "document-start": false,
+      "empty-lines": {
+        "level": "warning",
+        "max": 2,
+        "max-end": 0,
+        "max-start": 0
+      },
+      "empty-values": false,
+      "float-values": false,
+      "hyphens": {
+        "level": "warning",
+        "max-spaces-after": 1
+      },
+      "indentation": {
+        "check-multi-line-strings": false,
+        "indent-sequences": "consistent",
+        "level": "warning",
+        "spaces": "consistent"
+      },
+      "key-duplicates": {
+        "forbid-duplicated-merge-keys": false,
+        "level": "error"
+      },
+      "key-ordering": false,
+      "line-length": {
+        "allow-non-breakable-inline-mappings": true,
+        "allow-non-breakable-words": true,
+        "level": "warning",
+        "max": 80
+      },
+      "new-line-at-end-of-file": {
+        "level": "error"
+      },
+      "new-lines": {
+        "level": "error",
+        "type": "unix"
+      },
+      "octal-values": false,
+      "quoted-strings": false,
+      "trailing-spaces": {
+        "level": "error"
+      },
+      "truthy": false
+    }
+  }
+}

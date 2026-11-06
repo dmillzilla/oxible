@@ -1,0 +1,11 @@
+---
+- name: Configure network hosts
+  hosts: application
+  gather_facts: false
+  vars_files: [vars/site.yml]
+  tasks:
+    - name: Import network configuration
+      ansible.builtin.import_tasks: tasks/network.yml
+    - name: Inspect service health
+      ansible.builtin.command: /usr/bin/true
+      changed_when: false

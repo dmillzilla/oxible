@@ -1,0 +1,22 @@
+---
+- name: Demonstrate Oxible findings
+  hosts: localhost
+  become_user: root
+  tasks:
+    - ansible.builtin.apt:
+        name: nginx
+        state: latest
+
+    - name: Read the current release
+      ansible.builtin.command: cat /etc/os-release
+
+    - name: Check out the application
+      ansible.builtin.git:
+        repo: https://example.com/application.git
+        dest: /srv/application
+
+    - name: Restart the application
+      ansible.builtin.service:
+        name: application
+        state: restarted
+      ignore_errors: true

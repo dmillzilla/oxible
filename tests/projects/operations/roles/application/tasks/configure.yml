@@ -1,0 +1,21 @@
+---
+- name: Create application directory
+  ansible.builtin.file:
+    path: '{{ app_root }}'
+    state: directory
+    mode: '0755'
+- name: Write application configuration
+  community.general.ini_file:
+    path: '{{ app_root }}/app.ini'
+    section: server
+    option: port
+    value: '{{ app_port }}'
+    mode: '0644'
+- name: Configure kernel forwarding
+  ansible.posix.sysctl:
+    name: net.ipv4.ip_forward
+    value: '1'
+    state: present
+- name: Inspect application configuration
+  ansible.builtin.debug:
+    msg: '{{ app_name }}'

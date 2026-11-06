@@ -1,0 +1,28 @@
+---
+# Linting/benchmark fixture; requires an installed community.general collection.
+- name: Configure collection fixtures
+  hosts: localhost
+  tasks:
+    - name: Allow SSH
+      community.general.ufw:
+        rule: allow
+        port: "22"
+        proto: tcp
+
+    - name: Set the application port
+      community.general.ini_file:
+        path: /tmp/oxible-example.ini
+        section: application
+        option: port
+        value: "8080"
+        mode: "0644"
+
+    - name: Select the timezone
+      community.general.timezone:
+        name: UTC
+
+    - name: Describe a volume group
+      community.general.lvg:
+        vg: example_data
+        pvs:
+          - /dev/example_disk

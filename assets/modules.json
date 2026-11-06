@@ -1,0 +1,3885 @@
+{
+  "ansible.builtin.add_host": {
+    "canonical": "ansible.builtin.add_host",
+    "options": {
+      "groups": {
+        "aliases": [
+          "group",
+          "groupname"
+        ],
+        "elements": "str",
+        "type": "list"
+      },
+      "name": {
+        "aliases": [
+          "host",
+          "hostname"
+        ],
+        "required": true,
+        "type": "str"
+      }
+    }
+  },
+  "ansible.builtin.apt": {
+    "canonical": "ansible.builtin.apt",
+    "options": {
+      "allow_change_held_packages": {
+        "default": "no",
+        "type": "bool"
+      },
+      "allow_downgrade": {
+        "aliases": [
+          "allow-downgrade",
+          "allow_downgrades",
+          "allow-downgrades"
+        ],
+        "default": "no",
+        "type": "bool"
+      },
+      "allow_unauthenticated": {
+        "aliases": [
+          "allow-unauthenticated"
+        ],
+        "default": "no",
+        "type": "bool"
+      },
+      "auto_install_module_deps": {
+        "default": true,
+        "type": "bool"
+      },
+      "autoclean": {
+        "default": "no",
+        "type": "bool"
+      },
+      "autoremove": {
+        "default": "no",
+        "type": "bool"
+      },
+      "cache_valid_time": {
+        "default": 0,
+        "type": "int"
+      },
+      "clean": {
+        "default": "no",
+        "type": "bool"
+      },
+      "deb": {
+        "required": false,
+        "type": "path"
+      },
+      "default_release": {
+        "aliases": [
+          "default-release"
+        ],
+        "type": "str"
+      },
+      "dpkg_options": {
+        "default": "force-confdef,force-confold",
+        "type": "str"
+      },
+      "fail_on_autoremove": {
+        "default": "no",
+        "type": "bool"
+      },
+      "force": {
+        "default": "no",
+        "type": "bool"
+      },
+      "force_apt_get": {
+        "default": "no",
+        "type": "bool"
+      },
+      "install_recommends": {
+        "aliases": [
+          "install-recommends"
+        ],
+        "type": "bool"
+      },
+      "lock_timeout": {
+        "default": 60,
+        "type": "int"
+      },
+      "name": {
+        "aliases": [
+          "package",
+          "pkg"
+        ],
+        "elements": "str",
+        "type": "list"
+      },
+      "only_upgrade": {
+        "default": "no",
+        "type": "bool"
+      },
+      "policy_rc_d": {
+        "default": null,
+        "type": "int"
+      },
+      "purge": {
+        "default": "no",
+        "type": "bool"
+      },
+      "state": {
+        "choices": [
+          "absent",
+          "build-dep",
+          "latest",
+          "present",
+          "fixed"
+        ],
+        "default": "present",
+        "type": "str"
+      },
+      "update_cache": {
+        "aliases": [
+          "update-cache"
+        ],
+        "type": "bool"
+      },
+      "update_cache_retries": {
+        "default": 5,
+        "type": "int"
+      },
+      "update_cache_retry_max_delay": {
+        "default": 12,
+        "type": "int"
+      },
+      "upgrade": {
+        "choices": [
+          "dist",
+          "full",
+          "no",
+          "safe",
+          "yes"
+        ],
+        "default": "no",
+        "type": "str"
+      }
+    }
+  },
+  "ansible.builtin.apt_key": {
+    "canonical": "ansible.builtin.apt_key",
+    "options": {
+      "data": {
+        "type": "str"
+      },
+      "file": {
+        "type": "path"
+      },
+      "id": {
+        "type": "str"
+      },
+      "keyring": {
+        "type": "path"
+      },
+      "keyserver": {
+        "type": "str"
+      },
+      "state": {
+        "choices": [
+          "absent",
+          "present"
+        ],
+        "default": "present",
+        "type": "str"
+      },
+      "url": {
+        "type": "str"
+      },
+      "validate_certs": {
+        "default": "yes",
+        "type": "bool"
+      }
+    }
+  },
+  "ansible.builtin.apt_repository": {
+    "canonical": "ansible.builtin.apt_repository",
+    "options": {
+      "codename": {
+        "type": "str"
+      },
+      "filename": {
+        "type": "str"
+      },
+      "install_python_apt": {
+        "default": true,
+        "type": "bool"
+      },
+      "mode": {
+        "type": "raw"
+      },
+      "repo": {
+        "required": true,
+        "type": "str"
+      },
+      "state": {
+        "choices": [
+          "absent",
+          "present"
+        ],
+        "default": "present",
+        "type": "str"
+      },
+      "update_cache": {
+        "aliases": [
+          "update-cache"
+        ],
+        "default": "yes",
+        "type": "bool"
+      },
+      "update_cache_retries": {
+        "default": 5,
+        "type": "int"
+      },
+      "update_cache_retry_max_delay": {
+        "default": 12,
+        "type": "int"
+      },
+      "validate_certs": {
+        "default": "yes",
+        "type": "bool"
+      }
+    }
+  },
+  "ansible.builtin.assemble": {
+    "canonical": "ansible.builtin.assemble",
+    "options": {
+      "attributes": {
+        "aliases": [
+          "attr"
+        ],
+        "type": "str"
+      },
+      "backup": {
+        "default": false,
+        "type": "bool"
+      },
+      "decrypt": {
+        "default": true,
+        "type": "bool"
+      },
+      "delimiter": {
+        "type": "str"
+      },
+      "dest": {
+        "required": true,
+        "type": "path"
+      },
+      "group": {
+        "type": "str"
+      },
+      "ignore_hidden": {
+        "default": false,
+        "type": "bool"
+      },
+      "mode": {
+        "type": "raw"
+      },
+      "owner": {
+        "type": "str"
+      },
+      "regexp": {
+        "type": "str"
+      },
+      "remote_src": {
+        "default": true,
+        "type": "bool"
+      },
+      "selevel": {
+        "type": "str"
+      },
+      "serole": {
+        "type": "str"
+      },
+      "setype": {
+        "type": "str"
+      },
+      "seuser": {
+        "type": "str"
+      },
+      "src": {
+        "required": true,
+        "type": "path"
+      },
+      "unsafe_writes": {
+        "default": false,
+        "type": "bool"
+      },
+      "validate": {
+        "type": "str"
+      }
+    }
+  },
+  "ansible.builtin.assert": {
+    "canonical": "ansible.builtin.assert",
+    "options": {
+      "fail_msg": {
+        "aliases": [
+          "msg"
+        ],
+        "type": "str"
+      },
+      "quiet": {
+        "default": false,
+        "type": "bool"
+      },
+      "success_msg": {
+        "type": "str"
+      },
+      "that": {
+        "elements": "str",
+        "required": true,
+        "type": "list"
+      }
+    }
+  },
+  "ansible.builtin.async_status": {
+    "canonical": "ansible.builtin.async_status",
+    "options": {
+      "jid": {
+        "required": true,
+        "type": "str"
+      },
+      "mode": {
+        "choices": [
+          "cleanup",
+          "status"
+        ],
+        "default": "status",
+        "type": "str"
+      }
+    }
+  },
+  "ansible.builtin.blockinfile": {
+    "canonical": "ansible.builtin.blockinfile",
+    "options": {
+      "append_newline": {
+        "default": false,
+        "required": false,
+        "type": "bool"
+      },
+      "attributes": {
+        "aliases": [
+          "attr"
+        ],
+        "type": "str"
+      },
+      "backup": {
+        "default": false,
+        "type": "bool"
+      },
+      "block": {
+        "aliases": [
+          "content"
+        ],
+        "default": "",
+        "type": "str"
+      },
+      "create": {
+        "default": false,
+        "type": "bool"
+      },
+      "encoding": {
+        "default": "utf-8",
+        "type": "str"
+      },
+      "group": {
+        "type": "str"
+      },
+      "insertafter": {
+        "type": "str"
+      },
+      "insertbefore": {
+        "type": "str"
+      },
+      "marker": {
+        "default": "# {mark} ANSIBLE MANAGED BLOCK",
+        "type": "str"
+      },
+      "marker_begin": {
+        "default": "BEGIN",
+        "type": "str"
+      },
+      "marker_end": {
+        "default": "END",
+        "required": false,
+        "type": "str"
+      },
+      "mode": {
+        "type": "raw"
+      },
+      "owner": {
+        "type": "str"
+      },
+      "path": {
+        "aliases": [
+          "dest",
+          "destfile",
+          "name"
+        ],
+        "required": true,
+        "type": "path"
+      },
+      "prepend_newline": {
+        "default": false,
+        "required": false,
+        "type": "bool"
+      },
+      "selevel": {
+        "type": "str"
+      },
+      "serole": {
+        "type": "str"
+      },
+      "setype": {
+        "type": "str"
+      },
+      "seuser": {
+        "type": "str"
+      },
+      "state": {
+        "choices": [
+          "absent",
+          "present"
+        ],
+        "default": "present",
+        "type": "str"
+      },
+      "unsafe_writes": {
+        "default": false,
+        "type": "bool"
+      },
+      "validate": {
+        "type": "str"
+      }
+    }
+  },
+  "ansible.builtin.command": {
+    "canonical": "ansible.builtin.command",
+    "options": {
+      "argv": {
+        "elements": "str",
+        "type": "list"
+      },
+      "chdir": {
+        "type": "path"
+      },
+      "cmd": {
+        "type": "str"
+      },
+      "creates": {
+        "type": "path"
+      },
+      "expand_argument_vars": {
+        "default": true,
+        "type": "bool"
+      },
+      "free_form": {},
+      "removes": {
+        "type": "path"
+      },
+      "stdin": {
+        "type": "str"
+      },
+      "stdin_add_newline": {
+        "default": true,
+        "type": "bool"
+      },
+      "strip_empty_ends": {
+        "default": true,
+        "type": "bool"
+      }
+    }
+  },
+  "ansible.builtin.copy": {
+    "canonical": "ansible.builtin.copy",
+    "options": {
+      "attributes": {
+        "aliases": [
+          "attr"
+        ],
+        "type": "str"
+      },
+      "backup": {
+        "default": false,
+        "type": "bool"
+      },
+      "checksum": {
+        "type": "str"
+      },
+      "content": {
+        "type": "str"
+      },
+      "decrypt": {
+        "default": true,
+        "type": "bool"
+      },
+      "dest": {
+        "required": true,
+        "type": "path"
+      },
+      "directory_mode": {
+        "type": "raw"
+      },
+      "follow": {
+        "default": false,
+        "type": "bool"
+      },
+      "force": {
+        "default": true,
+        "type": "bool"
+      },
+      "group": {
+        "type": "str"
+      },
+      "local_follow": {
+        "type": "bool"
+      },
+      "mode": {
+        "type": "raw"
+      },
+      "owner": {
+        "type": "str"
+      },
+      "remote_src": {
+        "default": false,
+        "type": "bool"
+      },
+      "selevel": {
+        "type": "str"
+      },
+      "serole": {
+        "type": "str"
+      },
+      "setype": {
+        "type": "str"
+      },
+      "seuser": {
+        "type": "str"
+      },
+      "src": {
+        "type": "path"
+      },
+      "unsafe_writes": {
+        "default": false,
+        "type": "bool"
+      },
+      "validate": {
+        "type": "str"
+      }
+    }
+  },
+  "ansible.builtin.cron": {
+    "canonical": "ansible.builtin.cron",
+    "options": {
+      "backup": {
+        "default": false,
+        "type": "bool"
+      },
+      "cron_file": {
+        "type": "path"
+      },
+      "day": {
+        "aliases": [
+          "dom"
+        ],
+        "default": "*",
+        "type": "str"
+      },
+      "disabled": {
+        "default": false,
+        "type": "bool"
+      },
+      "env": {
+        "default": false,
+        "type": "bool"
+      },
+      "hour": {
+        "default": "*",
+        "type": "str"
+      },
+      "insertafter": {
+        "type": "str"
+      },
+      "insertbefore": {
+        "type": "str"
+      },
+      "job": {
+        "aliases": [
+          "value"
+        ],
+        "type": "str"
+      },
+      "minute": {
+        "default": "*",
+        "type": "str"
+      },
+      "month": {
+        "default": "*",
+        "type": "str"
+      },
+      "name": {
+        "required": true,
+        "type": "str"
+      },
+      "special_time": {
+        "choices": [
+          "annually",
+          "daily",
+          "hourly",
+          "monthly",
+          "reboot",
+          "weekly",
+          "yearly"
+        ],
+        "type": "str"
+      },
+      "state": {
+        "choices": [
+          "absent",
+          "present"
+        ],
+        "default": "present",
+        "type": "str"
+      },
+      "user": {
+        "type": "str"
+      },
+      "weekday": {
+        "aliases": [
+          "dow"
+        ],
+        "default": "*",
+        "type": "str"
+      }
+    }
+  },
+  "ansible.builtin.deb822_repository": {
+    "canonical": "ansible.builtin.deb822_repository",
+    "options": {
+      "allow_downgrade_to_insecure": {
+        "type": "bool"
+      },
+      "allow_insecure": {
+        "type": "bool"
+      },
+      "allow_weak": {
+        "type": "bool"
+      },
+      "architectures": {
+        "elements": "str",
+        "type": "list"
+      },
+      "by_hash": {
+        "type": "bool"
+      },
+      "check_date": {
+        "type": "bool"
+      },
+      "check_valid_until": {
+        "type": "bool"
+      },
+      "components": {
+        "elements": "str",
+        "type": "list"
+      },
+      "date_max_future": {
+        "type": "int"
+      },
+      "enabled": {
+        "type": "bool"
+      },
+      "exclude": {
+        "elements": "str",
+        "type": "list"
+      },
+      "include": {
+        "elements": "str",
+        "type": "list"
+      },
+      "inrelease_path": {
+        "type": "str"
+      },
+      "install_python_debian": {
+        "default": false,
+        "type": "bool"
+      },
+      "languages": {
+        "elements": "str",
+        "type": "list"
+      },
+      "mode": {
+        "default": "0644",
+        "type": "raw"
+      },
+      "name": {
+        "required": true,
+        "type": "str"
+      },
+      "pdiffs": {
+        "type": "bool"
+      },
+      "signed_by": {
+        "type": "str"
+      },
+      "state": {
+        "choices": [
+          "absent",
+          "present"
+        ],
+        "default": "present",
+        "type": "str"
+      },
+      "suites": {
+        "elements": "str",
+        "type": "list"
+      },
+      "targets": {
+        "elements": "str",
+        "type": "list"
+      },
+      "trusted": {
+        "type": "bool"
+      },
+      "types": {
+        "choices": [
+          "deb",
+          "deb-src"
+        ],
+        "default": [
+          "deb"
+        ],
+        "elements": "str",
+        "type": "list"
+      },
+      "uris": {
+        "elements": "str",
+        "type": "list"
+      }
+    }
+  },
+  "ansible.builtin.debconf": {
+    "canonical": "ansible.builtin.debconf",
+    "options": {
+      "name": {
+        "aliases": [
+          "pkg"
+        ],
+        "required": true,
+        "type": "str"
+      },
+      "question": {
+        "aliases": [
+          "selection",
+          "setting"
+        ],
+        "type": "str"
+      },
+      "unseen": {
+        "default": false,
+        "type": "bool"
+      },
+      "value": {
+        "aliases": [
+          "answer"
+        ],
+        "type": "raw"
+      },
+      "vtype": {
+        "choices": [
+          "boolean",
+          "error",
+          "multiselect",
+          "note",
+          "password",
+          "seen",
+          "select",
+          "string",
+          "text",
+          "title"
+        ],
+        "type": "str"
+      }
+    }
+  },
+  "ansible.builtin.debug": {
+    "canonical": "ansible.builtin.debug",
+    "options": {
+      "msg": {
+        "default": "Hello world!",
+        "type": "str"
+      },
+      "var": {
+        "type": "str"
+      },
+      "verbosity": {
+        "default": 0,
+        "type": "int"
+      }
+    }
+  },
+  "ansible.builtin.dnf": {
+    "canonical": "ansible.builtin.dnf",
+    "options": {
+      "allow_downgrade": {
+        "default": "no",
+        "type": "bool"
+      },
+      "allowerasing": {
+        "default": "no",
+        "required": false,
+        "type": "bool"
+      },
+      "autoremove": {
+        "default": "no",
+        "type": "bool"
+      },
+      "best": {
+        "required": false,
+        "type": "bool"
+      },
+      "bugfix": {
+        "default": "no",
+        "type": "bool"
+      },
+      "cacheonly": {
+        "default": "no",
+        "type": "bool"
+      },
+      "conf_file": {
+        "type": "str"
+      },
+      "disable_excludes": {
+        "type": "str"
+      },
+      "disable_gpg_check": {
+        "default": "no",
+        "type": "bool"
+      },
+      "disable_plugin": {
+        "default": [],
+        "elements": "str",
+        "type": "list"
+      },
+      "disablerepo": {
+        "default": [],
+        "elements": "str",
+        "type": "list"
+      },
+      "download_dir": {
+        "type": "str"
+      },
+      "download_only": {
+        "default": "no",
+        "type": "bool"
+      },
+      "enable_plugin": {
+        "default": [],
+        "elements": "str",
+        "type": "list"
+      },
+      "enablerepo": {
+        "default": [],
+        "elements": "str",
+        "type": "list"
+      },
+      "exclude": {
+        "default": [],
+        "elements": "str",
+        "type": "list"
+      },
+      "install_weak_deps": {
+        "default": "yes",
+        "type": "bool"
+      },
+      "installroot": {
+        "default": "/",
+        "type": "str"
+      },
+      "list": {
+        "type": "str"
+      },
+      "lock_timeout": {
+        "default": 30,
+        "required": false,
+        "type": "int"
+      },
+      "name": {
+        "aliases": [
+          "pkg"
+        ],
+        "default": [],
+        "elements": "str",
+        "type": "list"
+      },
+      "nobest": {
+        "required": false,
+        "type": "bool"
+      },
+      "releasever": {
+        "type": "str"
+      },
+      "security": {
+        "default": "no",
+        "type": "bool"
+      },
+      "skip_broken": {
+        "default": "no",
+        "type": "bool"
+      },
+      "sslverify": {
+        "default": "yes",
+        "type": "bool"
+      },
+      "state": {
+        "choices": [
+          "absent",
+          "present",
+          "installed",
+          "removed",
+          "latest"
+        ],
+        "type": "str"
+      },
+      "update_cache": {
+        "aliases": [
+          "expire-cache"
+        ],
+        "default": "no",
+        "type": "bool"
+      },
+      "update_only": {
+        "default": "no",
+        "type": "bool"
+      },
+      "use_backend": {
+        "choices": {
+          "auto": "Automatically select the backend based on the C(ansible_facts.pkg_mgr) fact.",
+          "dnf": "M(ansible.builtin.dnf)",
+          "dnf4": "Alias for V(dnf)",
+          "dnf5": "M(ansible.builtin.dnf5)",
+          "yum": "Alias for V(auto) (see Notes)",
+          "yum4": "Alias for V(dnf)"
+        },
+        "default": "auto",
+        "type": "str"
+      },
+      "validate_certs": {
+        "default": "yes",
+        "type": "bool"
+      }
+    }
+  },
+  "ansible.builtin.dnf5": {
+    "canonical": "ansible.builtin.dnf5",
+    "options": {
+      "allow_downgrade": {
+        "default": "no",
+        "type": "bool"
+      },
+      "allowerasing": {
+        "default": "no",
+        "required": false,
+        "type": "bool"
+      },
+      "auto_install_module_deps": {
+        "default": true,
+        "type": "bool"
+      },
+      "autoremove": {
+        "default": "no",
+        "type": "bool"
+      },
+      "best": {
+        "required": false,
+        "type": "bool"
+      },
+      "bugfix": {
+        "default": "no",
+        "type": "bool"
+      },
+      "cacheonly": {
+        "default": "no",
+        "type": "bool"
+      },
+      "conf_file": {
+        "type": "str"
+      },
+      "disable_excludes": {
+        "type": "str"
+      },
+      "disable_gpg_check": {
+        "default": "no",
+        "type": "bool"
+      },
+      "disable_plugin": {
+        "default": [],
+        "elements": "str",
+        "type": "list"
+      },
+      "disablerepo": {
+        "default": [],
+        "elements": "str",
+        "type": "list"
+      },
+      "download_dir": {
+        "type": "str"
+      },
+      "download_only": {
+        "default": "no",
+        "type": "bool"
+      },
+      "enable_plugin": {
+        "default": [],
+        "elements": "str",
+        "type": "list"
+      },
+      "enablerepo": {
+        "default": [],
+        "elements": "str",
+        "type": "list"
+      },
+      "exclude": {
+        "default": [],
+        "elements": "str",
+        "type": "list"
+      },
+      "install_weak_deps": {
+        "default": "yes",
+        "type": "bool"
+      },
+      "installroot": {
+        "default": "/",
+        "type": "str"
+      },
+      "list": {
+        "type": "str"
+      },
+      "lock_timeout": {
+        "default": 30,
+        "required": false,
+        "type": "int"
+      },
+      "name": {
+        "aliases": [
+          "pkg"
+        ],
+        "default": [],
+        "elements": "str",
+        "type": "list"
+      },
+      "nobest": {
+        "required": false,
+        "type": "bool"
+      },
+      "releasever": {
+        "type": "str"
+      },
+      "security": {
+        "default": "no",
+        "type": "bool"
+      },
+      "skip_broken": {
+        "default": "no",
+        "type": "bool"
+      },
+      "sslverify": {
+        "default": "yes",
+        "type": "bool"
+      },
+      "state": {
+        "choices": [
+          "absent",
+          "present",
+          "installed",
+          "removed",
+          "latest"
+        ],
+        "type": "str"
+      },
+      "update_cache": {
+        "aliases": [
+          "expire-cache"
+        ],
+        "default": "no",
+        "type": "bool"
+      },
+      "update_only": {
+        "default": "no",
+        "type": "bool"
+      },
+      "validate_certs": {
+        "default": "yes",
+        "type": "bool"
+      }
+    }
+  },
+  "ansible.builtin.dpkg_selections": {
+    "canonical": "ansible.builtin.dpkg_selections",
+    "options": {
+      "name": {
+        "required": true,
+        "type": "str"
+      },
+      "selection": {
+        "choices": [
+          "install",
+          "hold",
+          "deinstall",
+          "purge"
+        ],
+        "required": true,
+        "type": "str"
+      }
+    }
+  },
+  "ansible.builtin.expect": {
+    "canonical": "ansible.builtin.expect",
+    "options": {
+      "chdir": {
+        "type": "path"
+      },
+      "command": {
+        "required": true,
+        "type": "str"
+      },
+      "creates": {
+        "type": "path"
+      },
+      "echo": {
+        "default": false,
+        "type": "bool"
+      },
+      "removes": {
+        "type": "path"
+      },
+      "responses": {
+        "required": true,
+        "type": "dict"
+      },
+      "timeout": {
+        "default": 30,
+        "type": "raw"
+      }
+    }
+  },
+  "ansible.builtin.fail": {
+    "canonical": "ansible.builtin.fail",
+    "options": {
+      "msg": {
+        "default": "Failed as requested from task",
+        "type": "str"
+      }
+    }
+  },
+  "ansible.builtin.fetch": {
+    "canonical": "ansible.builtin.fetch",
+    "options": {
+      "dest": {
+        "required": true
+      },
+      "fail_on_missing": {
+        "default": true,
+        "type": "bool"
+      },
+      "flat": {
+        "default": false,
+        "type": "bool"
+      },
+      "src": {
+        "required": true
+      },
+      "validate_checksum": {
+        "default": true,
+        "type": "bool"
+      }
+    }
+  },
+  "ansible.builtin.file": {
+    "canonical": "ansible.builtin.file",
+    "options": {
+      "access_time": {
+        "type": "str"
+      },
+      "access_time_format": {
+        "default": "%Y%m%d%H%M.%S",
+        "type": "str"
+      },
+      "attributes": {
+        "aliases": [
+          "attr"
+        ],
+        "type": "str"
+      },
+      "follow": {
+        "default": true,
+        "type": "bool"
+      },
+      "force": {
+        "default": false,
+        "type": "bool"
+      },
+      "group": {
+        "type": "str"
+      },
+      "mode": {
+        "type": "raw"
+      },
+      "modification_time": {
+        "type": "str"
+      },
+      "modification_time_format": {
+        "default": "%Y%m%d%H%M.%S",
+        "type": "str"
+      },
+      "owner": {
+        "type": "str"
+      },
+      "path": {
+        "aliases": [
+          "dest",
+          "name"
+        ],
+        "required": true,
+        "type": "path"
+      },
+      "recurse": {
+        "default": false,
+        "type": "bool"
+      },
+      "selevel": {
+        "type": "str"
+      },
+      "serole": {
+        "type": "str"
+      },
+      "setype": {
+        "type": "str"
+      },
+      "seuser": {
+        "type": "str"
+      },
+      "src": {
+        "type": "path"
+      },
+      "state": {
+        "choices": [
+          "absent",
+          "directory",
+          "file",
+          "hard",
+          "link",
+          "touch"
+        ],
+        "type": "str"
+      },
+      "unsafe_writes": {
+        "default": false,
+        "type": "bool"
+      }
+    }
+  },
+  "ansible.builtin.find": {
+    "canonical": "ansible.builtin.find",
+    "options": {
+      "age": {
+        "type": "str"
+      },
+      "age_stamp": {
+        "choices": [
+          "atime",
+          "ctime",
+          "mtime"
+        ],
+        "default": "mtime",
+        "type": "str"
+      },
+      "checksum_algorithm": {
+        "aliases": [
+          "checksum",
+          "checksum_algo"
+        ],
+        "choices": [
+          "md5",
+          "sha1",
+          "sha224",
+          "sha256",
+          "sha384",
+          "sha512"
+        ],
+        "default": "sha1",
+        "type": "str"
+      },
+      "contains": {
+        "type": "str"
+      },
+      "depth": {
+        "type": "int"
+      },
+      "encoding": {
+        "type": "str"
+      },
+      "exact_mode": {
+        "default": true,
+        "type": "bool"
+      },
+      "excludes": {
+        "aliases": [
+          "exclude"
+        ],
+        "elements": "str",
+        "type": "list"
+      },
+      "file_type": {
+        "choices": [
+          "any",
+          "directory",
+          "file",
+          "link"
+        ],
+        "default": "file",
+        "type": "str"
+      },
+      "follow": {
+        "default": false,
+        "type": "bool"
+      },
+      "get_checksum": {
+        "default": false,
+        "type": "bool"
+      },
+      "hidden": {
+        "default": false,
+        "type": "bool"
+      },
+      "limit": {
+        "type": "int"
+      },
+      "mode": {
+        "type": "raw"
+      },
+      "paths": {
+        "aliases": [
+          "name",
+          "path"
+        ],
+        "elements": "path",
+        "required": true,
+        "type": "list"
+      },
+      "patterns": {
+        "aliases": [
+          "pattern"
+        ],
+        "default": [],
+        "elements": "str",
+        "type": "list"
+      },
+      "read_whole_file": {
+        "default": false,
+        "type": "bool"
+      },
+      "recurse": {
+        "default": false,
+        "type": "bool"
+      },
+      "size": {
+        "type": "str"
+      },
+      "use_regex": {
+        "default": false,
+        "type": "bool"
+      }
+    }
+  },
+  "ansible.builtin.gather_facts": {
+    "canonical": "ansible.builtin.gather_facts",
+    "options": {
+      "parallel": {
+        "type": "bool"
+      }
+    }
+  },
+  "ansible.builtin.get_url": {
+    "canonical": "ansible.builtin.get_url",
+    "options": {
+      "attributes": {
+        "aliases": [
+          "attr"
+        ],
+        "type": "str"
+      },
+      "backup": {
+        "default": false,
+        "type": "bool"
+      },
+      "checksum": {
+        "default": "",
+        "type": "str"
+      },
+      "ciphers": {
+        "elements": "str",
+        "type": "list"
+      },
+      "client_cert": {
+        "type": "path"
+      },
+      "client_key": {
+        "type": "path"
+      },
+      "decompress": {
+        "default": true,
+        "type": "bool"
+      },
+      "dest": {
+        "required": true,
+        "type": "path"
+      },
+      "force": {
+        "default": false,
+        "type": "bool"
+      },
+      "force_basic_auth": {
+        "default": false,
+        "type": "bool"
+      },
+      "group": {
+        "type": "str"
+      },
+      "headers": {
+        "type": "dict"
+      },
+      "http_agent": {
+        "default": "ansible-httpget",
+        "type": "str"
+      },
+      "mode": {
+        "type": "raw"
+      },
+      "owner": {
+        "type": "str"
+      },
+      "selevel": {
+        "type": "str"
+      },
+      "serole": {
+        "type": "str"
+      },
+      "setype": {
+        "type": "str"
+      },
+      "seuser": {
+        "type": "str"
+      },
+      "timeout": {
+        "default": 10,
+        "type": "int"
+      },
+      "tmp_dest": {
+        "type": "path"
+      },
+      "unredirected_headers": {
+        "default": [],
+        "elements": "str",
+        "type": "list"
+      },
+      "unsafe_writes": {
+        "default": false,
+        "type": "bool"
+      },
+      "url": {
+        "required": true,
+        "type": "str"
+      },
+      "url_password": {
+        "aliases": [
+          "password"
+        ],
+        "type": "str"
+      },
+      "url_username": {
+        "aliases": [
+          "username"
+        ],
+        "type": "str"
+      },
+      "use_gssapi": {
+        "default": false,
+        "type": "bool"
+      },
+      "use_netrc": {
+        "default": true,
+        "type": "bool"
+      },
+      "use_proxy": {
+        "default": true,
+        "type": "bool"
+      },
+      "validate_certs": {
+        "default": true,
+        "type": "bool"
+      }
+    }
+  },
+  "ansible.builtin.getent": {
+    "canonical": "ansible.builtin.getent",
+    "options": {
+      "database": {
+        "required": true,
+        "type": "str"
+      },
+      "fail_key": {
+        "default": "yes",
+        "type": "bool"
+      },
+      "key": {
+        "type": "str"
+      },
+      "service": {
+        "type": "str"
+      },
+      "split": {
+        "type": "str"
+      }
+    }
+  },
+  "ansible.builtin.git": {
+    "canonical": "ansible.builtin.git",
+    "options": {
+      "accept_hostkey": {
+        "default": "no",
+        "type": "bool"
+      },
+      "accept_newhostkey": {
+        "default": "no",
+        "type": "bool"
+      },
+      "archive": {
+        "type": "path"
+      },
+      "archive_prefix": {
+        "type": "str"
+      },
+      "bare": {
+        "default": "no",
+        "type": "bool"
+      },
+      "clone": {
+        "default": "yes",
+        "type": "bool"
+      },
+      "depth": {
+        "type": "int"
+      },
+      "dest": {
+        "required": true,
+        "type": "path"
+      },
+      "executable": {
+        "type": "path"
+      },
+      "force": {
+        "default": "no",
+        "type": "bool"
+      },
+      "gpg_allowlist": {
+        "default": [],
+        "elements": "str",
+        "type": "list"
+      },
+      "key_file": {
+        "type": "path"
+      },
+      "recursive": {
+        "default": "yes",
+        "type": "bool"
+      },
+      "reference": {
+        "type": "str"
+      },
+      "refspec": {
+        "type": "str"
+      },
+      "remote": {
+        "default": "origin",
+        "type": "str"
+      },
+      "repo": {
+        "aliases": [
+          "name"
+        ],
+        "required": true,
+        "type": "str"
+      },
+      "separate_git_dir": {
+        "type": "path"
+      },
+      "single_branch": {
+        "default": "no",
+        "type": "bool"
+      },
+      "ssh_opts": {
+        "type": "str"
+      },
+      "track_submodules": {
+        "default": "no",
+        "type": "bool"
+      },
+      "umask": {
+        "type": "raw"
+      },
+      "update": {
+        "default": "yes",
+        "type": "bool"
+      },
+      "verify_commit": {
+        "default": "no",
+        "type": "bool"
+      },
+      "version": {
+        "default": "HEAD",
+        "type": "str"
+      }
+    }
+  },
+  "ansible.builtin.group": {
+    "canonical": "ansible.builtin.group",
+    "options": {
+      "force": {
+        "default": false,
+        "type": "bool"
+      },
+      "gid": {
+        "type": "int"
+      },
+      "gid_max": {
+        "type": "int"
+      },
+      "gid_min": {
+        "type": "int"
+      },
+      "local": {
+        "default": false,
+        "type": "bool"
+      },
+      "name": {
+        "required": true,
+        "type": "str"
+      },
+      "non_unique": {
+        "default": false,
+        "type": "bool"
+      },
+      "state": {
+        "choices": [
+          "absent",
+          "present"
+        ],
+        "default": "present",
+        "type": "str"
+      },
+      "system": {
+        "default": false,
+        "type": "bool"
+      }
+    }
+  },
+  "ansible.builtin.group_by": {
+    "canonical": "ansible.builtin.group_by",
+    "options": {
+      "key": {
+        "required": true,
+        "type": "str"
+      },
+      "parents": {
+        "default": "all",
+        "elements": "str",
+        "type": "list"
+      }
+    }
+  },
+  "ansible.builtin.hostname": {
+    "canonical": "ansible.builtin.hostname",
+    "options": {
+      "name": {
+        "required": true,
+        "type": "str"
+      },
+      "use": {
+        "choices": [
+          "alpine",
+          "debian",
+          "freebsd",
+          "generic",
+          "macos",
+          "macosx",
+          "darwin",
+          "openbsd",
+          "openrc",
+          "redhat",
+          "sles",
+          "solaris",
+          "systemd"
+        ],
+        "type": "str"
+      }
+    }
+  },
+  "ansible.builtin.import_playbook": {
+    "canonical": "ansible.builtin.import_playbook",
+    "options": {
+      "free-form": {}
+    }
+  },
+  "ansible.builtin.import_role": {
+    "canonical": "ansible.builtin.import_role",
+    "options": {
+      "allow_duplicates": {
+        "default": true,
+        "type": "bool"
+      },
+      "defaults_from": {
+        "default": "main",
+        "type": "str"
+      },
+      "handlers_from": {
+        "default": "main",
+        "type": "str"
+      },
+      "name": {
+        "required": true,
+        "type": "str"
+      },
+      "public": {
+        "default": true,
+        "type": "bool"
+      },
+      "rolespec_validate": {
+        "default": true,
+        "type": "bool"
+      },
+      "tasks_from": {
+        "default": "main",
+        "type": "str"
+      },
+      "vars_from": {
+        "default": "main",
+        "type": "str"
+      }
+    }
+  },
+  "ansible.builtin.import_tasks": {
+    "canonical": "ansible.builtin.import_tasks",
+    "options": {
+      "file": {
+        "type": "str"
+      },
+      "free-form": {}
+    }
+  },
+  "ansible.builtin.include_role": {
+    "canonical": "ansible.builtin.include_role",
+    "options": {
+      "allow_duplicates": {
+        "default": true,
+        "type": "bool"
+      },
+      "apply": {},
+      "defaults_from": {
+        "default": "main",
+        "type": "str"
+      },
+      "handlers_from": {
+        "default": "main",
+        "type": "str"
+      },
+      "name": {
+        "required": true,
+        "type": "str"
+      },
+      "public": {
+        "default": false,
+        "type": "bool"
+      },
+      "rescuable": {
+        "default": true,
+        "type": "bool"
+      },
+      "rolespec_validate": {
+        "default": true,
+        "type": "bool"
+      },
+      "tasks_from": {
+        "default": "main",
+        "type": "str"
+      },
+      "vars_from": {
+        "default": "main",
+        "type": "str"
+      }
+    }
+  },
+  "ansible.builtin.include_tasks": {
+    "canonical": "ansible.builtin.include_tasks",
+    "options": {
+      "apply": {
+        "type": "str"
+      },
+      "file": {
+        "type": "str"
+      },
+      "free-form": {}
+    }
+  },
+  "ansible.builtin.include_vars": {
+    "canonical": "ansible.builtin.include_vars",
+    "options": {
+      "depth": {
+        "default": 0,
+        "type": "int"
+      },
+      "dir": {
+        "type": "path"
+      },
+      "extensions": {
+        "default": [
+          "json",
+          "yaml",
+          "yml"
+        ],
+        "elements": "str",
+        "type": "list"
+      },
+      "file": {
+        "type": "path"
+      },
+      "files_matching": {
+        "type": "str"
+      },
+      "free-form": {},
+      "hash_behaviour": {
+        "choices": [
+          "replace",
+          "merge"
+        ],
+        "default": null,
+        "type": "str"
+      },
+      "ignore_files": {
+        "elements": "str",
+        "type": "list"
+      },
+      "ignore_unknown_extensions": {
+        "default": false,
+        "type": "bool"
+      },
+      "name": {
+        "type": "str"
+      }
+    }
+  },
+  "ansible.builtin.iptables": {
+    "canonical": "ansible.builtin.iptables",
+    "options": {
+      "action": {
+        "choices": [
+          "append",
+          "insert"
+        ],
+        "default": "append",
+        "type": "str"
+      },
+      "chain": {
+        "type": "str"
+      },
+      "chain_management": {
+        "default": false,
+        "type": "bool"
+      },
+      "comment": {
+        "type": "str"
+      },
+      "ctstate": {
+        "default": [],
+        "elements": "str",
+        "type": "list"
+      },
+      "destination": {
+        "type": "str"
+      },
+      "destination_port": {
+        "type": "str"
+      },
+      "destination_ports": {
+        "default": [],
+        "elements": "str",
+        "type": "list"
+      },
+      "dst_range": {
+        "type": "str"
+      },
+      "flush": {
+        "default": false,
+        "type": "bool"
+      },
+      "fragment": {
+        "type": "str"
+      },
+      "gateway": {
+        "type": "str"
+      },
+      "gid_owner": {
+        "type": "str"
+      },
+      "goto": {
+        "type": "str"
+      },
+      "icmp_type": {
+        "type": "str"
+      },
+      "in_interface": {
+        "type": "str"
+      },
+      "ip_version": {
+        "choices": [
+          "ipv4",
+          "ipv6",
+          "both"
+        ],
+        "default": "ipv4",
+        "type": "str"
+      },
+      "jump": {
+        "type": "str"
+      },
+      "limit": {
+        "type": "str"
+      },
+      "limit_burst": {
+        "type": "str"
+      },
+      "log_level": {
+        "choices": [
+          "0",
+          "1",
+          "2",
+          "3",
+          "4",
+          "5",
+          "6",
+          "7",
+          "emerg",
+          "alert",
+          "crit",
+          "error",
+          "warning",
+          "notice",
+          "info",
+          "debug"
+        ],
+        "type": "str"
+      },
+      "log_prefix": {
+        "type": "str"
+      },
+      "match": {
+        "default": [],
+        "elements": "str",
+        "type": "list"
+      },
+      "match_set": {
+        "type": "str"
+      },
+      "match_set_flags": {
+        "choices": [
+          "src",
+          "dst",
+          "src,dst",
+          "dst,src",
+          "dst,dst",
+          "src,src"
+        ],
+        "type": "str"
+      },
+      "numeric": {
+        "default": false,
+        "type": "bool"
+      },
+      "out_interface": {
+        "type": "str"
+      },
+      "policy": {
+        "choices": [
+          "ACCEPT",
+          "DROP",
+          "QUEUE",
+          "RETURN"
+        ],
+        "type": "str"
+      },
+      "protocol": {
+        "type": "str"
+      },
+      "reject_with": {
+        "type": "str"
+      },
+      "rule_num": {
+        "type": "str"
+      },
+      "set_counters": {
+        "type": "str"
+      },
+      "set_dscp_mark": {
+        "type": "str"
+      },
+      "set_dscp_mark_class": {
+        "type": "str"
+      },
+      "source": {
+        "type": "str"
+      },
+      "source_port": {
+        "type": "str"
+      },
+      "src_range": {
+        "type": "str"
+      },
+      "state": {
+        "choices": [
+          "absent",
+          "present"
+        ],
+        "default": "present",
+        "type": "str"
+      },
+      "syn": {
+        "choices": [
+          "ignore",
+          "match",
+          "negate"
+        ],
+        "default": "ignore",
+        "type": "str"
+      },
+      "table": {
+        "choices": [
+          "filter",
+          "nat",
+          "mangle",
+          "raw",
+          "security"
+        ],
+        "default": "filter",
+        "type": "str"
+      },
+      "tcp_flags": {
+        "suboptions": {
+          "flags": {
+            "elements": "str",
+            "type": "list"
+          },
+          "flags_set": {
+            "elements": "str",
+            "type": "list"
+          }
+        },
+        "type": "dict"
+      },
+      "to_destination": {
+        "type": "str"
+      },
+      "to_ports": {
+        "type": "str"
+      },
+      "to_source": {
+        "type": "str"
+      },
+      "uid_owner": {
+        "type": "str"
+      },
+      "wait": {
+        "type": "str"
+      }
+    }
+  },
+  "ansible.builtin.known_hosts": {
+    "canonical": "ansible.builtin.known_hosts",
+    "options": {
+      "hash_host": {
+        "default": "no",
+        "type": "bool"
+      },
+      "key": {
+        "type": "str"
+      },
+      "name": {
+        "aliases": [
+          "host"
+        ],
+        "required": true,
+        "type": "str"
+      },
+      "path": {
+        "default": "~/.ssh/known_hosts",
+        "type": "path"
+      },
+      "state": {
+        "choices": [
+          "absent",
+          "present"
+        ],
+        "default": "present",
+        "type": "str"
+      }
+    }
+  },
+  "ansible.builtin.lineinfile": {
+    "canonical": "ansible.builtin.lineinfile",
+    "options": {
+      "attributes": {
+        "aliases": [
+          "attr"
+        ],
+        "type": "str"
+      },
+      "backrefs": {
+        "default": false,
+        "type": "bool"
+      },
+      "backup": {
+        "default": false,
+        "type": "bool"
+      },
+      "create": {
+        "default": false,
+        "type": "bool"
+      },
+      "encoding": {
+        "default": "utf-8",
+        "type": "str"
+      },
+      "firstmatch": {
+        "default": false,
+        "type": "bool"
+      },
+      "group": {
+        "type": "str"
+      },
+      "insertafter": {
+        "type": "str"
+      },
+      "insertbefore": {
+        "type": "str"
+      },
+      "line": {
+        "aliases": [
+          "value"
+        ],
+        "type": "str"
+      },
+      "mode": {
+        "type": "raw"
+      },
+      "owner": {
+        "type": "str"
+      },
+      "path": {
+        "aliases": [
+          "dest",
+          "destfile",
+          "name"
+        ],
+        "required": true,
+        "type": "path"
+      },
+      "regexp": {
+        "aliases": [
+          "regex"
+        ],
+        "type": "str"
+      },
+      "search_string": {
+        "type": "str"
+      },
+      "selevel": {
+        "type": "str"
+      },
+      "serole": {
+        "type": "str"
+      },
+      "setype": {
+        "type": "str"
+      },
+      "seuser": {
+        "type": "str"
+      },
+      "state": {
+        "choices": [
+          "absent",
+          "present"
+        ],
+        "default": "present",
+        "type": "str"
+      },
+      "unsafe_writes": {
+        "default": false,
+        "type": "bool"
+      },
+      "validate": {
+        "type": "str"
+      }
+    }
+  },
+  "ansible.builtin.meta": {
+    "canonical": "ansible.builtin.meta",
+    "options": {
+      "free_form": {
+        "choices": [
+          "clear_facts",
+          "clear_host_errors",
+          "end_host",
+          "end_play",
+          "flush_handlers",
+          "noop",
+          "refresh_inventory",
+          "reset_connection",
+          "end_batch",
+          "end_role"
+        ],
+        "required": true
+      }
+    }
+  },
+  "ansible.builtin.mount_facts": {
+    "canonical": "ansible.builtin.mount_facts",
+    "options": {
+      "devices": {
+        "default": null,
+        "elements": "str",
+        "type": "list"
+      },
+      "fstypes": {
+        "default": null,
+        "elements": "str",
+        "type": "list"
+      },
+      "include_aggregate_mounts": {
+        "default": null,
+        "type": "bool"
+      },
+      "mount_binary": {
+        "default": "mount",
+        "type": "raw"
+      },
+      "on_timeout": {
+        "choices": [
+          "error",
+          "warn",
+          "ignore"
+        ],
+        "default": "error",
+        "type": "str"
+      },
+      "sources": {
+        "default": null,
+        "elements": "str",
+        "type": "list"
+      },
+      "timeout": {
+        "type": "float"
+      }
+    }
+  },
+  "ansible.builtin.package": {
+    "canonical": "ansible.builtin.package",
+    "options": {
+      "name": {
+        "required": true
+      },
+      "state": {
+        "required": true
+      },
+      "use": {
+        "default": "auto"
+      }
+    }
+  },
+  "ansible.builtin.package_facts": {
+    "canonical": "ansible.builtin.package_facts",
+    "options": {
+      "manager": {
+        "choices": {
+          "apk": "Alpine Linux package manager",
+          "apt": "For DEB based distros, C(python-apt) package must be installed on targeted hosts",
+          "auto": "Depending on O(strategy), will match the first or all package managers provided, in order",
+          "dnf": "Alias to rpm",
+          "dnf5": "Alias to rpm",
+          "openbsd_pkg": "Alias to pkg_info",
+          "pacman": "Archlinux package manager/builder",
+          "pkg": "libpkg front end (FreeBSD)",
+          "pkg5": "Alias to pkg",
+          "pkg_info": "OpenBSD package manager",
+          "pkgng": "Alias to pkg",
+          "portage": "Handles ebuild packages, it requires the C(qlist) utility, which is part of 'app-portage/portage-utils'",
+          "rpm": "For RPM based distros, requires RPM Python bindings, not installed by default on Suse or Fedora 41+ (python3-rpm)",
+          "yum": "Alias to rpm",
+          "zypper": "Alias to rpm"
+        },
+        "default": [
+          "auto"
+        ],
+        "elements": "str",
+        "type": "list"
+      },
+      "strategy": {
+        "choices": {
+          "all": "returns information for all supported and available package managers on the system.",
+          "first": "returns only information for the first supported package manager available."
+        },
+        "default": "first",
+        "type": "str"
+      }
+    }
+  },
+  "ansible.builtin.pause": {
+    "canonical": "ansible.builtin.pause",
+    "options": {
+      "echo": {
+        "default": "yes",
+        "type": "bool"
+      },
+      "minutes": {},
+      "prompt": {},
+      "seconds": {}
+    }
+  },
+  "ansible.builtin.ping": {
+    "canonical": "ansible.builtin.ping",
+    "options": {
+      "data": {
+        "default": "pong",
+        "type": "str"
+      }
+    }
+  },
+  "ansible.builtin.pip": {
+    "canonical": "ansible.builtin.pip",
+    "options": {
+      "break_system_packages": {
+        "default": false,
+        "type": "bool"
+      },
+      "chdir": {
+        "type": "path"
+      },
+      "editable": {
+        "default": "no",
+        "type": "bool"
+      },
+      "executable": {
+        "type": "path"
+      },
+      "extra_args": {
+        "type": "str"
+      },
+      "name": {
+        "elements": "str",
+        "type": "list"
+      },
+      "requirements": {
+        "type": "str"
+      },
+      "state": {
+        "choices": [
+          "absent",
+          "forcereinstall",
+          "latest",
+          "present"
+        ],
+        "default": "present",
+        "type": "str"
+      },
+      "umask": {
+        "type": "str"
+      },
+      "version": {
+        "type": "str"
+      },
+      "virtualenv": {
+        "type": "path"
+      },
+      "virtualenv_command": {
+        "default": "virtualenv",
+        "type": "path"
+      },
+      "virtualenv_python": {
+        "type": "str"
+      },
+      "virtualenv_site_packages": {
+        "default": "no",
+        "type": "bool"
+      }
+    }
+  },
+  "ansible.builtin.raw": {
+    "canonical": "ansible.builtin.raw",
+    "options": {
+      "executable": {},
+      "free_form": {
+        "required": true
+      }
+    }
+  },
+  "ansible.builtin.reboot": {
+    "canonical": "ansible.builtin.reboot",
+    "options": {
+      "boot_time_command": {
+        "default": "cat /proc/sys/kernel/random/boot_id",
+        "type": "str"
+      },
+      "connect_timeout": {
+        "type": "int"
+      },
+      "msg": {
+        "default": "Reboot initiated by Ansible",
+        "type": "str"
+      },
+      "post_reboot_delay": {
+        "default": 0,
+        "type": "int"
+      },
+      "pre_reboot_delay": {
+        "default": 0,
+        "type": "int"
+      },
+      "reboot_command": {
+        "default": "[determined based on target OS]",
+        "type": "str"
+      },
+      "reboot_timeout": {
+        "default": 600,
+        "type": "int"
+      },
+      "search_paths": {
+        "default": [
+          "/sbin",
+          "/bin",
+          "/usr/sbin",
+          "/usr/bin",
+          "/usr/local/sbin"
+        ],
+        "elements": "str",
+        "type": "list"
+      },
+      "test_command": {
+        "default": "whoami",
+        "type": "str"
+      }
+    }
+  },
+  "ansible.builtin.replace": {
+    "canonical": "ansible.builtin.replace",
+    "options": {
+      "after": {
+        "type": "str"
+      },
+      "attributes": {
+        "aliases": [
+          "attr"
+        ],
+        "type": "str"
+      },
+      "backup": {
+        "default": false,
+        "type": "bool"
+      },
+      "before": {
+        "type": "str"
+      },
+      "encoding": {
+        "default": "utf-8",
+        "type": "str"
+      },
+      "group": {
+        "type": "str"
+      },
+      "mode": {
+        "type": "raw"
+      },
+      "owner": {
+        "type": "str"
+      },
+      "path": {
+        "aliases": [
+          "dest",
+          "destfile",
+          "name"
+        ],
+        "required": true,
+        "type": "path"
+      },
+      "regexp": {
+        "required": true,
+        "type": "str"
+      },
+      "replace": {
+        "default": "",
+        "type": "str"
+      },
+      "selevel": {
+        "type": "str"
+      },
+      "serole": {
+        "type": "str"
+      },
+      "setype": {
+        "type": "str"
+      },
+      "seuser": {
+        "type": "str"
+      },
+      "unsafe_writes": {
+        "default": false,
+        "type": "bool"
+      },
+      "validate": {
+        "type": "str"
+      }
+    }
+  },
+  "ansible.builtin.rpm_key": {
+    "canonical": "ansible.builtin.rpm_key",
+    "options": {
+      "fingerprint": {
+        "elements": "str",
+        "type": "list"
+      },
+      "key": {
+        "required": true,
+        "type": "str"
+      },
+      "state": {
+        "choices": [
+          "absent",
+          "present"
+        ],
+        "default": "present",
+        "type": "str"
+      },
+      "validate_certs": {
+        "default": "yes",
+        "type": "bool"
+      }
+    }
+  },
+  "ansible.builtin.script": {
+    "canonical": "ansible.builtin.script",
+    "options": {
+      "chdir": {
+        "type": "str"
+      },
+      "cmd": {
+        "type": "str"
+      },
+      "creates": {
+        "type": "str"
+      },
+      "executable": {
+        "type": "str"
+      },
+      "free_form": {
+        "type": "str"
+      },
+      "removes": {
+        "type": "str"
+      }
+    }
+  },
+  "ansible.builtin.service": {
+    "canonical": "ansible.builtin.service",
+    "options": {
+      "arguments": {
+        "aliases": [
+          "args"
+        ],
+        "default": "",
+        "type": "str"
+      },
+      "enabled": {
+        "type": "bool"
+      },
+      "name": {
+        "required": true,
+        "type": "str"
+      },
+      "pattern": {
+        "type": "str"
+      },
+      "runlevel": {
+        "default": "default",
+        "type": "str"
+      },
+      "sleep": {
+        "type": "int"
+      },
+      "state": {
+        "choices": [
+          "reloaded",
+          "restarted",
+          "started",
+          "stopped"
+        ],
+        "type": "str"
+      },
+      "use": {
+        "default": "auto",
+        "type": "str"
+      }
+    }
+  },
+  "ansible.builtin.service_facts": {
+    "canonical": "ansible.builtin.service_facts",
+    "options": {}
+  },
+  "ansible.builtin.set_fact": {
+    "canonical": "ansible.builtin.set_fact",
+    "options": {
+      "cacheable": {
+        "default": false,
+        "type": "bool"
+      },
+      "key_value": {
+        "required": true
+      }
+    }
+  },
+  "ansible.builtin.set_stats": {
+    "canonical": "ansible.builtin.set_stats",
+    "options": {
+      "aggregate": {
+        "default": true,
+        "type": "bool"
+      },
+      "data": {
+        "required": true,
+        "type": "dict"
+      },
+      "per_host": {
+        "default": false,
+        "type": "bool"
+      }
+    }
+  },
+  "ansible.builtin.setup": {
+    "canonical": "ansible.builtin.setup",
+    "options": {
+      "fact_path": {
+        "default": "/etc/ansible/facts.d",
+        "type": "path"
+      },
+      "filter": {
+        "default": [],
+        "elements": "str",
+        "type": "list"
+      },
+      "gather_subset": {
+        "default": "all",
+        "elements": "str",
+        "type": "list"
+      },
+      "gather_timeout": {
+        "default": 10,
+        "type": "int"
+      }
+    }
+  },
+  "ansible.builtin.shell": {
+    "canonical": "ansible.builtin.shell",
+    "options": {
+      "chdir": {
+        "type": "path"
+      },
+      "cmd": {
+        "type": "str"
+      },
+      "creates": {
+        "type": "path"
+      },
+      "executable": {
+        "type": "path"
+      },
+      "free_form": {
+        "type": "str"
+      },
+      "removes": {
+        "type": "path"
+      },
+      "stdin": {
+        "type": "str"
+      },
+      "stdin_add_newline": {
+        "default": true,
+        "type": "bool"
+      }
+    }
+  },
+  "ansible.builtin.slurp": {
+    "canonical": "ansible.builtin.slurp",
+    "options": {
+      "armor": {
+        "default": true,
+        "type": "bool"
+      },
+      "src": {
+        "aliases": [
+          "path"
+        ],
+        "required": true,
+        "type": "path"
+      }
+    }
+  },
+  "ansible.builtin.stat": {
+    "canonical": "ansible.builtin.stat",
+    "options": {
+      "checksum_algorithm": {
+        "aliases": [
+          "checksum",
+          "checksum_algo"
+        ],
+        "choices": [
+          "md5",
+          "sha1",
+          "sha224",
+          "sha256",
+          "sha384",
+          "sha512"
+        ],
+        "default": "sha1",
+        "type": "str"
+      },
+      "follow": {
+        "default": false,
+        "type": "bool"
+      },
+      "get_attributes": {
+        "aliases": [
+          "attr",
+          "attributes"
+        ],
+        "default": true,
+        "type": "bool"
+      },
+      "get_checksum": {
+        "default": true,
+        "type": "bool"
+      },
+      "get_mime": {
+        "aliases": [
+          "mime",
+          "mime_type",
+          "mime-type"
+        ],
+        "default": true,
+        "type": "bool"
+      },
+      "get_selinux_context": {
+        "default": false,
+        "type": "bool"
+      },
+      "path": {
+        "aliases": [
+          "dest",
+          "name"
+        ],
+        "required": true,
+        "type": "path"
+      }
+    }
+  },
+  "ansible.builtin.subversion": {
+    "canonical": "ansible.builtin.subversion",
+    "options": {
+      "checkout": {
+        "default": "yes",
+        "type": "bool"
+      },
+      "dest": {
+        "type": "path"
+      },
+      "executable": {
+        "type": "path"
+      },
+      "export": {
+        "default": "no",
+        "type": "bool"
+      },
+      "force": {
+        "default": "no",
+        "type": "bool"
+      },
+      "in_place": {
+        "default": "no",
+        "type": "bool"
+      },
+      "password": {
+        "type": "str"
+      },
+      "repo": {
+        "aliases": [
+          "name",
+          "repository"
+        ],
+        "required": true,
+        "type": "str"
+      },
+      "revision": {
+        "aliases": [
+          "rev",
+          "version"
+        ],
+        "default": "HEAD",
+        "type": "str"
+      },
+      "switch": {
+        "default": "yes",
+        "type": "bool"
+      },
+      "update": {
+        "default": "yes",
+        "type": "bool"
+      },
+      "username": {
+        "type": "str"
+      },
+      "validate_certs": {
+        "default": "no",
+        "type": "bool"
+      }
+    }
+  },
+  "ansible.builtin.systemd": {
+    "canonical": "ansible.builtin.systemd_service",
+    "options": {
+      "daemon_reexec": {
+        "aliases": [
+          "daemon-reexec"
+        ],
+        "default": false,
+        "type": "bool"
+      },
+      "daemon_reload": {
+        "aliases": [
+          "daemon-reload"
+        ],
+        "default": false,
+        "type": "bool"
+      },
+      "enabled": {
+        "type": "bool"
+      },
+      "force": {
+        "type": "bool"
+      },
+      "masked": {
+        "type": "bool"
+      },
+      "name": {
+        "aliases": [
+          "service",
+          "unit"
+        ],
+        "type": "str"
+      },
+      "no_block": {
+        "default": false,
+        "type": "bool"
+      },
+      "scope": {
+        "choices": [
+          "system",
+          "user",
+          "global"
+        ],
+        "default": "system",
+        "type": "str"
+      },
+      "state": {
+        "choices": [
+          "reloaded",
+          "restarted",
+          "started",
+          "stopped"
+        ],
+        "type": "str"
+      }
+    }
+  },
+  "ansible.builtin.systemd_service": {
+    "canonical": "ansible.builtin.systemd_service",
+    "options": {
+      "daemon_reexec": {
+        "aliases": [
+          "daemon-reexec"
+        ],
+        "default": false,
+        "type": "bool"
+      },
+      "daemon_reload": {
+        "aliases": [
+          "daemon-reload"
+        ],
+        "default": false,
+        "type": "bool"
+      },
+      "enabled": {
+        "type": "bool"
+      },
+      "force": {
+        "type": "bool"
+      },
+      "masked": {
+        "type": "bool"
+      },
+      "name": {
+        "aliases": [
+          "service",
+          "unit"
+        ],
+        "type": "str"
+      },
+      "no_block": {
+        "default": false,
+        "type": "bool"
+      },
+      "scope": {
+        "choices": [
+          "system",
+          "user",
+          "global"
+        ],
+        "default": "system",
+        "type": "str"
+      },
+      "state": {
+        "choices": [
+          "reloaded",
+          "restarted",
+          "started",
+          "stopped"
+        ],
+        "type": "str"
+      }
+    }
+  },
+  "ansible.builtin.sysvinit": {
+    "canonical": "ansible.builtin.sysvinit",
+    "options": {
+      "arguments": {
+        "aliases": [
+          "args"
+        ],
+        "type": "str"
+      },
+      "daemonize": {
+        "default": false,
+        "type": "bool"
+      },
+      "enabled": {
+        "type": "bool"
+      },
+      "name": {
+        "aliases": [
+          "service"
+        ],
+        "required": true,
+        "type": "str"
+      },
+      "pattern": {
+        "type": "str"
+      },
+      "runlevels": {
+        "elements": "str",
+        "type": "list"
+      },
+      "sleep": {
+        "default": 1,
+        "type": "int"
+      },
+      "state": {
+        "choices": [
+          "started",
+          "stopped",
+          "restarted",
+          "reloaded"
+        ],
+        "type": "str"
+      }
+    }
+  },
+  "ansible.builtin.tempfile": {
+    "canonical": "ansible.builtin.tempfile",
+    "options": {
+      "path": {
+        "type": "path"
+      },
+      "prefix": {
+        "default": "ansible.",
+        "type": "str"
+      },
+      "state": {
+        "choices": [
+          "directory",
+          "file"
+        ],
+        "default": "file",
+        "type": "str"
+      },
+      "suffix": {
+        "default": "",
+        "type": "str"
+      }
+    }
+  },
+  "ansible.builtin.template": {
+    "canonical": "ansible.builtin.template",
+    "options": {
+      "attributes": {
+        "aliases": [
+          "attr"
+        ],
+        "type": "str"
+      },
+      "backup": {
+        "default": false,
+        "type": "bool"
+      },
+      "block_end_string": {
+        "default": "%}",
+        "type": "str"
+      },
+      "block_start_string": {
+        "default": "{%",
+        "type": "str"
+      },
+      "comment_end_string": {
+        "type": "str"
+      },
+      "comment_start_string": {
+        "type": "str"
+      },
+      "dest": {
+        "required": true,
+        "type": "path"
+      },
+      "follow": {
+        "default": false,
+        "type": "bool"
+      },
+      "force": {
+        "default": true,
+        "type": "bool"
+      },
+      "group": {
+        "type": "str"
+      },
+      "lstrip_blocks": {
+        "default": false,
+        "type": "bool"
+      },
+      "mode": {
+        "type": "raw"
+      },
+      "newline_sequence": {
+        "choices": [
+          "\\n",
+          "\\r",
+          "\\r\\n"
+        ],
+        "default": "\\n",
+        "type": "str"
+      },
+      "output_encoding": {
+        "default": "utf-8",
+        "type": "str"
+      },
+      "owner": {
+        "type": "str"
+      },
+      "selevel": {
+        "type": "str"
+      },
+      "serole": {
+        "type": "str"
+      },
+      "setype": {
+        "type": "str"
+      },
+      "seuser": {
+        "type": "str"
+      },
+      "src": {
+        "required": true,
+        "type": "path"
+      },
+      "trim_blocks": {
+        "default": true,
+        "type": "bool"
+      },
+      "unsafe_writes": {
+        "default": false,
+        "type": "bool"
+      },
+      "validate": {
+        "type": "str"
+      },
+      "variable_end_string": {
+        "default": "}}",
+        "type": "str"
+      },
+      "variable_start_string": {
+        "default": "{{",
+        "type": "str"
+      }
+    }
+  },
+  "ansible.builtin.unarchive": {
+    "canonical": "ansible.builtin.unarchive",
+    "options": {
+      "attributes": {
+        "aliases": [
+          "attr"
+        ],
+        "type": "str"
+      },
+      "copy": {
+        "default": true,
+        "type": "bool"
+      },
+      "creates": {
+        "type": "path"
+      },
+      "decrypt": {
+        "default": true,
+        "type": "bool"
+      },
+      "dest": {
+        "required": true,
+        "type": "path"
+      },
+      "exclude": {
+        "default": [],
+        "elements": "str",
+        "type": "list"
+      },
+      "extra_opts": {
+        "default": [],
+        "elements": "str",
+        "type": "list"
+      },
+      "group": {
+        "type": "str"
+      },
+      "include": {
+        "default": [],
+        "elements": "str",
+        "type": "list"
+      },
+      "io_buffer_size": {
+        "default": 65536,
+        "type": "int"
+      },
+      "keep_newer": {
+        "default": false,
+        "type": "bool"
+      },
+      "list_files": {
+        "default": false,
+        "type": "bool"
+      },
+      "mode": {
+        "type": "raw"
+      },
+      "owner": {
+        "type": "str"
+      },
+      "remote_src": {
+        "default": false,
+        "type": "bool"
+      },
+      "selevel": {
+        "type": "str"
+      },
+      "serole": {
+        "type": "str"
+      },
+      "setype": {
+        "type": "str"
+      },
+      "seuser": {
+        "type": "str"
+      },
+      "src": {
+        "required": true,
+        "type": "path"
+      },
+      "unsafe_writes": {
+        "default": false,
+        "type": "bool"
+      },
+      "validate_certs": {
+        "default": true,
+        "type": "bool"
+      }
+    }
+  },
+  "ansible.builtin.uri": {
+    "canonical": "ansible.builtin.uri",
+    "options": {
+      "attributes": {
+        "aliases": [
+          "attr"
+        ],
+        "type": "str"
+      },
+      "body": {
+        "type": "raw"
+      },
+      "body_format": {
+        "choices": [
+          "form-urlencoded",
+          "json",
+          "raw",
+          "form-multipart"
+        ],
+        "default": "raw",
+        "type": "str"
+      },
+      "ca_path": {
+        "type": "path"
+      },
+      "ciphers": {
+        "elements": "str",
+        "type": "list"
+      },
+      "client_cert": {
+        "type": "path"
+      },
+      "client_key": {
+        "type": "path"
+      },
+      "creates": {
+        "type": "path"
+      },
+      "decompress": {
+        "default": true,
+        "type": "bool"
+      },
+      "dest": {
+        "type": "path"
+      },
+      "follow_redirects": {
+        "choices": {
+          "all": "Will follow all redirects.",
+          "no": "(DEPRECATED, removed in 2.22) alias of V(none).",
+          "none": "Will not follow any redirects.",
+          "safe": "Only redirects doing GET or HEAD requests will be followed.",
+          "urllib2": "Defer to urllib2 behavior (As of writing this follows HTTP redirects).",
+          "yes": "(DEPRECATED, removed in 2.22) alias of V(all)."
+        },
+        "default": "safe",
+        "type": "str"
+      },
+      "force": {
+        "default": false,
+        "type": "bool"
+      },
+      "force_basic_auth": {
+        "default": false,
+        "type": "bool"
+      },
+      "group": {
+        "type": "str"
+      },
+      "headers": {
+        "default": {},
+        "type": "dict"
+      },
+      "http_agent": {
+        "default": "ansible-httpget",
+        "type": "str"
+      },
+      "method": {
+        "default": "GET",
+        "type": "str"
+      },
+      "mode": {
+        "type": "raw"
+      },
+      "owner": {
+        "type": "str"
+      },
+      "remote_src": {
+        "default": false,
+        "type": "bool"
+      },
+      "removes": {
+        "type": "path"
+      },
+      "return_content": {
+        "default": false,
+        "type": "bool"
+      },
+      "selevel": {
+        "type": "str"
+      },
+      "serole": {
+        "type": "str"
+      },
+      "setype": {
+        "type": "str"
+      },
+      "seuser": {
+        "type": "str"
+      },
+      "src": {
+        "type": "path"
+      },
+      "status_code": {
+        "default": [
+          200
+        ],
+        "elements": "int",
+        "type": "list"
+      },
+      "timeout": {
+        "default": 30,
+        "type": "int"
+      },
+      "unix_socket": {
+        "type": "path"
+      },
+      "unredirected_headers": {
+        "default": [],
+        "elements": "str",
+        "type": "list"
+      },
+      "unsafe_writes": {
+        "default": false,
+        "type": "bool"
+      },
+      "url": {
+        "required": true,
+        "type": "str"
+      },
+      "url_password": {
+        "aliases": [
+          "password"
+        ],
+        "type": "str"
+      },
+      "url_username": {
+        "aliases": [
+          "user"
+        ],
+        "type": "str"
+      },
+      "use_gssapi": {
+        "default": false,
+        "type": "bool"
+      },
+      "use_netrc": {
+        "default": true,
+        "type": "bool"
+      },
+      "use_proxy": {
+        "default": true,
+        "type": "bool"
+      },
+      "validate_certs": {
+        "default": true,
+        "type": "bool"
+      }
+    }
+  },
+  "ansible.builtin.user": {
+    "canonical": "ansible.builtin.user",
+    "options": {
+      "append": {
+        "default": false,
+        "type": "bool"
+      },
+      "authorization": {
+        "type": "str"
+      },
+      "comment": {
+        "type": "str"
+      },
+      "create_home": {
+        "aliases": [
+          "createhome"
+        ],
+        "default": true,
+        "type": "bool"
+      },
+      "expires": {
+        "type": "float"
+      },
+      "force": {
+        "default": false,
+        "type": "bool"
+      },
+      "generate_ssh_key": {
+        "default": false,
+        "type": "bool"
+      },
+      "group": {
+        "type": "str"
+      },
+      "groups": {
+        "elements": "str",
+        "type": "list"
+      },
+      "hidden": {
+        "type": "bool"
+      },
+      "home": {
+        "type": "path"
+      },
+      "local": {
+        "default": false,
+        "type": "bool"
+      },
+      "login_class": {
+        "type": "str"
+      },
+      "move_home": {
+        "default": false,
+        "type": "bool"
+      },
+      "name": {
+        "aliases": [
+          "user"
+        ],
+        "required": true,
+        "type": "str"
+      },
+      "non_unique": {
+        "default": false,
+        "type": "bool"
+      },
+      "password": {
+        "type": "str"
+      },
+      "password_expire_account_disable": {
+        "type": "int"
+      },
+      "password_expire_max": {
+        "type": "int"
+      },
+      "password_expire_min": {
+        "type": "int"
+      },
+      "password_expire_warn": {
+        "type": "int"
+      },
+      "password_lock": {
+        "type": "bool"
+      },
+      "profile": {
+        "type": "str"
+      },
+      "remove": {
+        "default": false,
+        "type": "bool"
+      },
+      "role": {
+        "type": "str"
+      },
+      "seuser": {
+        "type": "str"
+      },
+      "shell": {
+        "type": "path"
+      },
+      "skeleton": {
+        "type": "str"
+      },
+      "ssh_key_bits": {
+        "type": "int"
+      },
+      "ssh_key_comment": {
+        "default": "ansible-generated on $HOSTNAME",
+        "type": "str"
+      },
+      "ssh_key_file": {
+        "type": "path"
+      },
+      "ssh_key_passphrase": {
+        "type": "str"
+      },
+      "ssh_key_type": {
+        "default": "rsa",
+        "type": "str"
+      },
+      "state": {
+        "choices": [
+          "absent",
+          "present"
+        ],
+        "default": "present",
+        "type": "str"
+      },
+      "system": {
+        "default": false,
+        "type": "bool"
+      },
+      "uid": {
+        "type": "int"
+      },
+      "uid_max": {
+        "type": "int"
+      },
+      "uid_min": {
+        "type": "int"
+      },
+      "umask": {
+        "type": "str"
+      },
+      "update_password": {
+        "choices": [
+          "always",
+          "on_create"
+        ],
+        "default": "always",
+        "type": "str"
+      }
+    }
+  },
+  "ansible.builtin.validate_argument_spec": {
+    "canonical": "ansible.builtin.validate_argument_spec",
+    "options": {
+      "argument_spec": {
+        "required": true
+      },
+      "provided_arguments": {}
+    }
+  },
+  "ansible.builtin.wait_for": {
+    "canonical": "ansible.builtin.wait_for",
+    "options": {
+      "active_connection_states": {
+        "default": [
+          "ESTABLISHED",
+          "FIN_WAIT1",
+          "FIN_WAIT2",
+          "SYN_RECV",
+          "SYN_SENT",
+          "TIME_WAIT"
+        ],
+        "elements": "str",
+        "type": "list"
+      },
+      "connect_timeout": {
+        "default": 5,
+        "type": "int"
+      },
+      "delay": {
+        "default": 0,
+        "type": "int"
+      },
+      "exclude_hosts": {
+        "elements": "str",
+        "type": "list"
+      },
+      "host": {
+        "default": "127.0.0.1",
+        "type": "str"
+      },
+      "msg": {
+        "type": "str"
+      },
+      "path": {
+        "type": "path"
+      },
+      "port": {
+        "type": "int"
+      },
+      "search_regex": {
+        "type": "str"
+      },
+      "sleep": {
+        "default": 1,
+        "type": "int"
+      },
+      "state": {
+        "choices": [
+          "absent",
+          "drained",
+          "present",
+          "started",
+          "stopped"
+        ],
+        "default": "started",
+        "type": "str"
+      },
+      "timeout": {
+        "default": 300,
+        "type": "int"
+      }
+    }
+  },
+  "ansible.builtin.wait_for_connection": {
+    "canonical": "ansible.builtin.wait_for_connection",
+    "options": {
+      "connect_timeout": {
+        "default": 5,
+        "type": "int"
+      },
+      "delay": {
+        "default": 0,
+        "type": "int"
+      },
+      "sleep": {
+        "default": 1,
+        "type": "int"
+      },
+      "timeout": {
+        "default": 600,
+        "type": "int"
+      }
+    }
+  },
+  "ansible.builtin.yum_repository": {
+    "canonical": "ansible.builtin.yum_repository",
+    "options": {
+      "async": {
+        "type": "bool"
+      },
+      "attributes": {
+        "aliases": [
+          "attr"
+        ],
+        "type": "str"
+      },
+      "bandwidth": {
+        "type": "str"
+      },
+      "baseurl": {
+        "elements": "str",
+        "type": "list"
+      },
+      "cost": {
+        "type": "str"
+      },
+      "countme": {
+        "default": null,
+        "type": "bool"
+      },
+      "deltarpm_metadata_percentage": {
+        "type": "str"
+      },
+      "deltarpm_percentage": {
+        "type": "str"
+      },
+      "description": {
+        "type": "str"
+      },
+      "enabled": {
+        "type": "bool"
+      },
+      "enablegroups": {
+        "type": "bool"
+      },
+      "exclude": {
+        "aliases": [
+          "excludepkgs"
+        ],
+        "elements": "str",
+        "type": "list"
+      },
+      "failovermethod": {
+        "choices": [
+          "roundrobin",
+          "priority"
+        ],
+        "type": "str"
+      },
+      "file": {
+        "type": "str"
+      },
+      "gpgcakey": {
+        "type": "str"
+      },
+      "gpgcheck": {
+        "type": "bool"
+      },
+      "gpgkey": {
+        "elements": "str",
+        "type": "list"
+      },
+      "group": {
+        "type": "str"
+      },
+      "http_caching": {
+        "choices": [
+          "all",
+          "packages",
+          "none"
+        ],
+        "type": "str"
+      },
+      "include": {
+        "type": "str"
+      },
+      "includepkgs": {
+        "elements": "str",
+        "type": "list"
+      },
+      "ip_resolve": {
+        "choices": [
+          "4",
+          "6",
+          "IPv4",
+          "IPv6",
+          "whatever"
+        ],
+        "type": "str"
+      },
+      "keepalive": {
+        "type": "bool"
+      },
+      "metadata_expire": {
+        "type": "str"
+      },
+      "metadata_expire_filter": {
+        "choices": [
+          "never",
+          "read-only:past",
+          "read-only:present",
+          "read-only:future"
+        ],
+        "type": "str"
+      },
+      "metalink": {
+        "type": "str"
+      },
+      "mirrorlist": {
+        "type": "str"
+      },
+      "mirrorlist_expire": {
+        "type": "str"
+      },
+      "mode": {
+        "type": "raw"
+      },
+      "module_hotfixes": {
+        "type": "bool"
+      },
+      "name": {
+        "required": true,
+        "type": "str"
+      },
+      "owner": {
+        "type": "str"
+      },
+      "password": {
+        "type": "str"
+      },
+      "priority": {
+        "type": "str"
+      },
+      "protect": {
+        "type": "bool"
+      },
+      "proxy": {
+        "type": "str"
+      },
+      "proxy_password": {
+        "type": "str"
+      },
+      "proxy_username": {
+        "type": "str"
+      },
+      "repo_gpgcheck": {
+        "type": "bool"
+      },
+      "reposdir": {
+        "default": "/etc/yum.repos.d",
+        "type": "path"
+      },
+      "retries": {
+        "type": "str"
+      },
+      "s3_enabled": {
+        "type": "bool"
+      },
+      "selevel": {
+        "type": "str"
+      },
+      "serole": {
+        "type": "str"
+      },
+      "setype": {
+        "type": "str"
+      },
+      "seuser": {
+        "type": "str"
+      },
+      "skip_if_unavailable": {
+        "type": "bool"
+      },
+      "ssl_check_cert_permissions": {
+        "type": "bool"
+      },
+      "sslcacert": {
+        "aliases": [
+          "ca_cert"
+        ],
+        "type": "str"
+      },
+      "sslclientcert": {
+        "aliases": [
+          "client_cert"
+        ],
+        "type": "str"
+      },
+      "sslclientkey": {
+        "aliases": [
+          "client_key"
+        ],
+        "type": "str"
+      },
+      "sslverify": {
+        "aliases": [
+          "validate_certs"
+        ],
+        "type": "bool"
+      },
+      "state": {
+        "choices": [
+          "absent",
+          "present"
+        ],
+        "default": "present",
+        "type": "str"
+      },
+      "throttle": {
+        "type": "str"
+      },
+      "timeout": {
+        "type": "str"
+      },
+      "ui_repoid_vars": {
+        "type": "str"
+      },
+      "unsafe_writes": {
+        "default": false,
+        "type": "bool"
+      },
+      "username": {
+        "type": "str"
+      }
+    }
+  }
+}

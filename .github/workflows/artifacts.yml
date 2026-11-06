@@ -1,0 +1,33 @@
+name: Build review artifacts
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+env:
+  CARGO_BUILD_JOBS: 2
+
+jobs:
+  package:
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-24.04]
+    runs-on: ${{ matrix.os }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.13'
+      - name: Install the pinned Rust toolchain
+        run: rustup show
+      - name: Test
+        run: cargo test --locked
+      - name: Build binary and corresponding source archives
+        run: python scripts/package.py
+      - uses: actions/upload-artifact@v4
+        with:
+          name: oxible-${{ runner.os }}-${{ runner.arch }}
+          path: dist/*

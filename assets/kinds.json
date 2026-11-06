@@ -1,0 +1,119 @@
+[
+  {
+    "jinja2": "**/*.j2"
+  },
+  {
+    "jinja2": "**/*.j2.*"
+  },
+  {
+    "yaml": ".github/**/*.{yaml,yml}"
+  },
+  {
+    "text": "**/templates/**/*.*"
+  },
+  {
+    "execution-environment": "**/execution-environment.yml"
+  },
+  {
+    "ansible-lint-config": "**/.ansible-lint"
+  },
+  {
+    "ansible-lint-config": "**/.ansible-lint.{yaml,yml}"
+  },
+  {
+    "ansible-lint-config": "**/.config/ansible-lint.{yaml,yml}"
+  },
+  {
+    "ansible-navigator-config": "**/ansible-navigator.{yaml,yml}"
+  },
+  {
+    "inventory": "**/inventory/**.{yaml,yml}"
+  },
+  {
+    "requirements": "**/meta/requirements.{yaml,yml}"
+  },
+  {
+    "galaxy": "**/galaxy.yml"
+  },
+  {
+    "reno": "**/releasenotes/*/*.{yaml,yml}"
+  },
+  {
+    "vars": "**/{host_vars,group_vars,vars,defaults}/**/*.{yaml,yml}"
+  },
+  {
+    "tasks": "**/tasks/**/*.{yaml,yml}"
+  },
+  {
+    "rulebook": "**/rulebooks/*.{yml,yaml"
+  },
+  {
+    "pattern": "**/extensions/patterns/*/meta/pattern.json"
+  },
+  {
+    "play-argspec": "**/*.meta.{yaml,yml}"
+  },
+  {
+    "playbook": "**/playbooks/*.{yml,yaml}"
+  },
+  {
+    "playbook": "**/*playbook*.{yml,yaml}"
+  },
+  {
+    "playbook": "**/extensions/patterns/*/playbooks/*.{yml,yaml}"
+  },
+  {
+    "role": "**/roles/*/"
+  },
+  {
+    "handlers": "**/handlers/*.{yaml,yml}"
+  },
+  {
+    "test-meta": "**/tests/integration/targets/*/meta/main.{yaml,yml}"
+  },
+  {
+    "meta": "**/meta/main.{yaml,yml}"
+  },
+  {
+    "meta-runtime": "**/meta/runtime.{yaml,yml}"
+  },
+  {
+    "role-arg-spec": "**/meta/argument_specs.{yaml,yml}"
+  },
+  {
+    "yaml": ".config/molecule/config.{yaml,yml}"
+  },
+  {
+    "requirements": "**/molecule/*/{collections,requirements}.{yaml,yml}"
+  },
+  {
+    "yaml": "**/molecule/*/{base,molecule}.{yaml,yml}"
+  },
+  {
+    "requirements": "**/requirements.{yaml,yml}"
+  },
+  {
+    "playbook": "**/molecule/*/*.{yaml,yml}"
+  },
+  {
+    "yaml": "**/{.ansible-lint,.yamllint}"
+  },
+  {
+    "changelog": "**/changelogs/changelog.{yaml,yml}"
+  },
+  {
+    "yaml": "**/*.{yaml,yml}"
+  },
+  {
+    "yaml": "**/.*.{yaml,yml}"
+  },
+  {
+    "sanity-ignore-file": "**/tests/sanity/ignore-*.txt"
+  },
+  {
+    "plugin": "**/plugins/{action,become,cache,callback,connection,filter,inventory,lookup,modules,test}/**/*.py"
+  },
+  {
+    "python": "**/*.py"
+  }
+]

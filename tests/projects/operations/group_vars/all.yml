@@ -1,0 +1,5 @@
+---
+app_name: example
+app_root: /srv/example
+app_port: 8080
+db_name: example
