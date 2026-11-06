@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.1.1 — Unreleased
+
+- Correct Jinja syntax-error messages after an `else` branch to report only the
+  remaining closing tag, matching the pinned ansible-lint behavior.
+
 ## 0.1.0 — 2026-11-06
 
 Initial public release.
