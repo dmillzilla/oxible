@@ -1,6 +1,8 @@
 // SPDX-License-Identifier: GPL-3.0-or-later
 //! Pinned Jinja parser wording for native syntax errors. Validation remains in
 //! MiniJinja; this module never evaluates templates or converts an error to clean.
+use minijinja::machinery::{Token, tokenize};
+
 pub(crate) fn message(source: &str, error: &minijinja::Error) -> String {
     let detail = error.detail().unwrap_or("invalid syntax");
     let at = error
@@ -66,39 +68,56 @@ pub(crate) fn message(source: &str, error: &minijinja::Error) -> String {
     };
     format!("Syntax error in template: {body}")
 }
-fn expected_block(block: &str) -> String {
-    let tags = match block {
-        "if" => "'elif' or 'else' or 'endif'".into(),
-        "for" => "'endfor' or 'else'".into(),
-        block => format!("'end{block}'"),
+struct Block<'a> {
+    tag: &'a str,
+    has_else: bool,
+}
+fn expected_block(block: &Block<'_>) -> String {
+    let tags = match (block.tag, block.has_else) {
+        ("if", false) => "'elif' or 'else' or 'endif'".into(),
+        ("for", false) => "'endfor' or 'else'".into(),
+        (tag, _) => format!("'end{tag}'"),
     };
+    let name = block.tag;
     format!(
-        "Jinja was looking for the following tags: {tags}. The innermost block that needs to be closed is '{block}'."
+        "Jinja was looking for the following tags: {tags}. The innermost block that needs to be closed is '{name}'."
     )
 }
-fn blocks(source: &str) -> Vec<&str> {
-    let mut stack = Vec::new();
-    let mut rest = source;
-    while let Some((_, tail)) = rest.split_once("{%") {
-        let statement = tail
-            .split("%}")
-            .next()
-            .unwrap_or(tail)
-            .trim_start_matches('-')
-            .trim();
-        let tag = statement.split_whitespace().next().unwrap_or_default();
+fn blocks(source: &str) -> Vec<Block<'_>> {
+    let mut stack: Vec<Block<'_>> = Vec::new();
+    let mut tokens = tokenize(source, false, Default::default()).map_while(Result::ok);
+    while let Some((token, _)) = tokens.next() {
+        if !matches!(token, Token::BlockStart) {
+            continue;
+        }
+        let Some((Token::Ident(tag), _)) = tokens.next() else {
+            continue;
+        };
+        let assigned = tag == "set"
+            && tokens
+                .by_ref()
+                .take_while(|(token, _)| !matches!(token, Token::BlockEnd))
+                .any(|(token, _)| matches!(token, Token::Assign));
         if let Some(end) = tag.strip_prefix("end") {
-            if stack.last() == Some(&end) {
+            if stack.last().is_some_and(|block| block.tag == end) {
                 stack.pop();
+            }
+        } else if tag == "else" {
+            if let Some(block) = stack.last_mut()
+                && matches!(block.tag, "if" | "for")
+            {
+                block.has_else = true;
             }
         } else if matches!(
             tag,
             "if" | "for" | "block" | "macro" | "call" | "filter" | "with" | "autoescape"
-        ) || (tag == "set" && !statement.contains('='))
+        ) || (tag == "set" && !assigned)
         {
-            stack.push(tag);
+            stack.push(Block {
+                tag,
+                has_else: false,
+            });
         }
-        rest = tail.split_once("%}").map_or("", |(_, rest)| rest);
     }
     stack
 }
