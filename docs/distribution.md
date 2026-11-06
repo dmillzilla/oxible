@@ -61,7 +61,7 @@ Offer corresponding source next to each downloadable binary release, including
 the locked dependency source and retained notices, with clear download links.
 Keep that source available for as long as the corresponding binary is offered.
 Record the commit, toolchain, target, checksums, supported Linux baseline and
-validation results in the release notes. The initial version is 0.1.0; artifact builds and offline verification are performed by the packaging script.
+validation results in the release notes. Artifact builds and offline verification are performed by the packaging script.
 
 ## Editor distributions
 
@@ -70,4 +70,4 @@ not vendor Node.js dependencies. A VSIX is a separate optional artifact. Before
 distributing one, verify its runtime dependency notices and matching source,
 inspect the exact VSIX contents and rerun its live-host check. Do not assume the
 Rust notice inventory covers npm packages or Marketplace distribution. The
-current local historical VSIX is not a 0.1.0 release artifact.
+current local historical VSIX is not a release artifact.

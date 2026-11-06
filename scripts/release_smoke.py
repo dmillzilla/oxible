@@ -10,6 +10,7 @@ import platform
 import shutil
 import subprocess
 import tempfile
+import tomllib
 
 PLAY = "---\n- name: Inspect hosts\n  hosts: localhost\n  gather_facts: false\n  tasks:\n"
 GOOD = PLAY + "    - name: Inspect configuration\n      ansible.builtin.debug: {}\n"
@@ -23,8 +24,9 @@ def main():
     parser.add_argument("--container", help="Run this binary in an existing Docker image, network disabled")
     args = parser.parse_args()
     binary = args.oxible.resolve(strict=True)
+    version = tomllib.loads((Path(__file__).resolve().parents[1] / "Cargo.toml").read_text())["package"]["version"]
     checks = []
-    report = {"scope": "Bounded 0.1.0 release smoke gate, not full ansible-lint parity",
+    report = {"scope": f"Bounded {version} release smoke gate, not full ansible-lint parity",
               "binary_sha256": hashlib.sha256(binary.read_bytes()).hexdigest(),
               "platform": platform.platform(), "container": args.container,
               "external_checking_path": "PATH empty", "checks": checks}
@@ -72,7 +74,7 @@ def main():
                 row["passed"] = True
                 return value
 
-            assert run("version", ["--version"], 0, False).strip() == "oxible 0.1.0"
+            assert run("version", ["--version"], 0, False).strip() == f"oxible {version}"
             assert "Usage:" in run("help", ["--help"], 0, False)
             native = run("native-clean", ["check", "site.yml", "--format", "json"], 0)
             assert native["diagnostics"] == []
