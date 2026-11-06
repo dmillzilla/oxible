@@ -182,6 +182,38 @@ fn shell_checks_distinguish_pipes_quotes_and_pipefail() {
 }
 
 #[test]
+fn templated_shell_checks_preserve_quoted_escaped_and_commented_operators() {
+    for command in [
+        "echo '{{ value }}|literal'",
+        "echo {{ value }} \\| cat",
+        "echo {{ value }} # a comment | cat",
+        "echo {# a template comment | ignored #}ready",
+        "echo {{ value | replace('|', ':') }}",
+        "echo {{ value }} || true",
+        "set -o pipefail {# explanation #}; echo {{ value }} | cat",
+    ] {
+        let source = format!("- shell: {}\n", serde_json::to_string(command).unwrap());
+        assert!(
+            selected(&source, "risky-shell-pipe").diagnostics.is_empty(),
+            "{command}"
+        );
+    }
+    for (command, expected) in [
+        ("echo {{ value | quote }}", 1),
+        ("echo {{ value | quote }} | cat", 0),
+    ] {
+        let source = format!("- shell: {}\n", serde_json::to_string(command).unwrap());
+        assert_eq!(
+            selected(&source, "command-instead-of-shell")
+                .diagnostics
+                .len(),
+            expected,
+            "{command}"
+        );
+    }
+}
+
+#[test]
 fn password_checks_allow_no_log_dynamic_no_log_and_non_loop_tasks() {
     for suffix in [
         "  no_log: true\n  loop: [alice]\n",
