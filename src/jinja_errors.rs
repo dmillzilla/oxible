@@ -96,7 +96,9 @@ fn blocks(source: &str) -> Vec<Block<'_>> {
         let assigned = tag == "set"
             && tokens
                 .by_ref()
-                .take_while(|(token, _)| !matches!(token, Token::BlockEnd))
+                // A pipe after the target starts a capture filter. Its keyword
+                // arguments do not make the set tag an assignment statement.
+                .take_while(|(token, _)| !matches!(token, Token::BlockEnd | Token::Pipe))
                 .any(|(token, _)| matches!(token, Token::Assign));
         if let Some(end) = tag.strip_prefix("end") {
             if stack.last().is_some_and(|block| block.tag == end) {
