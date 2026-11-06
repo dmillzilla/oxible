@@ -1,0 +1,7 @@
+.vscode/**
+extension.test.js
+package-lock.json
+node_modules/**/test/**
+node_modules/**/*.map
+run-live-test.js
+live-test.js

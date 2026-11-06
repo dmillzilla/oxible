@@ -1,0 +1,14 @@
+---
+- name: Allow application traffic
+  community.general.ufw:
+    rule: allow
+    port: '8080'
+    proto: tcp
+- name: Set network forwarding
+  ansible.posix.sysctl:
+    name: net.ipv4.ip_forward
+    value: '1'
+    state: present
+- name: Inspect network configuration
+  ansible.builtin.debug:
+    msg: '{{ app_name }}'

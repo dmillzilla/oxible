@@ -1,0 +1,1159 @@
+{
+  "profiles": [
+    {
+      "description": "The `min` profile ensures that Ansible can load content. Rules in this profile are mandatory because they prevent fatal errors. You can add files to the exclude list or provide dependencies to load the correct files.\n",
+      "extends": null,
+      "name": "min",
+      "rules": [
+        {
+          "id": "internal-error",
+          "url": null
+        },
+        {
+          "id": "load-failure",
+          "url": null
+        },
+        {
+          "id": "parser-error",
+          "url": null
+        },
+        {
+          "id": "syntax-check",
+          "url": null
+        }
+      ]
+    },
+    {
+      "description": "The `basic` profile prevents common coding issues and enforces standard styles and formatting.\n",
+      "extends": "min",
+      "name": "basic",
+      "rules": [
+        {
+          "id": "command-instead-of-module",
+          "url": null
+        },
+        {
+          "id": "command-instead-of-shell",
+          "url": null
+        },
+        {
+          "id": "deprecated-bare-vars",
+          "url": null
+        },
+        {
+          "id": "deprecated-local-action",
+          "url": null
+        },
+        {
+          "id": "deprecated-module",
+          "url": null
+        },
+        {
+          "id": "inline-env-var",
+          "url": null
+        },
+        {
+          "id": "key-order",
+          "url": null
+        },
+        {
+          "id": "literal-compare",
+          "url": null
+        },
+        {
+          "id": "jinja",
+          "url": null
+        },
+        {
+          "id": "no-free-form",
+          "url": "https://github.com/ansible/ansible-lint/issues/2117"
+        },
+        {
+          "id": "no-jinja-when",
+          "url": null
+        },
+        {
+          "id": "no-tabs",
+          "url": null
+        },
+        {
+          "id": "partial-become",
+          "url": null
+        },
+        {
+          "id": "playbook-extension",
+          "url": null
+        },
+        {
+          "id": "role-name",
+          "url": null
+        },
+        {
+          "id": "schema",
+          "url": null
+        },
+        {
+          "id": "name",
+          "url": null
+        },
+        {
+          "id": "var-naming",
+          "url": null
+        },
+        {
+          "id": "yaml",
+          "url": null
+        }
+      ]
+    },
+    {
+      "description": "The `moderate` profile ensures that content adheres to best practices for making content easier to read and maintain.\n",
+      "extends": "basic",
+      "name": "moderate",
+      "rules": [
+        {
+          "id": "name[template]",
+          "url": null
+        },
+        {
+          "id": "name[imperative]",
+          "url": "https://github.com/ansible/ansible-lint/issues/2170"
+        },
+        {
+          "id": "name[casing]",
+          "url": null
+        },
+        {
+          "id": "spell-var-name",
+          "url": "https://github.com/ansible/ansible-lint/issues/2168"
+        }
+      ]
+    },
+    {
+      "description": "The `safety` profile avoids module calls that can have non-determinant outcomes or security concerns.\n",
+      "extends": "moderate",
+      "name": "safety",
+      "rules": [
+        {
+          "id": "avoid-implicit",
+          "url": null
+        },
+        {
+          "id": "latest",
+          "url": null
+        },
+        {
+          "id": "package-latest",
+          "url": null
+        },
+        {
+          "id": "risky-file-permissions",
+          "url": null
+        },
+        {
+          "id": "risky-octal",
+          "url": null
+        },
+        {
+          "id": "risky-shell-pipe",
+          "url": null
+        }
+      ]
+    },
+    {
+      "description": "The `shared` profile ensures that content follows best practices for packaging and publishing. This profile is intended for content creators who want to make Ansible playbooks, roles, or collections available from [galaxy.ansible.com](https://galaxy.ansible.com/), [automation-hub](https://console.redhat.com/ansible/automation-hub), or a private instance.\n",
+      "extends": "safety",
+      "name": "shared",
+      "rules": [
+        {
+          "id": "galaxy",
+          "url": null
+        },
+        {
+          "id": "ignore-errors",
+          "url": null
+        },
+        {
+          "id": "layout",
+          "url": "https://github.com/ansible/ansible-lint/issues/1900"
+        },
+        {
+          "id": "meta-incorrect",
+          "url": null
+        },
+        {
+          "id": "meta-no-tags",
+          "url": null
+        },
+        {
+          "id": "meta-video-links",
+          "url": null
+        },
+        {
+          "id": "meta-version",
+          "url": "https://github.com/ansible/ansible-lint/issues/2103"
+        },
+        {
+          "id": "meta-runtime",
+          "url": "https://github.com/ansible/ansible-lint/issues/2102"
+        },
+        {
+          "id": "no-changed-when",
+          "url": null
+        },
+        {
+          "id": "no-changelog",
+          "url": "https://github.com/ansible/ansible-lint/issues/2101"
+        },
+        {
+          "id": "no-handler",
+          "url": null
+        },
+        {
+          "id": "no-relative-paths",
+          "url": null
+        },
+        {
+          "id": "max-block-depth",
+          "url": "https://github.com/ansible/ansible-lint/issues/2173"
+        },
+        {
+          "id": "max-tasks",
+          "url": "https://github.com/ansible/ansible-lint/issues/2172"
+        },
+        {
+          "id": "unsafe-loop",
+          "url": "https://github.com/ansible/ansible-lint/issues/2038"
+        }
+      ]
+    },
+    {
+      "description": "The `production` profile ensures that content meets requirements for inclusion in [Ansible Automation Platform (AAP)](https://www.redhat.com/en/technologies/management/ansible) as validated or certified content.\n",
+      "extends": "shared",
+      "name": "production",
+      "rules": [
+        {
+          "id": "avoid-dot-notation",
+          "url": "https://github.com/ansible/ansible-lint/issues/2174"
+        },
+        {
+          "id": "sanity",
+          "url": "https://github.com/ansible/ansible-lint/issues/2121"
+        },
+        {
+          "id": "fqcn",
+          "url": null
+        },
+        {
+          "id": "import-task-no-when",
+          "url": "https://github.com/ansible/ansible-lint/issues/2219"
+        },
+        {
+          "id": "meta-no-dependencies",
+          "url": "https://github.com/ansible/ansible-lint/issues/2159"
+        },
+        {
+          "id": "single-entry-point",
+          "url": "https://github.com/ansible/ansible-lint/issues/2242"
+        },
+        {
+          "id": "use-loop",
+          "url": "https://github.com/ansible/ansible-lint/issues/2204"
+        }
+      ]
+    }
+  ],
+  "rules": [
+    {
+      "autofix": false,
+      "description": "",
+      "id": "internal-error",
+      "ids": [
+        "internal-error"
+      ],
+      "severity": "VERY_HIGH",
+      "shortdesc": "Unexpected internal error",
+      "tags": [
+        "core"
+      ],
+      "url": "https://docs.ansible.com/projects/lint/rules/internal-error/",
+      "version_changed": "5.0.0"
+    },
+    {
+      "autofix": false,
+      "description": "Linter failed to process a file, possible invalid file.",
+      "id": "load-failure",
+      "ids": [
+        "load-failure[not-found]"
+      ],
+      "severity": "VERY_HIGH",
+      "shortdesc": "Failed to load or parse file.",
+      "tags": [
+        "core",
+        "unskippable"
+      ],
+      "url": "https://docs.ansible.com/projects/lint/rules/load-failure/",
+      "version_changed": "4.3.0"
+    },
+    {
+      "autofix": false,
+      "description": "Ansible parser fails; this usually indicates an invalid file.",
+      "id": "parser-error",
+      "ids": [
+        "parser-error"
+      ],
+      "severity": "VERY_HIGH",
+      "shortdesc": "AnsibleParserError.",
+      "tags": [
+        "core"
+      ],
+      "url": "https://docs.ansible.com/projects/lint/rules/parser-error/",
+      "version_changed": "5.0.0"
+    },
+    {
+      "autofix": false,
+      "description": "",
+      "id": "syntax-check",
+      "ids": [
+        "syntax-check"
+      ],
+      "severity": "VERY_HIGH",
+      "shortdesc": "Ansible syntax check failed.",
+      "tags": [
+        "core",
+        "unskippable"
+      ],
+      "url": "https://docs.ansible.com/projects/lint/rules/syntax-check/",
+      "version_changed": "5.0.0"
+    },
+    {
+      "autofix": false,
+      "description": "",
+      "id": "warning",
+      "ids": [
+        "warning"
+      ],
+      "severity": "LOW",
+      "shortdesc": "Other warnings detected during run.",
+      "tags": [
+        "core",
+        "experimental"
+      ],
+      "url": "https://docs.ansible.com/projects/lint/rules/warning/",
+      "version_changed": "6.8.0"
+    },
+    {
+      "autofix": true,
+      "description": "",
+      "id": "yaml",
+      "ids": [
+        "yaml[anchors]",
+        "yaml[braces]",
+        "yaml[brackets]",
+        "yaml[colons]",
+        "yaml[commas]",
+        "yaml[comments-indentation]",
+        "yaml[comments]",
+        "yaml[document-end]",
+        "yaml[document-start]",
+        "yaml[empty-lines]",
+        "yaml[empty-values]",
+        "yaml[float-values]",
+        "yaml[hyphens]",
+        "yaml[indentation]",
+        "yaml[key-duplicates]",
+        "yaml[key-ordering]",
+        "yaml[line-length]",
+        "yaml[new-line-at-end-of-file]",
+        "yaml[new-lines]",
+        "yaml[octal-values]",
+        "yaml[quoted-strings]",
+        "yaml[trailing-spaces]",
+        "yaml[truthy]"
+      ],
+      "severity": "VERY_LOW",
+      "shortdesc": "Violations reported by yamllint.",
+      "tags": [
+        "formatting",
+        "yaml"
+      ],
+      "url": "https://docs.ansible.com/projects/lint/rules/yaml/",
+      "version_changed": "5.0.0"
+    },
+    {
+      "autofix": false,
+      "description": "Check whether tasks are using correct module options.",
+      "id": "args",
+      "ids": [
+        "args[module]"
+      ],
+      "severity": "HIGH",
+      "shortdesc": "Validating module arguments.",
+      "tags": [
+        "syntax",
+        "experimental"
+      ],
+      "url": "https://docs.ansible.com/projects/lint/rules/args/",
+      "version_changed": "6.10.0"
+    },
+    {
+      "autofix": false,
+      "description": "Items which are templated should use ``template`` instead of ``copy`` with ``content`` to ensure correctness.",
+      "id": "avoid-implicit",
+      "ids": [
+        "avoid-implicit"
+      ],
+      "severity": "MEDIUM",
+      "shortdesc": "Avoid implicit behaviors",
+      "tags": [
+        "unpredictability"
+      ],
+      "url": "https://docs.ansible.com/projects/lint/rules/avoid-implicit/",
+      "version_changed": "6.8.0"
+    },
+    {
+      "autofix": false,
+      "description": "Executing a command when there is an Ansible module is generally a bad idea",
+      "id": "command-instead-of-module",
+      "ids": [
+        "command-instead-of-module"
+      ],
+      "severity": "HIGH",
+      "shortdesc": "Using command rather than module.",
+      "tags": [
+        "command-shell",
+        "idiom"
+      ],
+      "url": "https://docs.ansible.com/projects/lint/rules/command-instead-of-module/",
+      "version_changed": "24.10.0"
+    },
+    {
+      "autofix": true,
+      "description": "Shell should only be used when piping, redirecting or chaining commands (and Ansible would be preferred for some of those!)",
+      "id": "command-instead-of-shell",
+      "ids": [
+        "command-instead-of-shell"
+      ],
+      "severity": "HIGH",
+      "shortdesc": "Use shell only when shell functionality is required.",
+      "tags": [
+        "command-shell",
+        "idiom"
+      ],
+      "url": "https://docs.ansible.com/projects/lint/rules/command-instead-of-shell/",
+      "version_changed": "6.18.0"
+    },
+    {
+      "autofix": false,
+      "description": "Checks for complex plays and tasks",
+      "id": "complexity",
+      "ids": [
+        "complexity"
+      ],
+      "severity": "MEDIUM",
+      "shortdesc": "Sets maximum complexity to avoid complex plays.",
+      "tags": [
+        "experimental"
+      ],
+      "url": "https://docs.ansible.com/projects/lint/rules/complexity/",
+      "version_changed": "26.2.0"
+    },
+    {
+      "autofix": false,
+      "description": "Using bare variables is deprecated. Update your playbooks so that the environment value uses the full variable syntax ``{{ your_variable }}``",
+      "id": "deprecated-bare-vars",
+      "ids": [
+        "deprecated-bare-vars"
+      ],
+      "severity": "VERY_HIGH",
+      "shortdesc": "Using bare variables is deprecated.",
+      "tags": [
+        "deprecations"
+      ],
+      "url": "https://docs.ansible.com/projects/lint/rules/deprecated-bare-vars/",
+      "version_changed": "6.19.0"
+    },
+    {
+      "autofix": true,
+      "description": "Do not use ``local_action``, use ``delegate_to: localhost``",
+      "id": "deprecated-local-action",
+      "ids": [
+        "deprecated-local-action"
+      ],
+      "severity": "MEDIUM",
+      "shortdesc": "Do not use 'local_action', use 'delegate_to: localhost'.",
+      "tags": [
+        "deprecations"
+      ],
+      "url": "https://docs.ansible.com/projects/lint/rules/deprecated-local-action/",
+      "version_changed": "4.0.0"
+    },
+    {
+      "autofix": false,
+      "description": "These are deprecated modules, some modules are kept temporarily for backwards compatibility but usage is discouraged.",
+      "id": "deprecated-module",
+      "ids": [
+        "deprecated-module"
+      ],
+      "severity": "HIGH",
+      "shortdesc": "Deprecated module.",
+      "tags": [
+        "deprecations"
+      ],
+      "url": "https://docs.ansible.com/projects/lint/rules/deprecated-module/",
+      "version_changed": "4.0.0"
+    },
+    {
+      "autofix": false,
+      "description": "Use ``when: var|length > 0`` rather than ``when: var != \"\"`` (or conversely ``when: var|length == 0`` rather than ``when: var == \"\"``)",
+      "id": "empty-string-compare",
+      "ids": [
+        "empty-string-compare"
+      ],
+      "severity": "HIGH",
+      "shortdesc": "Don't compare to empty string.",
+      "tags": [
+        "idiom",
+        "opt-in"
+      ],
+      "url": "https://docs.ansible.com/projects/lint/rules/empty-string-compare/",
+      "version_changed": "4.0.0"
+    },
+    {
+      "autofix": true,
+      "description": "Check whether actions are using using full qualified collection names.",
+      "id": "fqcn",
+      "ids": [
+        "fqcn[action-core]",
+        "fqcn[action]",
+        "fqcn[canonical]"
+      ],
+      "severity": "MEDIUM",
+      "shortdesc": "Use FQCN for builtin actions.",
+      "tags": [
+        "formatting"
+      ],
+      "url": "https://docs.ansible.com/projects/lint/rules/fqcn/",
+      "version_changed": "6.8.0"
+    },
+    {
+      "autofix": false,
+      "description": "Confirm that collection's units are valid.",
+      "id": "galaxy",
+      "ids": [
+        "galaxy[invalid-dependency-version]",
+        "galaxy[no-changelog]",
+        "galaxy[no-license]",
+        "galaxy[no-repository]",
+        "galaxy[no-runtime]",
+        "galaxy[tags-count]",
+        "galaxy[tags-format]",
+        "galaxy[tags-length]",
+        "galaxy[tags]",
+        "galaxy[version-missing]"
+      ],
+      "severity": "MEDIUM",
+      "shortdesc": "Rule for checking collections.",
+      "tags": [
+        "metadata"
+      ],
+      "url": "https://docs.ansible.com/projects/lint/rules/galaxy/",
+      "version_changed": "6.11.0"
+    },
+    {
+      "autofix": false,
+      "description": "Confirm via galaxy.yml file if collection version is greater than or equal to 1.0.0.",
+      "id": "galaxy-version-incorrect",
+      "ids": [
+        "galaxy-version-incorrect"
+      ],
+      "severity": "MEDIUM",
+      "shortdesc": "Rule for checking collection version is greater than 1.0.0.",
+      "tags": [
+        "opt-in",
+        "metadata"
+      ],
+      "url": "https://docs.ansible.com/projects/lint/rules/galaxy-version-incorrect/",
+      "version_changed": "24.7.0"
+    },
+    {
+      "autofix": false,
+      "description": "Instead of ignoring all errors, ignore the errors only when using ``{{ ansible_check_mode }}``, register the errors using ``register``, or use ``failed_when:`` and specify acceptable error conditions to reduce the risk of ignoring important failures.",
+      "id": "ignore-errors",
+      "ids": [
+        "ignore-errors"
+      ],
+      "severity": "LOW",
+      "shortdesc": "Use failed_when and specify error conditions instead of using ignore_errors.",
+      "tags": [
+        "unpredictability"
+      ],
+      "url": "https://docs.ansible.com/projects/lint/rules/ignore-errors/",
+      "version_changed": "5.0.7"
+    },
+    {
+      "autofix": false,
+      "description": "Use ``environment:`` to set environment variables.",
+      "id": "inline-env-var",
+      "ids": [
+        "inline-env-var"
+      ],
+      "severity": "VERY_HIGH",
+      "shortdesc": "Command module does not accept setting environment variables inline.",
+      "tags": [
+        "command-shell",
+        "idiom"
+      ],
+      "url": "https://docs.ansible.com/projects/lint/rules/inline-env-var/",
+      "version_changed": "5.0.11"
+    },
+    {
+      "autofix": true,
+      "description": "",
+      "id": "jinja",
+      "ids": [
+        "jinja[invalid]",
+        "jinja[spacing]"
+      ],
+      "severity": "LOW",
+      "shortdesc": "Rule that looks inside jinja2 templates.",
+      "tags": [
+        "formatting"
+      ],
+      "url": "https://docs.ansible.com/projects/lint/rules/jinja/",
+      "version_changed": "6.5.0"
+    },
+    {
+      "autofix": false,
+      "description": "Template source files should end in ``.j2`` to clearly distinguish them from static files and enable proper editor syntax highlighting.",
+      "id": "jinja-template-extension",
+      "ids": [
+        "jinja-template-extension"
+      ],
+      "severity": "LOW",
+      "shortdesc": "Template files should have a .j2 extension.",
+      "tags": [
+        "formatting",
+        "opt-in"
+      ],
+      "url": "https://docs.ansible.com/projects/lint/rules/jinja-template-extension/",
+      "version_changed": "6.22.0"
+    },
+    {
+      "autofix": true,
+      "description": "",
+      "id": "key-order",
+      "ids": [
+        "key-order[task]"
+      ],
+      "severity": "LOW",
+      "shortdesc": "Ensure specific order of keys in mappings.",
+      "tags": [
+        "formatting"
+      ],
+      "url": "https://docs.ansible.com/projects/lint/rules/key-order/",
+      "version_changed": "6.6.2"
+    },
+    {
+      "autofix": false,
+      "description": "All version control checkouts must point to an explicit commit or tag, not just ``latest``",
+      "id": "latest",
+      "ids": [
+        "latest[git]",
+        "latest[hg]"
+      ],
+      "severity": "MEDIUM",
+      "shortdesc": "Result of the command may vary on subsequent runs.",
+      "tags": [
+        "idempotency"
+      ],
+      "url": "https://docs.ansible.com/projects/lint/rules/latest/",
+      "version_changed": "6.5.2"
+    },
+    {
+      "autofix": false,
+      "description": "Use ``when: var`` rather than ``when: var == True`` (or conversely ``when: not var``)",
+      "id": "literal-compare",
+      "ids": [
+        "literal-compare"
+      ],
+      "severity": "HIGH",
+      "shortdesc": "Don't compare to literal True/False.",
+      "tags": [
+        "idiom"
+      ],
+      "url": "https://docs.ansible.com/projects/lint/rules/literal-compare/",
+      "version_changed": "4.0.0"
+    },
+    {
+      "autofix": false,
+      "description": "Looping inside roles has the risk of clashing with loops from user-playbooks.",
+      "id": "loop-var-prefix",
+      "ids": [
+        "loop-var-prefix[missing]",
+        "loop-var-prefix[wrong]"
+      ],
+      "severity": "MEDIUM",
+      "shortdesc": "Role loop_var should use configured prefix.",
+      "tags": [
+        "idiom"
+      ],
+      "url": "https://docs.ansible.com/projects/lint/rules/loop-var-prefix/",
+      "version_changed": "6.7.0"
+    },
+    {
+      "autofix": false,
+      "description": "You should set appropriate values in meta/main.yml for these fields: author, company, description, license",
+      "id": "meta-incorrect",
+      "ids": [
+        "meta-incorrect"
+      ],
+      "severity": "HIGH",
+      "shortdesc": "meta/main.yml default values should be changed.",
+      "tags": [
+        "metadata"
+      ],
+      "url": "https://docs.ansible.com/projects/lint/rules/meta-incorrect/",
+      "version_changed": "4.0.0"
+    },
+    {
+      "autofix": false,
+      "description": "Tags must contain lowercase letters and digits only, and ``galaxy_tags`` is expected to be a list",
+      "id": "meta-no-tags",
+      "ids": [
+        "meta-no-tags"
+      ],
+      "severity": "HIGH",
+      "shortdesc": "Tags must contain lowercase letters and digits only.",
+      "tags": [
+        "metadata"
+      ],
+      "url": "https://docs.ansible.com/projects/lint/rules/meta-no-tags/",
+      "version_changed": "4.0.0"
+    },
+    {
+      "autofix": false,
+      "description": "The ``requires_ansible`` key in runtime.yml must specify a supported platform version of ansible-core and be a valid version value in x.y.z format.",
+      "id": "meta-runtime",
+      "ids": [
+        "meta-runtime[invalid-version]",
+        "meta-runtime[unsupported-version]"
+      ],
+      "severity": "VERY_HIGH",
+      "shortdesc": "Required ansible version in meta/runtime.yml must be a supported version.",
+      "tags": [
+        "metadata"
+      ],
+      "url": "https://docs.ansible.com/projects/lint/rules/meta-runtime/",
+      "version_changed": "6.11.0"
+    },
+    {
+      "autofix": false,
+      "description": "Items in ``video_links`` in meta/main.yml should be dictionaries, and contain only keys ``url`` and ``title``, and have a shared link from a supported provider",
+      "id": "meta-video-links",
+      "ids": [
+        "meta-video-links"
+      ],
+      "severity": "LOW",
+      "shortdesc": "meta/main.yml video_links should be formatted correctly.",
+      "tags": [
+        "metadata"
+      ],
+      "url": "https://docs.ansible.com/projects/lint/rules/meta-video-links/",
+      "version_changed": "4.0.0"
+    },
+    {
+      "autofix": true,
+      "description": "All tasks and plays should have a distinct name for readability and for ``--start-at-task`` to work",
+      "id": "name",
+      "ids": [
+        "name[casing]",
+        "name[missing]",
+        "name[play]",
+        "name[prefix]",
+        "name[template]",
+        "name[unique]"
+      ],
+      "severity": "MEDIUM",
+      "shortdesc": "Rule for checking task and play names.",
+      "tags": [
+        "idiom"
+      ],
+      "url": "https://docs.ansible.com/projects/lint/rules/name/",
+      "version_changed": "6.9.1"
+    },
+    {
+      "autofix": false,
+      "description": "",
+      "id": "no-changed-when",
+      "ids": [
+        "no-changed-when"
+      ],
+      "severity": "HIGH",
+      "shortdesc": "Commands should not change things if nothing needs doing.",
+      "tags": [
+        "command-shell",
+        "idempotency"
+      ],
+      "url": "https://docs.ansible.com/projects/lint/rules/no-changed-when/",
+      "version_changed": "6.14.5"
+    },
+    {
+      "autofix": true,
+      "description": "Avoid free-form inside files as it can produce subtle bugs.",
+      "id": "no-free-form",
+      "ids": [
+        "no-free-form[raw-non-string]",
+        "no-free-form[raw]"
+      ],
+      "severity": "MEDIUM",
+      "shortdesc": "Rule for detecting discouraged free-form syntax for action modules.",
+      "tags": [
+        "syntax",
+        "risk"
+      ],
+      "url": "https://docs.ansible.com/projects/lint/rules/no-free-form/",
+      "version_changed": "6.8.0"
+    },
+    {
+      "autofix": false,
+      "description": "If a task has a ``when: result.changed`` setting, it is effectively acting as a handler. You could use ``notify`` and move that task to ``handlers``.",
+      "id": "no-handler",
+      "ids": [
+        "no-handler"
+      ],
+      "severity": "MEDIUM",
+      "shortdesc": "Tasks that run when changed should likely be handlers.",
+      "tags": [
+        "idiom"
+      ],
+      "url": "https://docs.ansible.com/projects/lint/rules/no-handler/",
+      "version_changed": "24.10.0"
+    },
+    {
+      "autofix": true,
+      "description": "``when`` is a raw Jinja2 expression, remove redundant {{ }} from variable(s).",
+      "id": "no-jinja-when",
+      "ids": [
+        "no-jinja-when"
+      ],
+      "severity": "HIGH",
+      "shortdesc": "No Jinja2 in when.",
+      "tags": [
+        "deprecations"
+      ],
+      "url": "https://docs.ansible.com/projects/lint/rules/no-jinja-when/",
+      "version_changed": "6.20.0"
+    },
+    {
+      "autofix": true,
+      "description": "When passing password argument you should have no_log configured to a non False value to avoid accidental leaking of secrets.",
+      "id": "no-log-password",
+      "ids": [
+        "no-log-password"
+      ],
+      "severity": "LOW",
+      "shortdesc": "Password should not be logged.",
+      "tags": [
+        "opt-in",
+        "security",
+        "experimental"
+      ],
+      "url": "https://docs.ansible.com/projects/lint/rules/no-log-password/",
+      "version_changed": "5.0.9"
+    },
+    {
+      "autofix": false,
+      "description": "Disallow the use of vars_prompt or ansible.builtin.pause to betteraccommodate unattended playbook runs and use in CI pipelines.",
+      "id": "no-prompting",
+      "ids": [
+        "no-prompting"
+      ],
+      "severity": "VERY_LOW",
+      "shortdesc": "Disallow prompting.",
+      "tags": [
+        "opt-in"
+      ],
+      "url": "https://docs.ansible.com/projects/lint/rules/no-prompting/",
+      "version_changed": "6.0.3"
+    },
+    {
+      "autofix": false,
+      "description": "The ``copy`` and ``template`` modules should not use relative path for ``src``.",
+      "id": "no-relative-paths",
+      "ids": [
+        "no-relative-paths"
+      ],
+      "severity": "HIGH",
+      "shortdesc": "The src argument should not use a relative path.",
+      "tags": [
+        "idiom"
+      ],
+      "url": "https://docs.ansible.com/projects/lint/rules/no-relative-paths/",
+      "version_changed": "4.0.0"
+    },
+    {
+      "autofix": false,
+      "description": "\nOptional rule that highlights dangers of assuming that user/group on the remote\nmachines may not exist on ansible controller or vice versa. Owner and group\nshould not be preserved when transferring files between them.\n",
+      "id": "no-same-owner",
+      "ids": [
+        "no-same-owner"
+      ],
+      "severity": "LOW",
+      "shortdesc": "Do not preserve the owner and group when transferring files across hosts.",
+      "tags": [
+        "opt-in"
+      ],
+      "url": "https://docs.ansible.com/projects/lint/rules/no-same-owner/",
+      "version_changed": "6.4.0"
+    },
+    {
+      "autofix": false,
+      "description": "Tabs can cause unexpected display issues, use spaces",
+      "id": "no-tabs",
+      "ids": [
+        "no-tabs"
+      ],
+      "severity": "LOW",
+      "shortdesc": "Most files should not contain tabs.",
+      "tags": [
+        "formatting"
+      ],
+      "url": "https://docs.ansible.com/projects/lint/rules/no-tabs/",
+      "version_changed": "4.0.0"
+    },
+    {
+      "autofix": false,
+      "description": "Check whether the playbook uses anything but ``ansible.builtin``",
+      "id": "only-builtins",
+      "ids": [
+        "only-builtins"
+      ],
+      "severity": "MEDIUM",
+      "shortdesc": "Use only builtin actions.",
+      "tags": [
+        "opt-in",
+        "experimental"
+      ],
+      "url": "https://docs.ansible.com/projects/lint/rules/only-builtins/",
+      "version_changed": "6.14.0"
+    },
+    {
+      "autofix": false,
+      "description": "Package installs should use ``state=present`` with or without a version",
+      "id": "package-latest",
+      "ids": [
+        "package-latest"
+      ],
+      "severity": "VERY_LOW",
+      "shortdesc": "Package installs should not use latest.",
+      "tags": [
+        "idempotency"
+      ],
+      "url": "https://docs.ansible.com/projects/lint/rules/package-latest/",
+      "version_changed": "6.20.0"
+    },
+    {
+      "autofix": true,
+      "description": "``become_user`` should have a corresponding ``become`` at the same level as itself.",
+      "id": "partial-become",
+      "ids": [
+        "partial-become"
+      ],
+      "severity": "VERY_HIGH",
+      "shortdesc": "``become_user`` should have a corresponding ``become`` at the same level as itself.",
+      "tags": [
+        "unpredictability"
+      ],
+      "url": "https://docs.ansible.com/projects/lint/rules/partial-become/",
+      "version_changed": "6.20.0"
+    },
+    {
+      "autofix": false,
+      "description": "Playbooks should have the \".yml\" or \".yaml\" extension",
+      "id": "playbook-extension",
+      "ids": [
+        "playbook-extension"
+      ],
+      "severity": "MEDIUM",
+      "shortdesc": "Use \".yml\" or \".yaml\" playbook extension.",
+      "tags": [
+        "formatting"
+      ],
+      "url": "https://docs.ansible.com/projects/lint/rules/playbook-extension/",
+      "version_changed": "4.0.0"
+    },
+    {
+      "autofix": false,
+      "description": "Missing or unsupported mode parameter can cause unexpected file permissions based on version of Ansible being used. Be explicit, like `mode: 0644` to avoid hitting this rule. Special `preserve` value is accepted only by `copy`, `template` modules.",
+      "id": "risky-file-permissions",
+      "ids": [
+        "risky-file-permissions"
+      ],
+      "severity": "VERY_HIGH",
+      "shortdesc": "File permissions unset or incorrect.",
+      "tags": [
+        "unpredictability"
+      ],
+      "url": "https://docs.ansible.com/projects/lint/rules/risky-file-permissions/",
+      "version_changed": "4.3.0"
+    },
+    {
+      "autofix": false,
+      "description": "Numeric file permissions without leading zero can behave in unexpected ways.",
+      "id": "risky-octal",
+      "ids": [
+        "risky-octal"
+      ],
+      "severity": "VERY_HIGH",
+      "shortdesc": "Octal file permissions must contain leading zero or be a string.",
+      "tags": [
+        "formatting"
+      ],
+      "url": "https://docs.ansible.com/projects/lint/rules/risky-octal/",
+      "version_changed": "6.9.1"
+    },
+    {
+      "autofix": false,
+      "description": "Without the pipefail option set, a shell command that implements a pipeline can fail and still return 0. If any part of the pipeline other than the terminal command fails, the whole pipeline will still return 0, which may be considered a success by Ansible. Pipefail is available in the bash shell.",
+      "id": "risky-shell-pipe",
+      "ids": [
+        "risky-shell-pipe"
+      ],
+      "severity": "MEDIUM",
+      "shortdesc": "Shells that use pipes should set the pipefail option.",
+      "tags": [
+        "command-shell"
+      ],
+      "url": "https://docs.ansible.com/projects/lint/rules/risky-shell-pipe/",
+      "version_changed": "4.1.0"
+    },
+    {
+      "autofix": false,
+      "description": "Roles should define an argument specification in ``meta/argument_specs.yml`` to document and validate expected variables. This improves usability, enables validation at runtime, and generates documentation.",
+      "id": "role-argument-spec",
+      "ids": [
+        "role-argument-spec"
+      ],
+      "severity": "HIGH",
+      "shortdesc": "Role should have an argument specification file.",
+      "tags": [
+        "metadata",
+        "opt-in"
+      ],
+      "url": "https://docs.ansible.com/projects/lint/rules/role-argument-spec/",
+      "version_changed": "25.1.0"
+    },
+    {
+      "autofix": false,
+      "description": "Role names are now limited to contain only lowercase alphanumeric characters, plus underline and start with an alpha character.",
+      "id": "role-name",
+      "ids": [
+        "role-name[path]"
+      ],
+      "severity": "HIGH",
+      "shortdesc": "Role name {0} does not match ``^[a-z][a-z0-9_]*$`` pattern.",
+      "tags": [
+        "deprecations",
+        "metadata"
+      ],
+      "url": "https://docs.ansible.com/projects/lint/rules/role-name/",
+      "version_changed": "6.8.5"
+    },
+    {
+      "autofix": false,
+      "description": "When using run_once, we should avoid using strategy as free.",
+      "id": "run-once",
+      "ids": [
+        "run-once[play]",
+        "run-once[task]"
+      ],
+      "severity": "MEDIUM",
+      "shortdesc": "Run once should use strategy other than free.",
+      "tags": [
+        "idiom"
+      ],
+      "url": "https://docs.ansible.com/projects/lint/rules/run-once/",
+      "version_changed": "6.12.0"
+    },
+    {
+      "autofix": false,
+      "description": "Identifies non-allowed entries in the `tests/sanity/ignore*.txt files.",
+      "id": "sanity",
+      "ids": [
+        "sanity[bad-ignore]",
+        "sanity[cannot-ignore]"
+      ],
+      "severity": "MEDIUM",
+      "shortdesc": "Ignore entries in sanity ignore files must match an allow list.",
+      "tags": [
+        "idiom"
+      ],
+      "url": "https://docs.ansible.com/projects/lint/rules/sanity/",
+      "version_changed": "6.14.0"
+    },
+    {
+      "autofix": false,
+      "description": " Returned errors will not include exact line numbers, but they will mention\nthe schema name being used as a tag, like ``schema[playbook]``,\n``schema[tasks]``.\n\nThis rule is not skippable and stops further processing of the file.\n\nIf incorrect schema was picked, you might want to either:\n\n* move the file to standard location, so its file is detected correctly.\n* use ``kinds:`` option in linter config to help it pick correct file type.\n",
+      "id": "schema",
+      "ids": [
+        "schema[ansible-lint-config]",
+        "schema[ansible-navigator-config]",
+        "schema[changelog]",
+        "schema[execution-environment]",
+        "schema[galaxy]",
+        "schema[inventory]",
+        "schema[meta-runtime]",
+        "schema[meta]",
+        "schema[molecule]",
+        "schema[play-argspec]",
+        "schema[playbook]",
+        "schema[requirements]",
+        "schema[role-arg-spec]",
+        "schema[rulebook]",
+        "schema[tasks]",
+        "schema[vars]"
+      ],
+      "severity": "VERY_HIGH",
+      "shortdesc": "Perform JSON Schema Validation for known lintable kinds.",
+      "tags": [
+        "core"
+      ],
+      "url": "https://docs.ansible.com/projects/lint/rules/schema/",
+      "version_changed": "25.9.0"
+    },
+    {
+      "autofix": false,
+      "description": "",
+      "id": "var-naming",
+      "ids": [
+        "var-naming[no-jinja]",
+        "var-naming[no-reserved]",
+        "var-naming[pattern]"
+      ],
+      "severity": "MEDIUM",
+      "shortdesc": "All variables should be named using only lowercase and underscores.",
+      "tags": [
+        "idiom"
+      ],
+      "url": "https://docs.ansible.com/projects/lint/rules/var-naming/",
+      "version_changed": "5.0.10"
+    }
+  ],
+  "tag_descriptions": {
+    "command-shell": "Specific to use of command and shell modules",
+    "core": "Related to internal implementation of the linter",
+    "deprecations": "Indicate use of features that are removed from Ansible",
+    "experimental": "Newly introduced rules, by default triggering only warnings",
+    "formatting": "Related to code-style",
+    "idempotency": "Possible indication that consequent runs would produce different results",
+    "idiom": "Anti-pattern detected, likely to cause undesired behavior",
+    "metadata": "Invalid metadata, likely related to galaxy, collections or roles",
+    "opt-in": "Rules that are not used unless manually added to `enable_list`",
+    "security": "Rules related to potential security issues, like exposing credentials",
+    "syntax": "Related to wrong or deprecated syntax",
+    "unpredictability": "Warn about code that might not work in a predictable way",
+    "unskippable": "Indicate a fatal error that cannot be ignored or disabled",
+    "yaml": "External linter which will also produce its own rule codes"
+  }
+}

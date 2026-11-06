@@ -1,0 +1,20 @@
+---
+- name: Configure application hosts
+  hosts: application
+  gather_facts: false
+  vars_files: [vars/site.yml]
+  roles: [application]
+- name: Configure database hosts
+  hosts: database
+  gather_facts: false
+  tasks:
+    - name: Create application database
+      community.postgresql.postgresql_db:
+        name: '{{ db_name }}'
+        state: present
+    - name: Inspect database configuration
+      ansible.builtin.debug:
+        msg: '{{ db_name }}'
+    - name: Inspect service health
+      ansible.builtin.command: /usr/bin/true
+      changed_when: false

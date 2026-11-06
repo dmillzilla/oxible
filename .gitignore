@@ -1,0 +1,18 @@
+/target
+/dist
+**/__pycache__/
+/.oxible_cache
+/editors/vscode/node_modules
+/editors/vscode/*.vsix
+
+# Local credentials and development-machine state; never release these.
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+id_rsa
+id_ed25519
+.DS_Store
+/.ansible/
+/.venv/

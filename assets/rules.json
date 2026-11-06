@@ -1,0 +1,397 @@
+{
+  "args": {
+    "subrules": {},
+    "tags": [
+      "syntax",
+      "experimental"
+    ]
+  },
+  "avoid-implicit": {
+    "subrules": {},
+    "tags": [
+      "unpredictability"
+    ]
+  },
+  "command-instead-of-module": {
+    "subrules": {},
+    "tags": [
+      "command-shell",
+      "idiom"
+    ]
+  },
+  "command-instead-of-shell": {
+    "subrules": {},
+    "tags": [
+      "command-shell",
+      "idiom"
+    ]
+  },
+  "complexity": {
+    "subrules": {},
+    "tags": [
+      "experimental"
+    ]
+  },
+  "deprecated-bare-vars": {
+    "subrules": {},
+    "tags": [
+      "deprecations"
+    ]
+  },
+  "deprecated-local-action": {
+    "subrules": {},
+    "tags": [
+      "deprecations"
+    ]
+  },
+  "deprecated-module": {
+    "subrules": {},
+    "tags": [
+      "deprecations"
+    ]
+  },
+  "empty-string-compare": {
+    "subrules": {},
+    "tags": [
+      "idiom",
+      "opt-in"
+    ]
+  },
+  "fqcn": {
+    "subrules": {
+      "fqcn[action-core]": "Use FQCN for builtin module actions",
+      "fqcn[action]": "Use FQCN for module actions",
+      "fqcn[canonical]": "You should use canonical module name"
+    },
+    "tags": [
+      "formatting"
+    ]
+  },
+  "galaxy": {
+    "subrules": {
+      "galaxy[invalid-dependency-version]": "Invalid collection metadata. Dependency version spec range is invalid",
+      "galaxy[no-changelog]": "No changelog found. Please add a changelog file. Refer to the galaxy.md file for more info.",
+      "galaxy[no-license]": "galaxy.yaml should have a license or license_file key for publication to Galaxy. See https://docs.ansible.com/projects/ansible/latest/dev_guide/collections_galaxy_meta.html",
+      "galaxy[no-repository]": "galaxy.yaml should have a repository key for publication to Galaxy. See https://docs.ansible.com/projects/ansible/latest/dev_guide/collections_galaxy_meta.html",
+      "galaxy[no-runtime]": "meta/runtime.yml file not found.",
+      "galaxy[tags-count]": "galaxy.yaml has too many tags.",
+      "galaxy[tags-format]": "galaxy.yaml one or more tags are not formatted properly.",
+      "galaxy[tags-length]": "galaxy.yaml one or more tags exceed character length.",
+      "galaxy[tags]": "galaxy.yaml must have one of the required tags",
+      "galaxy[version-missing]": "galaxy.yaml should have version tag."
+    },
+    "tags": [
+      "metadata"
+    ]
+  },
+  "galaxy-version-incorrect": {
+    "subrules": {},
+    "tags": [
+      "opt-in",
+      "metadata"
+    ]
+  },
+  "ignore-errors": {
+    "subrules": {},
+    "tags": [
+      "unpredictability"
+    ]
+  },
+  "inline-env-var": {
+    "subrules": {},
+    "tags": [
+      "command-shell",
+      "idiom"
+    ]
+  },
+  "jinja": {
+    "subrules": {
+      "jinja[invalid]": "Invalid jinja2 syntax",
+      "jinja[spacing]": "Jinja2 spacing could be improved"
+    },
+    "tags": [
+      "formatting"
+    ]
+  },
+  "jinja-template-extension": {
+    "subrules": {},
+    "tags": [
+      "formatting",
+      "opt-in"
+    ]
+  },
+  "key-order": {
+    "subrules": {
+      "key-order[task]": "You can improve the task key order"
+    },
+    "tags": [
+      "formatting"
+    ]
+  },
+  "latest": {
+    "subrules": {
+      "latest[git]": "Use a commit hash or tag instead of 'latest' for git",
+      "latest[hg]": "Use a commit hash or tag instead of 'latest' for hg"
+    },
+    "tags": [
+      "idempotency"
+    ]
+  },
+  "literal-compare": {
+    "subrules": {},
+    "tags": [
+      "idiom"
+    ]
+  },
+  "loop-var-prefix": {
+    "subrules": {
+      "loop-var-prefix[missing]": "Replace unsafe implicit `item` loop variable.",
+      "loop-var-prefix[wrong]": "Loop variable name does not match regex."
+    },
+    "tags": [
+      "idiom"
+    ]
+  },
+  "meta-incorrect": {
+    "subrules": {},
+    "tags": [
+      "metadata"
+    ]
+  },
+  "meta-no-tags": {
+    "subrules": {},
+    "tags": [
+      "metadata"
+    ]
+  },
+  "meta-runtime": {
+    "subrules": {
+      "meta-runtime[invalid-version]": "'requires_ansible' is not a valid requirement specification",
+      "meta-runtime[unsupported-version]": "'requires_ansible' key must refer to a currently supported version"
+    },
+    "tags": [
+      "metadata"
+    ]
+  },
+  "meta-video-links": {
+    "subrules": {},
+    "tags": [
+      "metadata"
+    ]
+  },
+  "name": {
+    "subrules": {
+      "name[casing]": "All names should start with an uppercase letter.",
+      "name[missing]": "All tasks should be named.",
+      "name[play]": "All plays should be named.",
+      "name[prefix]": "Task name should start with a prefix.",
+      "name[template]": "Jinja templates should only be at the end of 'name'",
+      "name[unique]": "Task names should be unique within a play."
+    },
+    "tags": [
+      "idiom"
+    ]
+  },
+  "no-changed-when": {
+    "subrules": {},
+    "tags": [
+      "command-shell",
+      "idempotency"
+    ]
+  },
+  "no-free-form": {
+    "subrules": {},
+    "tags": [
+      "syntax",
+      "risk"
+    ]
+  },
+  "no-handler": {
+    "subrules": {},
+    "tags": [
+      "idiom"
+    ]
+  },
+  "no-jinja-when": {
+    "subrules": {},
+    "tags": [
+      "deprecations"
+    ]
+  },
+  "no-log-password": {
+    "subrules": {},
+    "tags": [
+      "opt-in",
+      "security",
+      "experimental"
+    ]
+  },
+  "no-prompting": {
+    "subrules": {},
+    "tags": [
+      "opt-in"
+    ]
+  },
+  "no-relative-paths": {
+    "subrules": {},
+    "tags": [
+      "idiom"
+    ]
+  },
+  "no-same-owner": {
+    "subrules": {},
+    "tags": [
+      "opt-in"
+    ]
+  },
+  "no-tabs": {
+    "subrules": {},
+    "tags": [
+      "formatting"
+    ]
+  },
+  "only-builtins": {
+    "subrules": {},
+    "tags": [
+      "opt-in",
+      "experimental"
+    ]
+  },
+  "package-latest": {
+    "subrules": {},
+    "tags": [
+      "idempotency"
+    ]
+  },
+  "partial-become": {
+    "subrules": {},
+    "tags": [
+      "unpredictability"
+    ]
+  },
+  "playbook-extension": {
+    "subrules": {},
+    "tags": [
+      "formatting"
+    ]
+  },
+  "risky-file-permissions": {
+    "subrules": {},
+    "tags": [
+      "unpredictability"
+    ]
+  },
+  "risky-octal": {
+    "subrules": {},
+    "tags": [
+      "formatting"
+    ]
+  },
+  "risky-shell-pipe": {
+    "subrules": {},
+    "tags": [
+      "command-shell"
+    ]
+  },
+  "role-argument-spec": {
+    "subrules": {},
+    "tags": [
+      "metadata",
+      "opt-in"
+    ]
+  },
+  "role-name": {
+    "subrules": {
+      "role-name[path]": "Avoid using paths when importing roles."
+    },
+    "tags": [
+      "deprecations",
+      "metadata"
+    ]
+  },
+  "run-once": {
+    "subrules": {
+      "run-once[play]": "Play uses strategy: free",
+      "run-once[task]": "Using run_once may behave differently if strategy is set to free."
+    },
+    "tags": [
+      "idiom"
+    ]
+  },
+  "sanity": {
+    "subrules": {
+      "sanity[bad-ignore]": "Ignore file entry at ... is formatted incorrectly. Please review.",
+      "sanity[cannot-ignore]": "Ignore file contains ... at line ..., which is not a permitted ignore."
+    },
+    "tags": [
+      "idiom"
+    ]
+  },
+  "schema": {
+    "subrules": {
+      "schema[ansible-lint-config]": "",
+      "schema[ansible-navigator-config]": "",
+      "schema[changelog]": "",
+      "schema[execution-environment]": "",
+      "schema[galaxy]": "",
+      "schema[inventory]": "",
+      "schema[meta-runtime]": "",
+      "schema[meta]": "",
+      "schema[molecule]": "",
+      "schema[play-argspec]": "",
+      "schema[playbook]": "",
+      "schema[requirements]": "",
+      "schema[role-arg-spec]": "",
+      "schema[rulebook]": "",
+      "schema[tasks]": "",
+      "schema[vars]": ""
+    },
+    "tags": [
+      "core"
+    ]
+  },
+  "syntax-check": {
+    "subrules": {},
+    "tags": [
+      "core",
+      "unskippable"
+    ]
+  },
+  "var-naming": {
+    "subrules": {},
+    "tags": [
+      "idiom"
+    ]
+  },
+  "yaml": {
+    "subrules": {
+      "yaml[anchors]": "",
+      "yaml[braces]": "",
+      "yaml[brackets]": "",
+      "yaml[colons]": "",
+      "yaml[commas]": "",
+      "yaml[comments-indentation]": "",
+      "yaml[comments]": "",
+      "yaml[document-end]": "",
+      "yaml[document-start]": "",
+      "yaml[empty-lines]": "",
+      "yaml[empty-values]": "",
+      "yaml[float-values]": "",
+      "yaml[hyphens]": "",
+      "yaml[indentation]": "",
+      "yaml[key-duplicates]": "",
+      "yaml[key-ordering]": "",
+      "yaml[line-length]": "",
+      "yaml[new-line-at-end-of-file]": "",
+      "yaml[new-lines]": "",
+      "yaml[octal-values]": "",
+      "yaml[quoted-strings]": "",
+      "yaml[trailing-spaces]": "",
+      "yaml[truthy]": ""
+    },
+    "tags": [
+      "formatting",
+      "yaml"
+    ]
+  }
+}

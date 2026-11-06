@@ -1,0 +1,67 @@
+[package]
+name = "oxible"
+version = "0.1.0"
+edition = "2024"
+rust-version = "1.99"
+description = "A fast, static Ansible linter written in Rust"
+license = "GPL-3.0-or-later"
+publish = false
+include = [
+  "Cargo.toml", "Cargo.lock", "build.rs", "rust-toolchain.toml", "mise.toml",
+  "LICENSE", "NOTICE", "README.md", "CONTRIBUTING.md", "SECURITY.md", "CHANGELOG.md",
+  ".gitignore", ".github/workflows/ci.yml", ".github/workflows/artifacts.yml",
+  ".github/ISSUE_TEMPLATE/bug_report.yml", "THIRD_PARTY_LICENSES/**", "src/**",
+  "assets/**", "tests/**", "examples/**", "editors/vscode/**",
+  "!editors/vscode/node_modules/**", "!editors/vscode/*.vsix",
+  "scripts/source_manifest.py", "scripts/package.py", "scripts/release_smoke.py",
+  "scripts/collect_dependency_notices.py", "scripts/test_distribution.py",
+  "docs/native-preparation.md", "docs/native-vault.md", "docs/editors.md",
+  "docs/distribution.md", "docs/dependency-notices.json", "docs/dependency-license-overrides.json",
+]
+repository = "https://github.com/dmillzilla/oxible"
+homepage = "https://github.com/dmillzilla/oxible"
+readme = "README.md"
+keywords = ["ansible", "lint", "iac"]
+categories = ["command-line-utilities", "development-tools"]
+
+[dependencies]
+clap = { version = "4.5", features = ["derive"] }
+globset = "0.4"
+ignore = "0.4"
+rayon = "1.10"
+serde = { version = "1", features = ["derive", "rc"] }
+serde_json = "1"
+shell-words = "1.1"
+yaml-rust2 = "0.13"
+lsp-server = "0.10"
+url = "2.5"
+blake3 = "1.8"
+sha2 = "0.11"
+similar = "2.7"
+
+tempfile = "3"
+minijinja = { version = "3", features = ["unstable_machinery", "loop_controls", "fuel", "serde"] }
+jsonschema = { version = "0.60", default-features = false }
+regex = "1"
+fancy-regex = "=0.19.2"
+semver = "1"
+pep440_rs = "0.7"
+ryl = { version = "=0.22.0", default-features = false }
+ruff_python_formatter = { version = "=0.0.21", default-features = false, features = ["serde"] }
+ruff_python_parser = "=0.0.21"
+ruff_python_ast = "=0.0.21"
+aes = "0.9"
+ctr = "0.10"
+hmac = "0.13"
+pbkdf2 = "0.13"
+zeroize = "1.8"
+reqwest = { version = "0.13", default-features = false, features = ["blocking", "rustls"] }
+tar = "0.4"
+flate2 = "1"
+
+[build-dependencies]
+blake3 = "1.8"
+
+[profile.release]
+lto = "thin"
+strip = true
