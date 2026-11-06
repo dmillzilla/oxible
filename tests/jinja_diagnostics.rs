@@ -4,9 +4,6 @@ use std::{fs, process::Command};
 
 #[test]
 fn jinja_else_errors_match_reference_fields_and_closed_branches_stay_clean() {
-    let directory = tempfile::tempdir().unwrap();
-    fs::create_dir(directory.path().join("tasks")).unwrap();
-    fs::write(directory.path().join(".ansible-lint"), "offline: true\n").unwrap();
     // Expected output comes from the pinned reference CLI, including fingerprints.
     let cases = &[
         (
@@ -116,6 +113,13 @@ fn jinja_else_errors_match_reference_fields_and_closed_branches_stay_clean() {
             )),
         ),
     ];
+    assert_template_cases(cases);
+}
+
+fn assert_template_cases(cases: &[(&str, &str, Option<(&str, &str)>)]) {
+    let directory = tempfile::tempdir().unwrap();
+    fs::create_dir(directory.path().join("tasks")).unwrap();
+    fs::write(directory.path().join(".ansible-lint"), "offline: true\n").unwrap();
     for (case, template, expected) in cases {
         let source = format!(
             "---\n- name: Inspect template\n  ansible.builtin.debug:\n    msg: {}\n",
@@ -148,4 +152,152 @@ fn jinja_else_errors_match_reference_fields_and_closed_branches_stay_clean() {
             "{case}"
         );
     }
+}
+
+#[test]
+fn jinja_set_capture_errors_match_reference_fields_without_confusing_assignments() {
+    let cases = &[
+        (
+            "set-open",
+            "{% set result %}Body",
+            Some((
+                "Syntax error in template: Unexpected end of template. Jinja was looking for the following tags: 'endset'. The innermost block that needs to be closed is 'set'.",
+                "6262c7d5fa221e0af11b0aac004386ecef20b40c9b487e4e77b8417a2c213bd9",
+            )),
+        ),
+        (
+            "set-filter-open",
+            "{% set result | replace(old='a', new='b') %}Body",
+            Some((
+                "Syntax error in template: Unexpected end of template. Jinja was looking for the following tags: 'endset'. The innermost block that needs to be closed is 'set'.",
+                "6262c7d5fa221e0af11b0aac004386ecef20b40c9b487e4e77b8417a2c213bd9",
+            )),
+        ),
+        (
+            "set-filter-unknown",
+            "{% set result | replace(old='a', new='b') %}{% unknown %}",
+            Some((
+                "Syntax error in template: Encountered unknown tag 'unknown'. Jinja was looking for the following tags: 'endset'. The innermost block that needs to be closed is 'set'.",
+                "c8a34ebd442d1b8c408b680ba079ef56cebe886bdc705b0b0634d56683bfac1e",
+            )),
+        ),
+        (
+            "set-filter-nested",
+            "{% if ready %}{% else %}{% set result | replace(old='a', new='b') %}Body",
+            Some((
+                "Syntax error in template: Unexpected end of template. Jinja was looking for the following tags: 'endset'. The innermost block that needs to be closed is 'set'.",
+                "6262c7d5fa221e0af11b0aac004386ecef20b40c9b487e4e77b8417a2c213bd9",
+            )),
+        ),
+        (
+            "set-filter-closed",
+            "{% set result | replace(old='a', new='b') %}Body{% endset %}",
+            None,
+        ),
+        (
+            "set-assign-outer-open",
+            "{% if ready %}{% else %}{% set result = dict(key=3) %}Body",
+            Some((
+                "Syntax error in template: Unexpected end of template. Jinja was looking for the following tags: 'endif'. The innermost block that needs to be closed is 'if'.",
+                "cc3800add4c70805a5b2ad82106c2603a512a7ca429feab23c8e0095735cbec2",
+            )),
+        ),
+        (
+            "set-filter-literal-equal",
+            "{% set result | replace('=', ':') %}Body",
+            Some((
+                "Syntax error in template: Unexpected end of template. Jinja was looking for the following tags: 'endset'. The innermost block that needs to be closed is 'set'.",
+                "6262c7d5fa221e0af11b0aac004386ecef20b40c9b487e4e77b8417a2c213bd9",
+            )),
+        ),
+        (
+            "set-filter-positional",
+            "{% set result | replace('a', 'b') %}Body",
+            Some((
+                "Syntax error in template: Unexpected end of template. Jinja was looking for the following tags: 'endset'. The innermost block that needs to be closed is 'set'.",
+                "6262c7d5fa221e0af11b0aac004386ecef20b40c9b487e4e77b8417a2c213bd9",
+            )),
+        ),
+        (
+            "set-filter-chain",
+            "{% set result | replace(old='a', new='b') | default(default_value='x') %}Body",
+            Some((
+                "Syntax error in template: Unexpected end of template. Jinja was looking for the following tags: 'endset'. The innermost block that needs to be closed is 'set'.",
+                "6262c7d5fa221e0af11b0aac004386ecef20b40c9b487e4e77b8417a2c213bd9",
+            )),
+        ),
+        (
+            "set-filter-closed-outer-open",
+            "{% if ready %}{% else %}{% set result | replace(old='a', new='b') %}Body{% endset %}",
+            Some((
+                "Syntax error in template: Unexpected end of template. Jinja was looking for the following tags: 'endif'. The innermost block that needs to be closed is 'if'.",
+                "cc3800add4c70805a5b2ad82106c2603a512a7ca429feab23c8e0095735cbec2",
+            )),
+        ),
+        (
+            "set-filter-closed-unknown",
+            "{% set result | replace(old='a', new='b') %}Body{% endset %}{% unknown %}",
+            Some((
+                "Syntax error in template: Encountered unknown tag 'unknown'.",
+                "de75fb0cf3c8fea77a573c81c96d6ea62d3b5b53c312cc7baad9783e3d917d47",
+            )),
+        ),
+        (
+            "set-assignment-filter-outer-open",
+            "{% if ready %}{% else %}{% set result = text | replace(old='a', new='b') %}Body",
+            Some((
+                "Syntax error in template: Unexpected end of template. Jinja was looking for the following tags: 'endif'. The innermost block that needs to be closed is 'if'.",
+                "cc3800add4c70805a5b2ad82106c2603a512a7ca429feab23c8e0095735cbec2",
+            )),
+        ),
+        (
+            "set-filter-tag-string",
+            "{% set result | replace(old='{% else %}', new='b') %}Body",
+            Some((
+                "Syntax error in template: Unexpected end of template. Jinja was looking for the following tags: 'endset'. The innermost block that needs to be closed is 'set'.",
+                "6262c7d5fa221e0af11b0aac004386ecef20b40c9b487e4e77b8417a2c213bd9",
+            )),
+        ),
+        (
+            "set-filter-trim",
+            "{%- set result | replace(old='a', new='b') -%}Body",
+            Some((
+                "Syntax error in template: Unexpected end of template. Jinja was looking for the following tags: 'endset'. The innermost block that needs to be closed is 'set'.",
+                "6262c7d5fa221e0af11b0aac004386ecef20b40c9b487e4e77b8417a2c213bd9",
+            )),
+        ),
+        (
+            "set-filter-for-nested",
+            "{% for item in items %}{% else %}{% set result | replace(old='a', new='b') %}Body",
+            Some((
+                "Syntax error in template: Unexpected end of template. Jinja was looking for the following tags: 'endset'. The innermost block that needs to be closed is 'set'.",
+                "6262c7d5fa221e0af11b0aac004386ecef20b40c9b487e4e77b8417a2c213bd9",
+            )),
+        ),
+        (
+            "set-filter-namespace",
+            "{% set ns.result | replace(old='a', new='b') %}Body",
+            Some((
+                "Syntax error in template: Unexpected end of template. Jinja was looking for the following tags: 'endset'. The innermost block that needs to be closed is 'set'.",
+                "6262c7d5fa221e0af11b0aac004386ecef20b40c9b487e4e77b8417a2c213bd9",
+            )),
+        ),
+        (
+            "set-assignment-tuple",
+            "{% if ready %}{% else %}{% set (first, second) = (1, 2) %}Body",
+            Some((
+                "Syntax error in template: Unexpected end of template. Jinja was looking for the following tags: 'endif'. The innermost block that needs to be closed is 'if'.",
+                "cc3800add4c70805a5b2ad82106c2603a512a7ca429feab23c8e0095735cbec2",
+            )),
+        ),
+        (
+            "set-assignment-namespace",
+            "{% if ready %}{% else %}{% set ns.result = text | replace(old='a', new='b') %}Body",
+            Some((
+                "Syntax error in template: Unexpected end of template. Jinja was looking for the following tags: 'endif'. The innermost block that needs to be closed is 'if'.",
+                "cc3800add4c70805a5b2ad82106c2603a512a7ca429feab23c8e0095735cbec2",
+            )),
+        ),
+    ];
+    assert_template_cases(cases);
 }

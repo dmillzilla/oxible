@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.1.2 — Unreleased
+
+- Correct missing-closing-tag diagnostics for Jinja capture blocks whose filters
+  use keyword arguments, including capture blocks nested inside other blocks.
+
 ## 0.1.1 — 2026-11-06
 
 - Correct Jinja syntax-error messages after an `else` branch to report only the
