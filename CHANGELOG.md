@@ -2,6 +2,8 @@
 
 ## 0.1.2 — Unreleased
 
+- Detect shell pipelines around Jinja expressions, blocks and comments without
+  mistaking filter operators or template text for shell syntax and pipefail.
 - Correct missing-closing-tag diagnostics for Jinja capture blocks whose filters
   use keyword arguments, including capture blocks nested inside other blocks.
 
