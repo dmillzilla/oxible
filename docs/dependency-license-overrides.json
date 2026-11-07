@@ -3,13 +3,13 @@
     "basis": "Exact published package VCS revision workspace license files",
     "files": [
       {
-        "path": "THIRD_PARTY_LICENSES/workspace/jni-rs/LICENSE-MIT",
+        "path": "licenses/workspace/jni-rs/LICENSE-MIT",
         "source": "https://raw.githubusercontent.com/jni-rs/jni-rs/5ae9458a4ec44c5318f37ddc7569c1d4ae8a69e7/LICENSE-MIT",
         "sha256": "fea1d5bf3dd71605ce5d7d2ff695c1837e914c77195e523a86b5391716477960",
         "commit": "5ae9458a4ec44c5318f37ddc7569c1d4ae8a69e7"
       },
       {
-        "path": "THIRD_PARTY_LICENSES/workspace/jni-rs/LICENSE-APACHE",
+        "path": "licenses/workspace/jni-rs/LICENSE-APACHE",
         "source": "https://raw.githubusercontent.com/jni-rs/jni-rs/5ae9458a4ec44c5318f37ddc7569c1d4ae8a69e7/LICENSE-APACHE",
         "sha256": "a60eea817514531668d7e00765731449fe14d059d3249e0bc93b36de45f759f2",
         "commit": "5ae9458a4ec44c5318f37ddc7569c1d4ae8a69e7"
@@ -20,13 +20,13 @@
     "basis": "Exact published package VCS revision workspace license files",
     "files": [
       {
-        "path": "THIRD_PARTY_LICENSES/workspace/jni-rs/LICENSE-MIT",
+        "path": "licenses/workspace/jni-rs/LICENSE-MIT",
         "source": "https://raw.githubusercontent.com/jni-rs/jni-rs/5ae9458a4ec44c5318f37ddc7569c1d4ae8a69e7/LICENSE-MIT",
         "sha256": "fea1d5bf3dd71605ce5d7d2ff695c1837e914c77195e523a86b5391716477960",
         "commit": "5ae9458a4ec44c5318f37ddc7569c1d4ae8a69e7"
       },
       {
-        "path": "THIRD_PARTY_LICENSES/workspace/jni-rs/LICENSE-APACHE",
+        "path": "licenses/workspace/jni-rs/LICENSE-APACHE",
         "source": "https://raw.githubusercontent.com/jni-rs/jni-rs/5ae9458a4ec44c5318f37ddc7569c1d4ae8a69e7/LICENSE-APACHE",
         "sha256": "a60eea817514531668d7e00765731449fe14d059d3249e0bc93b36de45f759f2",
         "commit": "5ae9458a4ec44c5318f37ddc7569c1d4ae8a69e7"
@@ -37,13 +37,13 @@
     "basis": "Exact published package VCS revision workspace license files",
     "files": [
       {
-        "path": "THIRD_PARTY_LICENSES/workspace/jni-sys/LICENSE-MIT",
+        "path": "licenses/workspace/jni-sys/LICENSE-MIT",
         "source": "https://raw.githubusercontent.com/jni-rs/jni-sys/64d77b7a5f119d7b55b4e2c169a4668067ff59e6/LICENSE-MIT",
         "sha256": "1d85bd754b04ceec93e98e890edd1fa3c6a22e81bcb32135806beeccefa51cd1",
         "commit": "64d77b7a5f119d7b55b4e2c169a4668067ff59e6"
       },
       {
-        "path": "THIRD_PARTY_LICENSES/workspace/jni-sys/LICENSE-APACHE",
+        "path": "licenses/workspace/jni-sys/LICENSE-APACHE",
         "source": "https://raw.githubusercontent.com/jni-rs/jni-sys/64d77b7a5f119d7b55b4e2c169a4668067ff59e6/LICENSE-APACHE",
         "sha256": "c6596eb7be8581c18be736c846fb9173b69eccf6ef94c5135893ec56bd92ba08",
         "commit": "64d77b7a5f119d7b55b4e2c169a4668067ff59e6"
@@ -54,13 +54,13 @@
     "basis": "Exact published package VCS revision workspace license files",
     "files": [
       {
-        "path": "THIRD_PARTY_LICENSES/workspace/rustls-platform-verifier/LICENSE-MIT",
+        "path": "licenses/workspace/rustls-platform-verifier/LICENSE-MIT",
         "source": "https://raw.githubusercontent.com/rustls/rustls-platform-verifier/252e25161a91af476cbea620e29d277592d27ec7/LICENSE-MIT",
         "sha256": "1c7cf76689c837a68ed8d704994e52a0f2940c087958f860d17f3186afbdcc0c",
         "commit": "252e25161a91af476cbea620e29d277592d27ec7"
       },
       {
-        "path": "THIRD_PARTY_LICENSES/workspace/rustls-platform-verifier/LICENSE-APACHE",
+        "path": "licenses/workspace/rustls-platform-verifier/LICENSE-APACHE",
         "source": "https://raw.githubusercontent.com/rustls/rustls-platform-verifier/252e25161a91af476cbea620e29d277592d27ec7/LICENSE-APACHE",
         "sha256": "c71d239df91726fc519c6eb72d318ec65820627232b2f796219e87dcf35d0ab4",
         "commit": "252e25161a91af476cbea620e29d277592d27ec7"
@@ -71,7 +71,7 @@
     "basis": "Exact published package VCS revision workspace license files",
     "files": [
       {
-        "path": "THIRD_PARTY_LICENSES/workspace/simd/LICENSE",
+        "path": "licenses/workspace/simd/LICENSE",
         "source": "https://raw.githubusercontent.com/Nugine/simd/d74c030d9dc4f3cae02146d1f497ff62726ef09a/LICENSE",
         "sha256": "71674605ec4c087fe9eb534e3e4f9e26eb2e4aabcd76a29fd156c6a844d44b3d",
         "commit": "d74c030d9dc4f3cae02146d1f497ff62726ef09a"
@@ -82,7 +82,7 @@
     "basis": "Exact published package VCS revision workspace license files",
     "files": [
       {
-        "path": "THIRD_PARTY_LICENSES/workspace/simd/LICENSE",
+        "path": "licenses/workspace/simd/LICENSE",
         "source": "https://raw.githubusercontent.com/Nugine/simd/d74c030d9dc4f3cae02146d1f497ff62726ef09a/LICENSE",
         "sha256": "71674605ec4c087fe9eb534e3e4f9e26eb2e4aabcd76a29fd156c6a844d44b3d",
         "commit": "d74c030d9dc4f3cae02146d1f497ff62726ef09a"
@@ -90,10 +90,10 @@
     ]
   },
   "ruff_annotate_snippets": {
-    "basis": "Exact published Ruff 0.0.21 workspace VCS revision license retained in NOTICE",
+    "basis": "Exact published Ruff 0.0.21 workspace VCS revision license retained in docs/attributions.md",
     "files": [
       {
-        "path": "THIRD_PARTY_LICENSES/ruff-LICENSE.txt",
+        "path": "licenses/ruff-LICENSE.txt",
         "sha256": "2597d854122b77ddc71971564ca2350a37608575ce324adc5650a2b2051c8f18",
         "source": "https://raw.githubusercontent.com/astral-sh/ruff/05cdc36a45a29e078c2af9358969d0f576408bef/LICENSE",
         "commit": "05cdc36a45a29e078c2af9358969d0f576408bef"
@@ -101,10 +101,10 @@
     ]
   },
   "ruff_cache": {
-    "basis": "Exact published Ruff 0.0.21 workspace VCS revision license retained in NOTICE",
+    "basis": "Exact published Ruff 0.0.21 workspace VCS revision license retained in docs/attributions.md",
     "files": [
       {
-        "path": "THIRD_PARTY_LICENSES/ruff-LICENSE.txt",
+        "path": "licenses/ruff-LICENSE.txt",
         "sha256": "2597d854122b77ddc71971564ca2350a37608575ce324adc5650a2b2051c8f18",
         "source": "https://raw.githubusercontent.com/astral-sh/ruff/05cdc36a45a29e078c2af9358969d0f576408bef/LICENSE",
         "commit": "05cdc36a45a29e078c2af9358969d0f576408bef"
@@ -112,10 +112,10 @@
     ]
   },
   "ruff_db": {
-    "basis": "Exact published Ruff 0.0.21 workspace VCS revision license retained in NOTICE",
+    "basis": "Exact published Ruff 0.0.21 workspace VCS revision license retained in docs/attributions.md",
     "files": [
       {
-        "path": "THIRD_PARTY_LICENSES/ruff-LICENSE.txt",
+        "path": "licenses/ruff-LICENSE.txt",
         "sha256": "2597d854122b77ddc71971564ca2350a37608575ce324adc5650a2b2051c8f18",
         "source": "https://raw.githubusercontent.com/astral-sh/ruff/05cdc36a45a29e078c2af9358969d0f576408bef/LICENSE",
         "commit": "05cdc36a45a29e078c2af9358969d0f576408bef"
@@ -123,10 +123,10 @@
     ]
   },
   "ruff_diagnostics": {
-    "basis": "Exact published Ruff 0.0.21 workspace VCS revision license retained in NOTICE",
+    "basis": "Exact published Ruff 0.0.21 workspace VCS revision license retained in docs/attributions.md",
     "files": [
       {
-        "path": "THIRD_PARTY_LICENSES/ruff-LICENSE.txt",
+        "path": "licenses/ruff-LICENSE.txt",
         "sha256": "2597d854122b77ddc71971564ca2350a37608575ce324adc5650a2b2051c8f18",
         "source": "https://raw.githubusercontent.com/astral-sh/ruff/05cdc36a45a29e078c2af9358969d0f576408bef/LICENSE",
         "commit": "05cdc36a45a29e078c2af9358969d0f576408bef"
@@ -134,10 +134,10 @@
     ]
   },
   "ruff_formatter": {
-    "basis": "Exact published Ruff 0.0.21 workspace VCS revision license retained in NOTICE",
+    "basis": "Exact published Ruff 0.0.21 workspace VCS revision license retained in docs/attributions.md",
     "files": [
       {
-        "path": "THIRD_PARTY_LICENSES/ruff-LICENSE.txt",
+        "path": "licenses/ruff-LICENSE.txt",
         "sha256": "2597d854122b77ddc71971564ca2350a37608575ce324adc5650a2b2051c8f18",
         "source": "https://raw.githubusercontent.com/astral-sh/ruff/05cdc36a45a29e078c2af9358969d0f576408bef/LICENSE",
         "commit": "05cdc36a45a29e078c2af9358969d0f576408bef"
@@ -145,10 +145,10 @@
     ]
   },
   "ruff_macros": {
-    "basis": "Exact published Ruff 0.0.21 workspace VCS revision license retained in NOTICE",
+    "basis": "Exact published Ruff 0.0.21 workspace VCS revision license retained in docs/attributions.md",
     "files": [
       {
-        "path": "THIRD_PARTY_LICENSES/ruff-LICENSE.txt",
+        "path": "licenses/ruff-LICENSE.txt",
         "sha256": "2597d854122b77ddc71971564ca2350a37608575ce324adc5650a2b2051c8f18",
         "source": "https://raw.githubusercontent.com/astral-sh/ruff/05cdc36a45a29e078c2af9358969d0f576408bef/LICENSE",
         "commit": "05cdc36a45a29e078c2af9358969d0f576408bef"
@@ -156,10 +156,10 @@
     ]
   },
   "ruff_memory_usage": {
-    "basis": "Exact published Ruff 0.0.21 workspace VCS revision license retained in NOTICE",
+    "basis": "Exact published Ruff 0.0.21 workspace VCS revision license retained in docs/attributions.md",
     "files": [
       {
-        "path": "THIRD_PARTY_LICENSES/ruff-LICENSE.txt",
+        "path": "licenses/ruff-LICENSE.txt",
         "sha256": "2597d854122b77ddc71971564ca2350a37608575ce324adc5650a2b2051c8f18",
         "source": "https://raw.githubusercontent.com/astral-sh/ruff/05cdc36a45a29e078c2af9358969d0f576408bef/LICENSE",
         "commit": "05cdc36a45a29e078c2af9358969d0f576408bef"
@@ -167,10 +167,10 @@
     ]
   },
   "ruff_notebook": {
-    "basis": "Exact published Ruff 0.0.21 workspace VCS revision license retained in NOTICE",
+    "basis": "Exact published Ruff 0.0.21 workspace VCS revision license retained in docs/attributions.md",
     "files": [
       {
-        "path": "THIRD_PARTY_LICENSES/ruff-LICENSE.txt",
+        "path": "licenses/ruff-LICENSE.txt",
         "sha256": "2597d854122b77ddc71971564ca2350a37608575ce324adc5650a2b2051c8f18",
         "source": "https://raw.githubusercontent.com/astral-sh/ruff/05cdc36a45a29e078c2af9358969d0f576408bef/LICENSE",
         "commit": "05cdc36a45a29e078c2af9358969d0f576408bef"
@@ -178,10 +178,10 @@
     ]
   },
   "ruff_python_ast": {
-    "basis": "Exact published Ruff 0.0.21 workspace VCS revision license retained in NOTICE",
+    "basis": "Exact published Ruff 0.0.21 workspace VCS revision license retained in docs/attributions.md",
     "files": [
       {
-        "path": "THIRD_PARTY_LICENSES/ruff-LICENSE.txt",
+        "path": "licenses/ruff-LICENSE.txt",
         "sha256": "2597d854122b77ddc71971564ca2350a37608575ce324adc5650a2b2051c8f18",
         "source": "https://raw.githubusercontent.com/astral-sh/ruff/05cdc36a45a29e078c2af9358969d0f576408bef/LICENSE",
         "commit": "05cdc36a45a29e078c2af9358969d0f576408bef"
@@ -189,10 +189,10 @@
     ]
   },
   "ruff_python_formatter": {
-    "basis": "Exact published Ruff 0.0.21 workspace VCS revision license retained in NOTICE",
+    "basis": "Exact published Ruff 0.0.21 workspace VCS revision license retained in docs/attributions.md",
     "files": [
       {
-        "path": "THIRD_PARTY_LICENSES/ruff-LICENSE.txt",
+        "path": "licenses/ruff-LICENSE.txt",
         "sha256": "2597d854122b77ddc71971564ca2350a37608575ce324adc5650a2b2051c8f18",
         "source": "https://raw.githubusercontent.com/astral-sh/ruff/05cdc36a45a29e078c2af9358969d0f576408bef/LICENSE",
         "commit": "05cdc36a45a29e078c2af9358969d0f576408bef"
@@ -200,10 +200,10 @@
     ]
   },
   "ruff_python_parser": {
-    "basis": "Exact published Ruff 0.0.21 workspace VCS revision license retained in NOTICE",
+    "basis": "Exact published Ruff 0.0.21 workspace VCS revision license retained in docs/attributions.md",
     "files": [
       {
-        "path": "THIRD_PARTY_LICENSES/ruff-LICENSE.txt",
+        "path": "licenses/ruff-LICENSE.txt",
         "sha256": "2597d854122b77ddc71971564ca2350a37608575ce324adc5650a2b2051c8f18",
         "source": "https://raw.githubusercontent.com/astral-sh/ruff/05cdc36a45a29e078c2af9358969d0f576408bef/LICENSE",
         "commit": "05cdc36a45a29e078c2af9358969d0f576408bef"
@@ -211,10 +211,10 @@
     ]
   },
   "ruff_python_trivia": {
-    "basis": "Exact published Ruff 0.0.21 workspace VCS revision license retained in NOTICE",
+    "basis": "Exact published Ruff 0.0.21 workspace VCS revision license retained in docs/attributions.md",
     "files": [
       {
-        "path": "THIRD_PARTY_LICENSES/ruff-LICENSE.txt",
+        "path": "licenses/ruff-LICENSE.txt",
         "sha256": "2597d854122b77ddc71971564ca2350a37608575ce324adc5650a2b2051c8f18",
         "source": "https://raw.githubusercontent.com/astral-sh/ruff/05cdc36a45a29e078c2af9358969d0f576408bef/LICENSE",
         "commit": "05cdc36a45a29e078c2af9358969d0f576408bef"
@@ -222,10 +222,10 @@
     ]
   },
   "ruff_source_file": {
-    "basis": "Exact published Ruff 0.0.21 workspace VCS revision license retained in NOTICE",
+    "basis": "Exact published Ruff 0.0.21 workspace VCS revision license retained in docs/attributions.md",
     "files": [
       {
-        "path": "THIRD_PARTY_LICENSES/ruff-LICENSE.txt",
+        "path": "licenses/ruff-LICENSE.txt",
         "sha256": "2597d854122b77ddc71971564ca2350a37608575ce324adc5650a2b2051c8f18",
         "source": "https://raw.githubusercontent.com/astral-sh/ruff/05cdc36a45a29e078c2af9358969d0f576408bef/LICENSE",
         "commit": "05cdc36a45a29e078c2af9358969d0f576408bef"
@@ -233,10 +233,10 @@
     ]
   },
   "ruff_text_size": {
-    "basis": "Exact published Ruff 0.0.21 workspace VCS revision license retained in NOTICE",
+    "basis": "Exact published Ruff 0.0.21 workspace VCS revision license retained in docs/attributions.md",
     "files": [
       {
-        "path": "THIRD_PARTY_LICENSES/ruff-LICENSE.txt",
+        "path": "licenses/ruff-LICENSE.txt",
         "sha256": "2597d854122b77ddc71971564ca2350a37608575ce324adc5650a2b2051c8f18",
         "source": "https://raw.githubusercontent.com/astral-sh/ruff/05cdc36a45a29e078c2af9358969d0f576408bef/LICENSE",
         "commit": "05cdc36a45a29e078c2af9358969d0f576408bef"
@@ -244,10 +244,10 @@
     ]
   },
   "ty_static": {
-    "basis": "Published Ruff workspace license retained in NOTICE",
+    "basis": "Published Ruff workspace license retained in docs/attributions.md",
     "files": [
       {
-        "path": "THIRD_PARTY_LICENSES/ruff-LICENSE.txt",
+        "path": "licenses/ruff-LICENSE.txt",
         "sha256": "2597d854122b77ddc71971564ca2350a37608575ce324adc5650a2b2051c8f18",
         "source": "https://github.com/astral-sh/ruff/blob/62914c4b9b79a9e5004374a9c482ad2ed69290e1/LICENSE",
         "commit": "62914c4b9b79a9e5004374a9c482ad2ed69290e1"
@@ -258,7 +258,7 @@
     "basis": "Same version and VCS commit as published parent jsonschema crate",
     "files": [
       {
-        "path": "THIRD_PARTY_LICENSES/workspace/jsonschema/LICENSE",
+        "path": "licenses/workspace/jsonschema/LICENSE",
         "sha256": "117829c3ca21efb132d81a44b55363d395ab8eea18526873bc828da4c0e5f038",
         "source": "https://github.com/Stranger6667/jsonschema/blob/0b657fa991c9333908e8c51e8a582d602aac5391/LICENSE",
         "commit": "0b657fa991c9333908e8c51e8a582d602aac5391"
@@ -269,7 +269,7 @@
     "basis": "Same version and VCS commit as published parent jsonschema crate",
     "files": [
       {
-        "path": "THIRD_PARTY_LICENSES/workspace/jsonschema/LICENSE",
+        "path": "licenses/workspace/jsonschema/LICENSE",
         "sha256": "117829c3ca21efb132d81a44b55363d395ab8eea18526873bc828da4c0e5f038",
         "source": "https://github.com/Stranger6667/jsonschema/blob/0b657fa991c9333908e8c51e8a582d602aac5391/LICENSE",
         "commit": "0b657fa991c9333908e8c51e8a582d602aac5391"
@@ -280,13 +280,13 @@
     "basis": "Upstream winapi workspace revision declares these import-library packages at the exact published 0.4.0 version",
     "files": [
       {
-        "path": "THIRD_PARTY_LICENSES/workspace/winapi/LICENSE-MIT",
+        "path": "licenses/workspace/winapi/LICENSE-MIT",
         "sha256": "ce7bc3499fee93d5022ef430d5e4201e79a6d9154f3974e42f41349f0569e09b",
         "source": "https://raw.githubusercontent.com/retep998/winapi-rs/796a8e6c2971dc2ff1bcff166e6671284f9b5b6b/LICENSE-MIT",
         "commit": "796a8e6c2971dc2ff1bcff166e6671284f9b5b6b"
       },
       {
-        "path": "THIRD_PARTY_LICENSES/workspace/winapi/LICENSE-APACHE",
+        "path": "licenses/workspace/winapi/LICENSE-APACHE",
         "sha256": "b40930bbcf80744c86c46a12bc9da056641d722716c378f5659b9e555ef833e1",
         "source": "https://raw.githubusercontent.com/retep998/winapi-rs/796a8e6c2971dc2ff1bcff166e6671284f9b5b6b/LICENSE-APACHE",
         "commit": "796a8e6c2971dc2ff1bcff166e6671284f9b5b6b"
@@ -297,13 +297,13 @@
     "basis": "Upstream winapi workspace revision declares these import-library packages at the exact published 0.4.0 version",
     "files": [
       {
-        "path": "THIRD_PARTY_LICENSES/workspace/winapi/LICENSE-MIT",
+        "path": "licenses/workspace/winapi/LICENSE-MIT",
         "sha256": "ce7bc3499fee93d5022ef430d5e4201e79a6d9154f3974e42f41349f0569e09b",
         "source": "https://raw.githubusercontent.com/retep998/winapi-rs/796a8e6c2971dc2ff1bcff166e6671284f9b5b6b/LICENSE-MIT",
         "commit": "796a8e6c2971dc2ff1bcff166e6671284f9b5b6b"
       },
       {
-        "path": "THIRD_PARTY_LICENSES/workspace/winapi/LICENSE-APACHE",
+        "path": "licenses/workspace/winapi/LICENSE-APACHE",
         "sha256": "b40930bbcf80744c86c46a12bc9da056641d722716c378f5659b9e555ef833e1",
         "source": "https://raw.githubusercontent.com/retep998/winapi-rs/796a8e6c2971dc2ff1bcff166e6671284f9b5b6b/LICENSE-APACHE",
         "commit": "796a8e6c2971dc2ff1bcff166e6671284f9b5b6b"
@@ -316,12 +316,12 @@
     "source_archive_sha256": "1c107b6f4780854c8b126e228ea8869f4d7b71260f962fefb57b996b8959ba6b",
     "files": [
       {
-        "path": "THIRD_PARTY_LICENSES/workspace/seahash/debian-copyright",
+        "path": "licenses/workspace/seahash/debian-copyright",
         "sha256": "268296361f3ec03e3dfb8a893c35318226119c818f5e8b7866d209e24beda60f",
         "source": "https://sources.debian.org/data/main/r/rust-seahash/4.1.0-1/debian/copyright"
       },
       {
-        "path": "THIRD_PARTY_LICENSES/workspace/seahash/Cargo.toml.orig",
+        "path": "licenses/workspace/seahash/Cargo.toml.orig",
         "sha256": "dd213de338ca98b7ef7a2562bcf4e4214d215d1a8277750a6a72b4e809c8d0dd",
         "source": "Published locked seahash 4.1.0 original package manifest"
       }

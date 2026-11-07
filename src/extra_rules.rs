@@ -1,5 +1,5 @@
 // SPDX-License-Identifier: GPL-3.0-or-later
-// Rule behavior adapted from ansible-lint. See NOTICE and third-party licenses.
+// Rule behavior adapted from ansible-lint. See docs/attributions.md and third-party licenses.
 
 use crate::{rules::Action, yaml::Node};
 
