@@ -260,8 +260,17 @@ fn become_must_be_explicit_at_the_same_level() {
 }
 
 #[test]
-fn literal_ignore_errors_is_checked_but_registered_failures_are_allowed() {
-    for value in ["true", "yes", "'yes'", "ON"] {
+fn ignore_errors_checks_templates_and_preserves_registered_and_check_mode_exceptions() {
+    for value in [
+        "true",
+        "yes",
+        "'yes'",
+        "ON",
+        "'{{ allow_failures }}'",
+        "'{{ allow_failures | default(false) }}'",
+        "'{{ true }}'",
+        "'{% if allow_failures %}true{% else %}false{% endif %}'",
+    ] {
         assert_eq!(
             ids(&format!(
                 "- name: Run\n  debug: msg=hello\n  ignore_errors: {value}\n"
@@ -271,8 +280,11 @@ fn literal_ignore_errors_is_checked_but_registered_failures_are_allowed() {
     }
     for source in [
         "- name: Run\n  debug: msg=hello\n  ignore_errors: false\n",
+        "- name: Run\n  debug: msg=hello\n  ignore_errors: 'false'\n",
         "- name: Run\n  debug: msg=hello\n  ignore_errors: '{{ ansible_check_mode }}'\n",
         "- name: Run\n  debug: msg=hello\n  ignore_errors: true\n  register: output\n",
+        "- name: Run\n  debug: msg=hello\n  ignore_errors: '{{ allow_failures }}'\n  register: output\n",
+        "- name: Run\n  debug: msg=hello\n  ignore_errors: '{{ allow_failures | default(false) }}'\n  register: output\n",
     ] {
         assert!(ids(source).is_empty());
     }
