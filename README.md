@@ -173,7 +173,7 @@ configured Vault credential providers launch bounded external processes; see
 Packaging creates
 native and vendored-source archives and verifies an offline source rebuild.
 Artifacts are not published automatically. This independent project is
-GPL-3.0-or-later; [NOTICE](NOTICE) retains upstream attribution.
+GPL-3.0-or-later; [upstream attribution](docs/attributions.md) retains upstream attribution.
 
 
 Contributions and compatibility reproductions are welcome. See

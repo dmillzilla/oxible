@@ -1,6 +1,6 @@
 {
   "ansible_core": "2.21.5",
   "ansible_lint_commit": "67a48717843c4d5d37681294cb5c9967781b0a31",
-  "license": "GPL-3.0-or-later; see NOTICE",
+  "license": "GPL-3.0-or-later; see docs/attributions.md",
   "source": "https://github.com/ansible/ansible-lint"
 }

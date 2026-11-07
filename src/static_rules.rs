@@ -1,5 +1,5 @@
 // SPDX-License-Identifier: GPL-3.0-or-later
-// Static rules adapted from the pinned ansible-lint reference; see NOTICE.
+// Static rules adapted from the pinned ansible-lint reference; see docs/attributions.md.
 use crate::{
     Diagnostic, FileKind, FileResult, LintOptions, metadata,
     rules::{self, Action},

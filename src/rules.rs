@@ -1,5 +1,5 @@
 // SPDX-License-Identifier: GPL-3.0-or-later
-// Selected rule behavior adapted from ansible-lint; see NOTICE for attribution.
+// Selected rule behavior adapted from ansible-lint; see docs/attributions.md for attribution.
 
 use crate::yaml::Node;
 use serde::Serialize;

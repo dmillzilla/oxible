@@ -8,13 +8,14 @@ license = "GPL-3.0-or-later"
 publish = false
 include = [
   "Cargo.toml", "Cargo.lock", "build.rs", "rust-toolchain.toml", "mise.toml",
-  "LICENSE", "NOTICE", "README.md", "CONTRIBUTING.md", "SECURITY.md", "CHANGELOG.md",
+  "LICENSE", "README.md", "CONTRIBUTING.md", "SECURITY.md", "CHANGELOG.md",
   ".gitignore", ".github/workflows/ci.yml", ".github/workflows/artifacts.yml",
-  ".github/ISSUE_TEMPLATE/bug_report.yml", "THIRD_PARTY_LICENSES/**", "src/**",
+  ".github/ISSUE_TEMPLATE/bug_report.yml", "licenses/**", "src/**",
   "assets/**", "tests/**", "examples/**", "editors/vscode/**",
   "!editors/vscode/node_modules/**", "!editors/vscode/*.vsix",
   "scripts/source_manifest.py", "scripts/package.py", "scripts/release_smoke.py",
   "scripts/collect_dependency_notices.py", "scripts/test_distribution.py",
+  "docs/attributions.md", "docs/third-party-notices.txt",
   "docs/native-preparation.md", "docs/native-vault.md", "docs/editors.md",
   "docs/distribution.md", "docs/dependency-notices.json", "docs/dependency-license-overrides.json",
 ]

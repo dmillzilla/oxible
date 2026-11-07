@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+- Consolidate dependency license notices, retain upstream attribution under docs,
+  and exclude compiled libraries accidentally matched as license files.
 - Resolve role-relative task includes with Ansible role and playbook fallbacks,
   including targets already prefixed with `tasks/`.
 - Keep quoted text and shell comments from faking an enabled `pipefail`.
