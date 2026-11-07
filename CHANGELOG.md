@@ -1,5 +1,13 @@
 # Changelog
 
+## Unreleased
+
+- Resolve role-relative task includes with Ansible role and playbook fallbacks,
+  including targets already prefixed with `tasks/`.
+- Keep quoted text and shell comments from faking an enabled `pipefail`.
+- Exempt Jinja blocks and comments from `no-tabs` while preserving Jinja checks.
+- Check commands supplied through `_raw_params` for module recommendations.
+
 ## 0.1.2 — 2026-11-06
 
 - Check templated `ignore_errors` settings while preserving the check-mode and

@@ -8,6 +8,16 @@ fn templated_shell_pipelines_match_reference_issues_and_exits() {
     fs::create_dir(directory.path().join("tasks")).unwrap();
     fs::write(directory.path().join(".ansible-lint"), "offline: true\n").unwrap();
     let cases = &[
+        (
+            "quoted-fake-pipefail",
+            "echo 'x; set -o pipefail; y'; false | true",
+            true,
+        ),
+        (
+            "comment-fake-pipefail",
+            "echo ready # ; set -o pipefail\nfalse | true",
+            true,
+        ),
         ("plain-pipeline", "printf ready | cat", true),
         ("templated-argument", "echo {{ value }} | cat", true),
         ("templated-filter", "echo {{ value | quote }} | cat", true),

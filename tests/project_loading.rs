@@ -1523,3 +1523,49 @@ fn role_prefixes_use_standalone_metadata_and_the_short_installed_role_identity()
         );
     }
 }
+
+#[test]
+fn role_prefixed_includes_resolve_and_lint_the_selected_file() {
+    for (target, selected) in [
+        ("tasks/configure.yml", "roles/example/tasks/configure.yml"),
+        ("configure.yml", "configure.yml"),
+    ] {
+        let dir = tempfile::tempdir().unwrap();
+        let root = dir.path();
+        write(root, ".ansible-lint", "offline: true\n");
+        write(
+            root,
+            "site.yml",
+            "---\n- name: Test role includes\n  hosts: localhost\n  gather_facts: false\n  roles:\n    - example\n",
+        );
+        write(
+            root,
+            "roles/example/tasks/main.yml",
+            &format!(
+                "---\n- name: Load configuration tasks\n  ansible.builtin.include_tasks: {target}\n"
+            ),
+        );
+        write(
+            root,
+            selected,
+            "---\n- name: Show a message\n  ansible.builtin.debug:\n    msg: hello\n",
+        );
+        let output = std::process::Command::new(env!("CARGO_BIN_EXE_oxible"))
+            .current_dir(root)
+            .env("PATH", "")
+            .args(["site.yml", "--offline", "--no-cache", "-f", "json"])
+            .output()
+            .unwrap();
+        assert_eq!(
+            output.status.code(),
+            Some(0),
+            "{} {}",
+            String::from_utf8_lossy(&output.stdout),
+            String::from_utf8_lossy(&output.stderr)
+        );
+        assert_eq!(
+            serde_json::from_slice::<serde_json::Value>(&output.stdout).unwrap(),
+            serde_json::json!([])
+        );
+    }
+}
