@@ -94,9 +94,9 @@ def main():
         temporary = pathlib.Path(temporary)
         binary = temporary / "binary"
         binary.mkdir()
-        for name in ("LICENSE", "NOTICE", "README.md", "CONTRIBUTING.md", "SECURITY.md", "CHANGELOG.md"):
+        for name in ("LICENSE", "README.md", "CONTRIBUTING.md", "SECURITY.md", "CHANGELOG.md"):
             shutil.copy2(ROOT / name, binary / name)
-        shutil.copytree(ROOT / "THIRD_PARTY_LICENSES", binary / "THIRD_PARTY_LICENSES")
+        shutil.copytree(ROOT / "licenses", binary / "licenses")
         for name in PUBLIC_DOCS:
             target = binary / name
             target.parent.mkdir(parents=True, exist_ok=True)

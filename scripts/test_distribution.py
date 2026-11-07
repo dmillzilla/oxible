@@ -6,7 +6,7 @@ import tempfile
 import unittest
 from unittest.mock import patch
 
-from collect_dependency_notices import verify_inventory
+from collect_dependency_notices import legal, verify_inventory
 import package
 from source_manifest import PUBLIC_DOCS, source_files, stage_source
 
@@ -19,7 +19,7 @@ class DistributionChecks(unittest.TestCase):
         self.assertNotIn('PARITY_PLAN.md', files)
         self.assertNotIn('.github/workflows/parity.yml', files)
         self.assertFalse(any(p.startswith('scripts/compare_') for p in files))
-        self.assertTrue({'Cargo.toml', 'Cargo.lock', 'build.rs', 'src/main.rs', 'LICENSE', 'NOTICE'} <= files)
+        self.assertTrue({'Cargo.toml', 'Cargo.lock', 'build.rs', 'src/main.rs', 'LICENSE', 'docs/attributions.md'} <= files)
 
     def setUp(self):
         self.temporary = tempfile.TemporaryDirectory()
@@ -33,7 +33,7 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "fixture-checksum"
 '''
         (self.root / 'Cargo.lock').write_text(lock)
-        notice = self.root / 'THIRD_PARTY_LICENSES/example/LICENSE'
+        notice = self.root / 'licenses/example/LICENSE'
         notice.parent.mkdir(parents=True)
         notice.write_text('Synthetic test license text')
         self.report = {
@@ -42,9 +42,13 @@ checksum = "fixture-checksum"
             'packages': [{'name': 'example', 'version': '1.0.0',
                           'source': 'registry+https://github.com/rust-lang/crates.io-index',
                           'crate_checksum': 'fixture-checksum', 'license': 'MIT',
-                          'files': [{'path': 'THIRD_PARTY_LICENSES/example/LICENSE',
+                          'files': [{'path': 'licenses/example/LICENSE',
                                      'sha256': hashlib.sha256(notice.read_bytes()).hexdigest()}]}],
         }
+
+    def test_library_name_is_not_a_license_notice(self):
+        self.assertFalse(legal(Path('libwinapi_oemlicense.a')))
+        self.assertTrue(legal(Path('LICENSE-MIT')))
 
     def test_complete_inventory(self):
         verify_inventory(self.root, self.report)
@@ -76,19 +80,48 @@ checksum = "fixture-checksum"
 
     def test_notice_cannot_escape_distribution(self):
         self.report['packages'][0]['files'][0]['path'] = '../outside'
-        with self.assertRaisesRegex(ValueError, 'inside THIRD_PARTY_LICENSES'):
+        with self.assertRaisesRegex(ValueError, 'inside licenses'):
             verify_inventory(self.root, self.report)
 
     def test_notice_symlink_cannot_escape(self):
         outside = self.root / 'outside'
         outside.write_text('outside')
-        notice = self.root / 'THIRD_PARTY_LICENSES/link'
+        notice = self.root / 'licenses/link'
         try:
             notice.symlink_to(outside)
         except OSError:
             self.skipTest('Symlink creation is unavailable')
-        self.report['packages'][0]['files'][0]['path'] = 'THIRD_PARTY_LICENSES/link'
+        self.report['packages'][0]['files'][0]['path'] = 'licenses/link'
         with self.assertRaisesRegex(ValueError, 'escapes'):
+            verify_inventory(self.root, self.report)
+
+    def make_bundle(self):
+        data = (self.root / 'licenses/example/LICENSE').read_bytes()
+        (self.root / 'docs').mkdir()
+        (self.root / 'docs/third-party-notices.txt').write_bytes(data)
+        self.report['bundle'] = {'path': 'docs/third-party-notices.txt', 'sha256': hashlib.sha256(data).hexdigest()}
+        self.report['packages'][0]['files'][0]['bundle'] = {'offset': 0, 'length': len(data)}
+
+    def test_bundle_verifies_exact_bytes(self):
+        self.make_bundle()
+        verify_inventory(self.root, self.report)
+
+    def test_bundle_corruption_fails(self):
+        self.make_bundle()
+        (self.root / 'docs/third-party-notices.txt').write_bytes(b'changed')
+        with self.assertRaisesRegex(ValueError, 'Changed dependency notice bundle'):
+            verify_inventory(self.root, self.report)
+
+    def test_bundle_ranges_cannot_escape(self):
+        self.make_bundle()
+        self.report['packages'][0]['files'][0]['bundle']['offset'] = -1
+        with self.assertRaisesRegex(ValueError, 'range'):
+            verify_inventory(self.root, self.report)
+
+    def test_bundling_does_not_hide_changed_retained_license(self):
+        self.make_bundle()
+        (self.root / 'licenses/example/LICENSE').write_text('changed')
+        with self.assertRaisesRegex(ValueError, 'Changed retained notice'):
             verify_inventory(self.root, self.report)
 
     def test_selection_excludes_outputs_and_retains_build_inputs(self):
@@ -146,15 +179,15 @@ checksum = "fixture-checksum"
 
     def test_source_archive_preserves_notice_bytes_and_build_metadata(self):
         staged = self.root / 'source'
-        stage_source(self.root, staged, ['Cargo.lock', 'THIRD_PARTY_LICENSES/example/LICENSE'])
+        stage_source(self.root, staged, ['Cargo.lock', 'licenses/example/LICENSE'])
         (staged / 'BUILD-INFO.json').write_text('{"version":"0.1.0"}\n')
         archive = self.root / 'source.tar.gz'
         package.archive(staged, archive, 'oxible-0.1.0-source')
         import tarfile
         with tarfile.open(archive) as contents:
             self.assertEqual(
-                contents.extractfile('oxible-0.1.0-source/THIRD_PARTY_LICENSES/example/LICENSE').read(),
-                (staged / 'THIRD_PARTY_LICENSES/example/LICENSE').read_bytes(),
+                contents.extractfile('oxible-0.1.0-source/licenses/example/LICENSE').read(),
+                (staged / 'licenses/example/LICENSE').read_bytes(),
             )
             self.assertIn('oxible-0.1.0-source/Cargo.lock', contents.getnames())
             self.assertIn('oxible-0.1.0-source/BUILD-INFO.json', contents.getnames())
