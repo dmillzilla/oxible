@@ -1,6 +1,6 @@
 {
   "scope": "All locked registry packages, including build and cross-platform dependencies. Collected texts/declarations are inventory evidence, not legal approval.",
-  "cargo_lock_sha256": "237707259861bdebd24eff9f8b95ea3d2cef7f3bb53b840ab2e13eefbfb668bc",
+  "cargo_lock_sha256": "674e48e231ab3b4faba5df03d85a5d727072989a43675369a8c931f3d589e957",
   "packages": [
     {
       "name": "adler2",

@@ -2,7 +2,7 @@
 
 Local VS Code client for the Oxible language server. The extension is not
 published and does not bundle or download an executable. A locally built VSIX
-can be installed with `code --install-extension /path/to/oxible-0.1.1.vsix`, or
+can be installed with `code --install-extension /path/to/oxible-0.1.2.vsix`, or
 the editor's **Extensions: Install from VSIX** command.
 
 1. Build/install Oxible at the repository root: `cargo install --path . --locked`.

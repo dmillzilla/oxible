@@ -2,7 +2,7 @@
   "name": "oxible",
   "displayName": "Oxible",
   "description": "Native Ansible diagnostics and safe quick fixes through the Oxible language server.",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "publisher": "oxible",
   "private": true,
   "license": "GPL-3.0-or-later",

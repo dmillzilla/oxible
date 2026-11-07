@@ -1,6 +1,6 @@
 # Changelog
 
-## 0.1.2 — Unreleased
+## 0.1.2 — 2026-11-06
 
 - Check templated `ignore_errors` settings while preserving the check-mode and
   registered-result exceptions.
