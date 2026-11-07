@@ -165,12 +165,58 @@ fn literal(
         .filter(|file| !file.is_empty() && file != "/dev/null")
     {
         result.push(Dependency {
-            path: path.parent().unwrap_or(Path::new(".")).join(file),
+            path: if kind == FileKind::Tasks {
+                task_path(path, &file, variables)
+            } else {
+                path.parent().unwrap_or(Path::new(".")).join(file)
+            },
             kind,
             position,
             plugin_base: None,
         });
     }
+}
+
+/// Resolve static task targets without executing Ansible. Keep the current
+/// include directory first for nested includes, then use the role/task and
+/// loader-basedir fallbacks from DataLoader.path_dwim_relative.
+pub(crate) fn task_path(path: &Path, file: &str, variables: &serde_json::Value) -> PathBuf {
+    let direct = path.parent().unwrap_or(Path::new(".")).join(file);
+    if Path::new(file).is_absolute() {
+        return direct;
+    }
+    let role = variables
+        .get("role_path")
+        .and_then(serde_json::Value::as_str)
+        .map(Path::new);
+    let cwd = std::env::current_dir().ok();
+    let base = variables
+        .get("playbook_dir")
+        .and_then(serde_json::Value::as_str)
+        .map(Path::new)
+        .or(cwd.as_deref());
+    let mut candidates = vec![direct.clone()];
+    if let Some(role) = role {
+        candidates.push(role.join("tasks").join(file));
+    }
+    // DataLoader's unfrackpath("tasks/<target>") uses the process working
+    // directory, whereas its later path_dwim fallback uses the loader basedir.
+    if role.is_some()
+        && let Some(cwd) = &cwd
+    {
+        candidates.push(cwd.join("tasks").join(file));
+    }
+    if let Some(role) = role {
+        candidates.push(role.join(file));
+    }
+    if let Some(base) = base {
+        candidates.push(base.join("tasks").join(file));
+        candidates.push(base.join(file));
+    }
+    candidates
+        .into_iter()
+        .find(|p| p.exists())
+        .unwrap_or(direct)
 }
 
 fn local_role(
@@ -234,6 +280,84 @@ fn local_role(
                     plugin_base: Some(role.clone()),
                 });
             }
+        }
+    }
+}
+
+#[cfg(test)]
+mod tests {
+    use super::task_path;
+    use serde_json::json;
+    use std::{fs, path::Path};
+
+    #[test]
+    fn role_task_search_order_matches_dataloader_without_execution() {
+        // Expected selections verified with ansible-core 2.21.5
+        // DataLoader.path_dwim_relative(role, "tasks", target, is_role=True).
+        for (target, files, selected) in [
+            (
+                "tasks/configure.yml",
+                vec!["roles/example/tasks/configure.yml"],
+                "roles/example/tasks/configure.yml",
+            ),
+            (
+                "tasks/configure.yml",
+                vec![
+                    "roles/example/tasks/tasks/configure.yml",
+                    "roles/example/tasks/configure.yml",
+                ],
+                "roles/example/tasks/tasks/configure.yml",
+            ),
+            (
+                "tasks/configure.yml",
+                vec![
+                    "tasks/tasks/configure.yml",
+                    "roles/example/tasks/configure.yml",
+                ],
+                "roles/example/tasks/configure.yml",
+            ),
+            (
+                "configure.yml",
+                vec![
+                    "roles/example/tasks/configure.yml",
+                    "roles/example/configure.yml",
+                    "configure.yml",
+                ],
+                "roles/example/tasks/configure.yml",
+            ),
+            (
+                "configure.yml",
+                vec!["tasks/configure.yml", "roles/example/configure.yml"],
+                "roles/example/configure.yml",
+            ),
+            (
+                "configure.yml",
+                vec!["roles/example/configure.yml", "configure.yml"],
+                "roles/example/configure.yml",
+            ),
+            ("configure.yml", vec!["configure.yml"], "configure.yml"),
+        ] {
+            let dir = tempfile::tempdir().unwrap();
+            let root = dir.path();
+            for file in files {
+                let path = root.join(file);
+                fs::create_dir_all(path.parent().unwrap()).unwrap();
+                fs::write(path, "---\n[]\n").unwrap();
+            }
+            let vars = json!({"role_path": root.join("roles/example"), "playbook_dir": root});
+            assert_eq!(
+                task_path(&root.join("roles/example/tasks/main.yml"), target, &vars),
+                root.join(selected)
+            );
+            let absolute = root.join(selected);
+            assert_eq!(
+                task_path(
+                    Path::new("unrelated/main.yml"),
+                    absolute.to_str().unwrap(),
+                    &vars
+                ),
+                absolute
+            );
         }
     }
 }

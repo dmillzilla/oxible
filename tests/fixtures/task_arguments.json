@@ -1,0 +1,190 @@
+[
+  {
+    "case": "tabs-plain-tab",
+    "source": "---\n- name: Inspect parity\n  ansible.builtin.debug:\n    msg: \"ready\\tvalue\"\n",
+    "reference": {
+      "exit": 2,
+      "issues": [
+        {
+          "type": "issue",
+          "check_name": "no-tabs",
+          "categories": [
+            "formatting"
+          ],
+          "url": "https://docs.ansible.com/projects/lint/rules/no-tabs/",
+          "severity": "major",
+          "description": "Most files should not contain tabs.",
+          "fingerprint": "4a99438cfbb065d318c9d8b9552b04445413510dca29acf9c05801bcea83974a",
+          "location": {
+            "path": "tasks/main.yml",
+            "positions": {
+              "begin": {
+                "line": 4,
+                "column": 10
+              }
+            }
+          },
+          "content": {
+            "body": "Task/Handler: Inspect parity"
+          }
+        }
+      ]
+    }
+  },
+  {
+    "case": "tabs-plain-clean",
+    "source": "---\n- name: Inspect parity\n  ansible.builtin.debug:\n    msg: \"ready value\"\n",
+    "reference": {
+      "exit": 0,
+      "issues": []
+    }
+  },
+  {
+    "case": "tabs-expression-tab",
+    "source": "---\n- name: Inspect parity\n  ansible.builtin.debug:\n    msg: \"{{ value\\t| default(42) }}\"\n",
+    "reference": {
+      "exit": 0,
+      "issues": [
+        {
+          "type": "issue",
+          "check_name": "jinja[spacing]",
+          "categories": [
+            "formatting"
+          ],
+          "url": "https://docs.ansible.com/projects/lint/rules/jinja/",
+          "severity": "minor",
+          "description": "Jinja2 spacing could be improved: {{ value\t| default(42) }} -> {{ value | default(42) }}",
+          "fingerprint": "d3a89c8e552926f8156267020d842a558442d7bd68d4690915dcba96a77aea4c",
+          "location": {
+            "path": "tasks/main.yml",
+            "positions": {
+              "begin": {
+                "line": 4,
+                "column": 10
+              }
+            }
+          },
+          "content": {
+            "body": "Jinja2 template rewrite recommendation: `{{ value | default(42) }}`."
+          }
+        }
+      ]
+    }
+  },
+  {
+    "case": "tabs-block-tab",
+    "source": "---\n- name: Inspect parity\n  ansible.builtin.debug:\n    msg: \"{% if\\tready %}Ready{% endif %}\"\n",
+    "reference": {
+      "exit": 0,
+      "issues": [
+        {
+          "type": "issue",
+          "check_name": "jinja[spacing]",
+          "categories": [
+            "formatting"
+          ],
+          "url": "https://docs.ansible.com/projects/lint/rules/jinja/",
+          "severity": "minor",
+          "description": "Jinja2 spacing could be improved: {% if\tready %}Ready{% endif %} -> {% if ready %}Ready{% endif %}",
+          "fingerprint": "41be5643ad58787390e72a2528f1dc6a3e13fb225ed71ab324635976a251e74b",
+          "location": {
+            "path": "tasks/main.yml",
+            "positions": {
+              "begin": {
+                "line": 4,
+                "column": 10
+              }
+            }
+          },
+          "content": {
+            "body": "Jinja2 template rewrite recommendation: `{% if ready %}Ready{% endif %}`."
+          }
+        }
+      ]
+    }
+  },
+  {
+    "case": "tabs-comment-tab",
+    "source": "---\n- name: Inspect parity\n  ansible.builtin.debug:\n    msg: \"Ready {# a\\tcomment #}\"\n",
+    "reference": {
+      "exit": 0,
+      "issues": []
+    }
+  },
+  {
+    "case": "command-cmd-positive",
+    "source": "---\n- name: Inspect parity\n  ansible.builtin.command:\n    cmd: git clone https://example.invalid/repo\n  changed_when: false\n",
+    "reference": {
+      "exit": 2,
+      "issues": [
+        {
+          "type": "issue",
+          "check_name": "command-instead-of-module",
+          "categories": [
+            "command-shell",
+            "idiom"
+          ],
+          "url": "https://docs.ansible.com/projects/lint/rules/command-instead-of-module/",
+          "severity": "major",
+          "description": "git used in place of git module",
+          "fingerprint": "3de8dbfd883f1b9a6d10380f30619e66d5f9013d6d3a2ad1ffb22f4d85b1189d",
+          "location": {
+            "path": "tasks/main.yml",
+            "lines": {
+              "begin": 2
+            }
+          },
+          "content": {
+            "body": "Task/Handler: Inspect parity"
+          }
+        }
+      ]
+    }
+  },
+  {
+    "case": "command-raw-positive",
+    "source": "---\n- name: Inspect parity\n  ansible.builtin.command:\n    _raw_params: git clone https://example.invalid/repo\n  changed_when: false\n",
+    "reference": {
+      "exit": 2,
+      "issues": [
+        {
+          "type": "issue",
+          "check_name": "command-instead-of-module",
+          "categories": [
+            "command-shell",
+            "idiom"
+          ],
+          "url": "https://docs.ansible.com/projects/lint/rules/command-instead-of-module/",
+          "severity": "major",
+          "description": "git used in place of git module",
+          "fingerprint": "3de8dbfd883f1b9a6d10380f30619e66d5f9013d6d3a2ad1ffb22f4d85b1189d",
+          "location": {
+            "path": "tasks/main.yml",
+            "lines": {
+              "begin": 2
+            }
+          },
+          "content": {
+            "body": "Task/Handler: Inspect parity"
+          }
+        }
+      ]
+    }
+  },
+  {
+    "case": "command-raw-exempt",
+    "source": "---\n- name: Inspect parity\n  ansible.builtin.command:\n    _raw_params: git log\n  changed_when: false\n",
+    "reference": {
+      "exit": 0,
+      "issues": []
+    }
+  },
+  {
+    "case": "command-cmd-exempt",
+    "source": "---\n- name: Inspect parity\n  ansible.builtin.command:\n    cmd: git log\n  changed_when: false\n",
+    "reference": {
+      "exit": 0,
+      "issues": []
+    }
+  }
+]

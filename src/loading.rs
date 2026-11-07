@@ -401,7 +401,11 @@ impl Loader<'_> {
         if let Some(file) =
             crate::template::render_path(value, vars, &self.options.settings.collection_index)
         {
-            let target = path.parent().unwrap_or(Path::new(".")).join(file);
+            let target = if kind == FileKind::Tasks {
+                crate::dependencies::task_path(path, &file, vars)
+            } else {
+                path.parent().unwrap_or(Path::new(".")).join(file)
+            };
             if loaded && !target.is_file() {
                 self.graph.diagnostics.push(Diagnostic::error(
                     path,

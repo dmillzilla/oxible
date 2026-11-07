@@ -872,7 +872,7 @@ fn tabs<'a>(
 ) {
     match &node.kind {
         crate::yaml::Kind::Scalar { value, .. }
-            if value.contains('\t') && !value.contains("{{") =>
+            if value.contains('\t') && !regex!(r"(?s)\{[\{%#].*[%#\}]\}").is_match(value) =>
         {
             emit("no-tabs", "Use spaces instead of tabs", node, container)
         }
