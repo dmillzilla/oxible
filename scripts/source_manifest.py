@@ -9,16 +9,17 @@ import shutil
 
 ROOT = Path(__file__).resolve().parents[1]
 PUBLIC_DOCS = (
+    "docs/attributions.md", "docs/third-party-notices.txt",
     "docs/native-preparation.md", "docs/native-vault.md", "docs/editors.md",
     "docs/distribution.md", "docs/dependency-notices.json",
     "docs/dependency-license-overrides.json",
 )
 SOURCE_PATHS = (
     "Cargo.toml", "Cargo.lock", "build.rs", "rust-toolchain.toml", "mise.toml",
-    "LICENSE", "NOTICE", "README.md", "CONTRIBUTING.md", "SECURITY.md",
+    "LICENSE", "README.md", "CONTRIBUTING.md", "SECURITY.md",
     "CHANGELOG.md", ".gitignore", ".github/workflows/ci.yml",
     ".github/workflows/artifacts.yml", ".github/ISSUE_TEMPLATE/bug_report.yml",
-    "THIRD_PARTY_LICENSES", "src", "assets", "tests", "examples",
+    "licenses", "src", "assets", "tests", "examples",
     "scripts/source_manifest.py", "scripts/package.py", "scripts/release_smoke.py",
     "scripts/collect_dependency_notices.py", "scripts/test_distribution.py",
     "editors/vscode", *PUBLIC_DOCS,

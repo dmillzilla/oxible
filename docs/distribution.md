@@ -1,9 +1,17 @@
 # Source and attribution for distributions
 
 Oxible's combined native application is GPL-3.0-or-later. [LICENSE](../LICENSE)
-and [NOTICE](../NOTICE) retain the project license and upstream adaptations.
+and [upstream attribution](attributions.md) retain the project license and upstream adaptations.
 Dependencies retain their original licenses and notices; collecting them does
 not change those licenses or constitute legal approval.
+
+The repository keeps upstream attributions in `docs/attributions.md` and the
+small set of retained upstream/override texts in `licenses/`. Exact dependency
+notices are consolidated in `docs/third-party-notices.txt`; the inventory records
+byte ranges and hashes for every locked package. Regeneration uses the locked
+crate sources, and CI verifies the committed bundle without downloading crates.
+Both binary and source archives include these documents. Vendored source also
+retains the dependencies' own license files. No published release is rewritten.
 
 ## Check the selected source and notices
 

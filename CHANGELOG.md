@@ -1,5 +1,10 @@
 # Changelog
 
+## Unreleased
+
+- Consolidate dependency license notices, retain upstream attribution under docs,
+  and exclude compiled libraries accidentally matched as license files.
+
 ## 0.1.2 — 2026-11-06
 
 - Check templated `ignore_errors` settings while preserving the check-mode and

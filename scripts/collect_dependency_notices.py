@@ -21,6 +21,8 @@ def sha(data):
 
 
 def legal(path):
+    if path.suffix.lower() in {".a", ".lib", ".dll", ".so", ".o", ".exe"}:
+        return False
     name = path.name.lower()
     return name in ('authors', 'authors.md', 'authors.txt') or any(part in name for part in ('license', 'licence', 'copying', 'copyright', 'notice'))
 
@@ -39,6 +41,17 @@ def verify_inventory(root, report):
         raise ValueError('Dependency inventory contains duplicate packages')
     if {key(p) for p in recorded} != set(expected):
         raise ValueError('Dependency inventory package coverage differs from Cargo.lock')
+    bundle_data = None
+    if 'bundle' in report:
+        bundle = report['bundle']
+        if bundle.get('path') != 'docs/third-party-notices.txt':
+            raise ValueError('Invalid dependency notice bundle path')
+        bundle_file = root / bundle['path']
+        if not bundle_file.resolve().is_relative_to((root / 'docs').resolve()):
+            raise ValueError('Dependency notice bundle escapes docs')
+        bundle_data = bundle_file.read_bytes()
+        if sha(bundle_data) != bundle['sha256']:
+            raise ValueError('Changed dependency notice bundle')
     for package in recorded:
         if package['crate_checksum'] != expected[key(package)]['checksum']:
             raise ValueError('Dependency inventory has a mismatched crate checksum')
@@ -46,14 +59,30 @@ def verify_inventory(root, report):
             raise ValueError('Dependency inventory is missing a license declaration or notice')
         for entry in package['files']:
             relative = Path(entry['path'])
-            if (relative.is_absolute() or '..' in relative.parts
-                    or not relative.parts or relative.parts[0] != 'THIRD_PARTY_LICENSES'):
-                raise ValueError('Dependency notice path must be inside THIRD_PARTY_LICENSES')
-            file = root / relative
-            if not file.resolve().is_relative_to((root / 'THIRD_PARTY_LICENSES').resolve()):
-                raise ValueError('Dependency notice symlink escapes THIRD_PARTY_LICENSES')
-            if sha(file.read_bytes()) != entry['sha256']:
+            if relative.is_absolute() or '..' in relative.parts or not relative.parts or relative.parts[0] not in {'licenses', 'registry'}:
+                raise ValueError('Dependency notice path must be inside licenses or registry')
+            if 'bundle' in entry:
+                if bundle_data is None:
+                    raise ValueError('Missing dependency notice bundle')
+                data = bundle_data
+                offset, length = entry['bundle']['offset'], entry['bundle']['length']
+                if not isinstance(offset, int) or not isinstance(length, int) or offset < 0 or length <= 0 or offset + length > len(data):
+                    raise ValueError('Invalid notice bundle range')
+                actual = data[offset:offset + length]
+            else:
+                file = root / relative
+                if relative.parts[0] != 'licenses' or not file.resolve().is_relative_to((root / 'licenses').resolve()):
+                    raise ValueError('Dependency notice symlink escapes licenses')
+                actual = file.read_bytes()
+            if relative.parts[0] == 'licenses':
+                retained = root / relative
+                if not retained.resolve().is_relative_to((root / 'licenses').resolve()):
+                    raise ValueError('Dependency notice symlink escapes licenses')
+                if sha(retained.read_bytes()) != entry['sha256']:
+                    raise ValueError('Changed retained notice: ' + relative.as_posix())
+            if sha(actual) != entry['sha256']:
                 raise ValueError('Changed dependency notice: ' + relative.as_posix())
+
 
 
 def main():
@@ -73,7 +102,7 @@ def main():
     overrides = json.loads((ROOT / 'docs/dependency-license-overrides.json').read_text())
     lock = tomllib.loads((ROOT / 'Cargo.lock').read_text())
     checksums = {(p['name'], p['version'], p.get('source')): p.get('checksum') for p in lock['package']}
-    destination = ROOT / 'THIRD_PARTY_LICENSES/registry'
+    destination = ROOT / 'target/dependency-notice-registry'
     staging = ROOT / 'target/dependency-notice-staging'
     if staging.exists(): shutil.rmtree(staging)
     staging.mkdir(parents=True)
@@ -89,7 +118,7 @@ def main():
             relative = file.relative_to(directory)
             target = staging / f'{name}-{version}' / relative
             target.parent.mkdir(parents=True, exist_ok=True); shutil.copyfile(file, target)
-            path = Path('THIRD_PARTY_LICENSES/registry') / f'{name}-{version}' / relative
+            path = Path('registry') / f'{name}-{version}' / relative
             files.append({'path': path.as_posix(), 'sha256': sha(file.read_bytes()), 'source': 'Published locked crate: ' + relative.as_posix()})
         fallback = overrides.get(name) if not files else None
         if fallback:
@@ -103,15 +132,32 @@ def main():
             relative = Path(f'{name}-{version}') / 'Cargo.toml.orig'
             target = staging / relative; target.parent.mkdir(parents=True, exist_ok=True)
             source = directory / 'Cargo.toml.orig'; shutil.copyfile(source, target)
-            files.append({'path': (Path('THIRD_PARTY_LICENSES/registry') / relative).as_posix(), 'sha256': sha(source.read_bytes()), 'source': 'Published package license/authors declaration; no standalone notice found'})
+            files.append({'path': (Path('registry') / relative).as_posix(), 'sha256': sha(source.read_bytes()), 'source': 'Published package license/authors declaration; no standalone notice found'})
             unresolved.append({'name': name, 'version': version, 'reason': 'Published crate and pinned upstream source do not supply a collected standalone license notice; declaration retained.'})
         packages.append({'name': name, 'version': version, 'license': package.get('license'), 'repository': package.get('repository'),
                          'source': package['source'], 'crate_checksum': checksums.get((name, version, package['source'])),
                          'authors': package.get('authors', []), 'files': files, **({'workspace_basis': fallback['basis']} if fallback else {})})
-    if destination.exists(): shutil.rmtree(destination)
-    shutil.copytree(staging, destination)
-    report = {'scope': 'All locked registry packages, including build and cross-platform dependencies. Collected texts/declarations are inventory evidence, not legal approval.',
-              'cargo_lock_sha256': sha((ROOT / 'Cargo.lock').read_bytes()), 'packages': packages, 'unresolved': unresolved}
+    # Consolidate exact bytes, including crate-specific copyright notices.
+    bundle = bytearray(b"Oxible third-party dependency notices\nGenerated from Cargo.lock; dependencies retain their respective licenses.\n")
+    locations = {}
+    for package in packages:
+        for entry in package['files']:
+            path = entry['path']
+            if path not in locations:
+                file = staging / Path(path).relative_to('registry') if path.startswith('registry/') else ROOT / path
+                data = file.read_bytes()
+                if sha(data) != entry['sha256']:
+                    raise SystemExit('Changed notice while bundling: ' + path)
+                bundle.extend(('\n\n===== ' + path + ' =====\n').encode())
+                locations[path] = {'offset': len(bundle), 'length': len(data)}
+                bundle.extend(data)
+            entry['bundle'] = locations[path]
+    bundle_path = ROOT / 'docs/third-party-notices.txt'
+    bundle_path.write_bytes(bundle)
+    report = {'scope': 'All locked registry packages, including build and cross-platform dependencies. Exact notice bytes consolidated for distribution.',
+              'cargo_lock_sha256': sha((ROOT / 'Cargo.lock').read_bytes()),
+              'bundle': {'path': 'docs/third-party-notices.txt', 'sha256': sha(bundle)},
+              'packages': packages, 'unresolved': unresolved}
     report_path.write_text(json.dumps(report, indent=2) + '\n')
     print(json.dumps({'packages': len(packages), 'unresolved': unresolved}))
 
