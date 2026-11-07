@@ -883,7 +883,13 @@ fn check_task_body<'a>(
 ) {
     crate::extra_rules::common(task, emit);
     check_become(task, "task", emit);
-    if task.get("ignore_errors").and_then(Node::boolean) == Some(true)
+    let ignore_errors = task.get("ignore_errors").is_some_and(|node| {
+        node.boolean() == Some(true)
+            || node.scalar().is_some_and(|text| {
+                text != "{{ ansible_check_mode }}" && (text.contains("{{") || text.contains("{%"))
+            })
+    });
+    if ignore_errors
         && task
             .get("register")
             .filter(|node| !node.is_null())

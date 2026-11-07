@@ -2,6 +2,8 @@
 
 ## 0.1.2 — Unreleased
 
+- Check templated `ignore_errors` settings while preserving the check-mode and
+  registered-result exceptions.
 - Detect shell pipelines around Jinja expressions, blocks and comments without
   mistaking filter operators or template text for shell syntax and pipefail.
 - Correct missing-closing-tag diagnostics for Jinja capture blocks whose filters
