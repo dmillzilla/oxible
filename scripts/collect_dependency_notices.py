@@ -138,20 +138,21 @@ def main():
                          'source': package['source'], 'crate_checksum': checksums.get((name, version, package['source'])),
                          'authors': package.get('authors', []), 'files': files, **({'workspace_basis': fallback['basis']} if fallback else {})})
     # Consolidate exact bytes, including crate-specific copyright notices.
-    bundle = bytearray(b"Oxible third-party dependency notices\nGenerated from Cargo.lock; dependencies retain their respective licenses.\n")
+    bundle = bytearray(b"Oxible third-party dependency notices\nGenerated from Cargo.lock; dependencies retain their respective licenses.\nIdentical texts share a section; dependency-notices.json maps each package to its exact text.\n")
     locations = {}
     for package in packages:
         for entry in package['files']:
             path = entry['path']
-            if path not in locations:
+            key = entry['sha256']
+            if key not in locations:
                 file = staging / Path(path).relative_to('registry') if path.startswith('registry/') else ROOT / path
                 data = file.read_bytes()
                 if sha(data) != entry['sha256']:
                     raise SystemExit('Changed notice while bundling: ' + path)
                 bundle.extend(('\n\n===== ' + path + ' =====\n').encode())
-                locations[path] = {'offset': len(bundle), 'length': len(data)}
+                locations[key] = {'offset': len(bundle), 'length': len(data)}
                 bundle.extend(data)
-            entry['bundle'] = locations[path]
+            entry['bundle'] = locations[key]
     bundle_path = ROOT / 'docs/third-party-notices.txt'
     bundle_path.write_bytes(bundle)
     report = {'scope': 'All locked registry packages, including build and cross-platform dependencies. Exact notice bytes consolidated for distribution.',
