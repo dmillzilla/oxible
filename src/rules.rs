@@ -844,6 +844,7 @@ impl<'a> Action<'a> {
                 }
             })
             .or_else(|| self.argument("cmd"))
+            .or_else(|| self.argument("_raw_params"))
     }
 }
 

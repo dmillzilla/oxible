@@ -204,13 +204,7 @@ pub fn task<'a>(task: &'a Node, action: &Action<'a>, emit: &mut impl FnMut(&str,
         && let Some(command) = action.command()
     {
         let command = crate::template::mask_expressions(command);
-        let has_pipefail = command.split([';', '\n']).any(|statement| {
-            let words: Vec<_> = statement.split_whitespace().collect();
-            words.first() == Some(&"set")
-                && words.windows(2).any(|pair| {
-                    pair[0].starts_with('-') && pair[0].ends_with('o') && pair[1] == "pipefail"
-                })
-        });
+        let has_pipefail = has_pipefail(&command);
         let powershell = action
             .argument("executable")
             .is_some_and(|value| value.contains("pwsh") || value.contains("powershell"));
@@ -420,4 +414,62 @@ fn has_pipeline(text: &str) -> bool {
         }
     }
     false
+}
+
+// Shell separators and comments only delimit statements outside quoted words.
+// Preserve word boundaries so data containing `set -o pipefail` cannot disable
+// the pipeline check. This parser never invokes a shell.
+fn has_pipefail(text: &str) -> bool {
+    let mut quote = None;
+    let mut escape = false;
+    let mut comment = false;
+    let mut statement = String::new();
+    let enabled = |statement: &str| {
+        let Ok(words) = shell_words::split(statement) else {
+            return false;
+        };
+        words.first().is_some_and(|word| word == "set")
+            && words.windows(2).any(|pair| {
+                pair[0].starts_with('-') && pair[0].ends_with('o') && pair[1] == "pipefail"
+            })
+    };
+    let chars: Vec<_> = text.chars().collect();
+    for (index, &ch) in chars.iter().enumerate() {
+        if comment {
+            if ch != '\n' {
+                continue;
+            }
+            comment = false;
+        }
+        if escape {
+            statement.push(ch);
+            escape = false;
+            continue;
+        }
+        if ch == '\\' && quote != Some('\'') {
+            statement.push(ch);
+            escape = true;
+            continue;
+        }
+        if quote.is_none()
+            && ch == '#'
+            && (index == 0 || chars[index - 1].is_whitespace() || chars[index - 1] == ';')
+        {
+            comment = true;
+        } else if quote == Some(ch) {
+            quote = None;
+            statement.push(ch);
+        } else if quote.is_none() && matches!(ch, '\'' | '"') {
+            quote = Some(ch);
+            statement.push(ch);
+        } else if quote.is_none() && matches!(ch, ';' | '\n') {
+            if enabled(&statement) {
+                return true;
+            }
+            statement.clear();
+        } else {
+            statement.push(ch);
+        }
+    }
+    enabled(&statement)
 }
