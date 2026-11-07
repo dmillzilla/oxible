@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+- Exempt shell pipelines with truthy task-level `ignore_errors` from
+  `risky-shell-pipe`, preserving independent failure-handling checks.
 - Consolidate dependency license notices, retain upstream attribution under docs,
   and exclude compiled libraries accidentally matched as license files.
 - Resolve role-relative task includes with Ansible role and playbook fallbacks,

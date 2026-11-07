@@ -1,0 +1,291 @@
+[
+  {
+    "case": "pipe-true",
+    "file": "tasks/main.yml",
+    "source": "---\n- name: Check for a matching entry\n  ansible.builtin.shell: printf '%s\\n' example | grep example\n  ignore_errors: true\n  changed_when: false\n",
+    "config": "offline: true\n",
+    "expected": {
+      "exit": 2,
+      "issues": [
+        {
+          "type": "issue",
+          "check_name": "ignore-errors",
+          "categories": [
+            "unpredictability"
+          ],
+          "url": "https://docs.ansible.com/projects/lint/rules/ignore-errors/",
+          "severity": "major",
+          "description": "Use failed_when and specify error conditions instead of using ignore_errors.",
+          "fingerprint": "404f3e389d3edc8dc3b8c5fa40e1cafd9b6b79fa1006e8e2a8154970fc1f14f1",
+          "location": {
+            "path": "tasks/main.yml",
+            "lines": {
+              "begin": 2
+            }
+          },
+          "content": {
+            "body": "Task/Handler: Check for a matching entry"
+          }
+        }
+      ]
+    }
+  },
+  {
+    "case": "pipe-false",
+    "file": "tasks/main.yml",
+    "source": "---\n- name: Check for a matching entry\n  ansible.builtin.shell: printf '%s\\n' example | grep example\n  ignore_errors: false\n  changed_when: false\n",
+    "config": "offline: true\n",
+    "expected": {
+      "exit": 2,
+      "issues": [
+        {
+          "type": "issue",
+          "check_name": "risky-shell-pipe",
+          "categories": [
+            "command-shell"
+          ],
+          "url": "https://docs.ansible.com/projects/lint/rules/risky-shell-pipe/",
+          "severity": "major",
+          "description": "Shells that use pipes should set the pipefail option.",
+          "fingerprint": "ee7cba85ddf560b3ee5ac65fa53e264a18350f22ea071bc96fb472f0866683ce",
+          "location": {
+            "path": "tasks/main.yml",
+            "lines": {
+              "begin": 2
+            }
+          },
+          "content": {
+            "body": "Task/Handler: Check for a matching entry"
+          }
+        }
+      ]
+    }
+  },
+  {
+    "case": "pipe-omitted",
+    "file": "tasks/main.yml",
+    "source": "---\n- name: Check for a matching entry\n  ansible.builtin.shell: printf '%s\\n' example | grep example\n  changed_when: false\n",
+    "config": "offline: true\n",
+    "expected": {
+      "exit": 2,
+      "issues": [
+        {
+          "type": "issue",
+          "check_name": "risky-shell-pipe",
+          "categories": [
+            "command-shell"
+          ],
+          "url": "https://docs.ansible.com/projects/lint/rules/risky-shell-pipe/",
+          "severity": "major",
+          "description": "Shells that use pipes should set the pipefail option.",
+          "fingerprint": "ee7cba85ddf560b3ee5ac65fa53e264a18350f22ea071bc96fb472f0866683ce",
+          "location": {
+            "path": "tasks/main.yml",
+            "lines": {
+              "begin": 2
+            }
+          },
+          "content": {
+            "body": "Task/Handler: Check for a matching entry"
+          }
+        }
+      ]
+    }
+  },
+  {
+    "case": "pipe-check-mode",
+    "file": "tasks/main.yml",
+    "source": "---\n- name: Check for a matching entry\n  ansible.builtin.shell: printf '%s\\n' example | grep example\n  ignore_errors: \"{{ ansible_check_mode }}\"\n  changed_when: false\n",
+    "config": "offline: true\n",
+    "expected": {
+      "exit": 0,
+      "issues": []
+    }
+  },
+  {
+    "case": "pipe-registered",
+    "file": "tasks/main.yml",
+    "source": "---\n- name: Check for a matching entry\n  ansible.builtin.shell: printf '%s\\n' example | grep example\n  ignore_errors: true\n  register: result\n  changed_when: false\n",
+    "config": "offline: true\n",
+    "expected": {
+      "exit": 0,
+      "issues": []
+    }
+  },
+  {
+    "case": "implicit-tasks-gt-False",
+    "file": "tasks/main.yml",
+    "source": "---\n- name: Show a message conditionally\n  ansible.builtin.debug:\n    msg: hello\n  when: ansible_distribution_major_version|int > 13\n",
+    "config": "offline: true\n",
+    "expected": {
+      "exit": 0,
+      "issues": [
+        {
+          "categories": [
+            "formatting"
+          ],
+          "check_name": "jinja[spacing]",
+          "content": {
+            "body": "Jinja2 template rewrite recommendation: `ansible_distribution_major_version | int > 13`."
+          },
+          "description": "Jinja2 spacing could be improved: ansible_distribution_major_version|int > 13 -> ansible_distribution_major_version | int > 13",
+          "fingerprint": "e6e716ebd95046c182ff363a1496e84dbe6c26d38265218407c49fdd51ee6e4e",
+          "location": {
+            "path": "tasks/main.yml",
+            "positions": {
+              "begin": {
+                "column": 9,
+                "line": 5
+              }
+            }
+          },
+          "severity": "minor",
+          "type": "issue",
+          "url": "https://docs.ansible.com/projects/lint/rules/jinja/"
+        }
+      ]
+    }
+  },
+  {
+    "case": "implicit-tasks-gt-True",
+    "file": "tasks/main.yml",
+    "source": "---\n- name: Show a message conditionally\n  ansible.builtin.debug:\n    msg: hello\n  when: ansible_distribution_major_version | int > 13\n",
+    "config": "offline: true\n",
+    "expected": {
+      "exit": 0,
+      "issues": []
+    }
+  },
+  {
+    "case": "implicit-playbook-gt-False",
+    "file": "site.yml",
+    "source": "---\n- name: Test conditionals\n  hosts: localhost\n  gather_facts: false\n  tasks:\n    - name: Show a message conditionally\n      ansible.builtin.debug:\n        msg: hello\n      when: ansible_distribution_major_version|int > 13\n",
+    "config": "offline: true\n",
+    "expected": {
+      "exit": 0,
+      "issues": [
+        {
+          "type": "issue",
+          "check_name": "jinja[spacing]",
+          "categories": [
+            "formatting"
+          ],
+          "url": "https://docs.ansible.com/projects/lint/rules/jinja/",
+          "severity": "minor",
+          "description": "Jinja2 spacing could be improved: ansible_distribution_major_version|int > 13 -> ansible_distribution_major_version | int > 13",
+          "fingerprint": "7cdf934691bce1eb1228c8cbe9fe03c72538f5e2d1cf5a226d345840562b3d2c",
+          "location": {
+            "path": "site.yml",
+            "positions": {
+              "begin": {
+                "line": 9,
+                "column": 13
+              }
+            }
+          },
+          "content": {
+            "body": "Jinja2 template rewrite recommendation: `ansible_distribution_major_version | int > 13`."
+          }
+        }
+      ]
+    }
+  },
+  {
+    "case": "implicit-playbook-gt-True",
+    "file": "site.yml",
+    "source": "---\n- name: Test conditionals\n  hosts: localhost\n  gather_facts: false\n  tasks:\n    - name: Show a message conditionally\n      ansible.builtin.debug:\n        msg: hello\n      when: ansible_distribution_major_version | int > 13\n",
+    "config": "offline: true\n",
+    "expected": {
+      "exit": 0,
+      "issues": []
+    }
+  },
+  {
+    "case": "implicit-tasks-ge-False",
+    "file": "tasks/main.yml",
+    "source": "---\n- name: Show a message conditionally\n  ansible.builtin.debug:\n    msg: hello\n  when: ansible_distribution_major_version|int >= 13\n",
+    "config": "offline: true\n",
+    "expected": {
+      "exit": 0,
+      "issues": [
+        {
+          "categories": [
+            "formatting"
+          ],
+          "check_name": "jinja[spacing]",
+          "content": {
+            "body": "Jinja2 template rewrite recommendation: `ansible_distribution_major_version | int >= 13`."
+          },
+          "description": "Jinja2 spacing could be improved: ansible_distribution_major_version|int >= 13 -> ansible_distribution_major_version | int >= 13",
+          "fingerprint": "c6b957d9f56d62fd7193c925219acb1f3f5ebb3d4745862ebc3fb6a61522e4c5",
+          "location": {
+            "path": "tasks/main.yml",
+            "positions": {
+              "begin": {
+                "column": 9,
+                "line": 5
+              }
+            }
+          },
+          "severity": "minor",
+          "type": "issue",
+          "url": "https://docs.ansible.com/projects/lint/rules/jinja/"
+        }
+      ]
+    }
+  },
+  {
+    "case": "implicit-tasks-ge-True",
+    "file": "tasks/main.yml",
+    "source": "---\n- name: Show a message conditionally\n  ansible.builtin.debug:\n    msg: hello\n  when: ansible_distribution_major_version | int >= 13\n",
+    "config": "offline: true\n",
+    "expected": {
+      "exit": 0,
+      "issues": []
+    }
+  },
+  {
+    "case": "implicit-playbook-ge-False",
+    "file": "site.yml",
+    "source": "---\n- name: Test conditionals\n  hosts: localhost\n  gather_facts: false\n  tasks:\n    - name: Show a message conditionally\n      ansible.builtin.debug:\n        msg: hello\n      when: ansible_distribution_major_version|int >= 13\n",
+    "config": "offline: true\n",
+    "expected": {
+      "exit": 0,
+      "issues": [
+        {
+          "type": "issue",
+          "check_name": "jinja[spacing]",
+          "categories": [
+            "formatting"
+          ],
+          "url": "https://docs.ansible.com/projects/lint/rules/jinja/",
+          "severity": "minor",
+          "description": "Jinja2 spacing could be improved: ansible_distribution_major_version|int >= 13 -> ansible_distribution_major_version | int >= 13",
+          "fingerprint": "644cb48fc09ed8ba0310093bb5e0545054855e2905f00a1cae4e7c83ff7a232f",
+          "location": {
+            "path": "site.yml",
+            "positions": {
+              "begin": {
+                "line": 9,
+                "column": 13
+              }
+            }
+          },
+          "content": {
+            "body": "Jinja2 template rewrite recommendation: `ansible_distribution_major_version | int >= 13`."
+          }
+        }
+      ]
+    }
+  },
+  {
+    "case": "implicit-playbook-ge-True",
+    "file": "site.yml",
+    "source": "---\n- name: Test conditionals\n  hosts: localhost\n  gather_facts: false\n  tasks:\n    - name: Show a message conditionally\n      ansible.builtin.debug:\n        msg: hello\n      when: ansible_distribution_major_version | int >= 13\n",
+    "config": "offline: true\n",
+    "expected": {
+      "exit": 0,
+      "issues": []
+    }
+  }
+]

@@ -208,7 +208,19 @@ pub fn task<'a>(task: &'a Node, action: &Action<'a>, emit: &mut impl FnMut(&str,
         let powershell = action
             .argument("executable")
             .is_some_and(|value| value.contains("pwsh") || value.contains("powershell"));
-        if !powershell && has_pipeline(&command) && !has_pipefail {
+        // The pinned rule tests task-level Python truthiness, including
+        // nonempty template strings; it does not evaluate the condition.
+        let ignores_errors = task
+            .get("ignore_errors")
+            .is_some_and(|node| match node.to_json() {
+                serde_json::Value::Null => false,
+                serde_json::Value::Bool(value) => value,
+                serde_json::Value::String(value) => !value.is_empty(),
+                serde_json::Value::Number(value) => value.as_f64() != Some(0.0),
+                serde_json::Value::Array(value) => !value.is_empty(),
+                serde_json::Value::Object(value) => !value.is_empty(),
+            });
+        if !powershell && !ignores_errors && has_pipeline(&command) && !has_pipefail {
             emit(
                 "risky-shell-pipe",
                 "Set pipefail so an earlier pipeline failure is not hidden",
