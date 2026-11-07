@@ -2,7 +2,7 @@
 
 **Ansible checks, forged in Rust.**
 
-Oxible 0.1.1 is an experimental Ansible linter written in Rust, with safe fixes,
+Oxible 0.1.2 is an experimental Ansible linter written in Rust, with safe fixes,
 a language server, and text/JSON/SARIF/Code Climate output. Production checking
 needs no Python or Ansible installation and does not execute playbooks.
 Compatible CLI workflows prepare declared dependencies online; use `--offline`
@@ -20,7 +20,7 @@ to the Marketplace.
 ## Get started
 
 Download the Linux archive and checksums from the
-[0.1.1 release](https://github.com/dmillzilla/oxible/releases/tag/v0.1.1),
+[0.1.2 release](https://github.com/dmillzilla/oxible/releases/tag/v0.1.2),
 or build from source:
 
 ```sh
