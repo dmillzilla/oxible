@@ -18,6 +18,11 @@ fn templated_shell_pipelines_match_reference_issues_and_exits() {
             "echo ready # ; set -o pipefail\nfalse | true",
             true,
         ),
+        (
+            "conditional-pipefail",
+            "true || set -o pipefail; false | true",
+            true,
+        ),
         ("plain-pipeline", "printf ready | cat", true),
         ("templated-argument", "echo {{ value }} | cat", true),
         ("templated-filter", "echo {{ value | quote }} | cat", true),

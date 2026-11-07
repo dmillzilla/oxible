@@ -462,7 +462,7 @@ fn has_pipefail(text: &str) -> bool {
         } else if quote.is_none() && matches!(ch, '\'' | '"') {
             quote = Some(ch);
             statement.push(ch);
-        } else if quote.is_none() && matches!(ch, ';' | '\n' | '&' | '|') {
+        } else if quote.is_none() && matches!(ch, ';' | '\n') {
             if enabled(&statement) {
                 return true;
             }
