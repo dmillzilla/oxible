@@ -1,6 +1,6 @@
 {
   "scope": "All locked registry packages, including build and cross-platform dependencies. Exact notice bytes consolidated for distribution.",
-  "cargo_lock_sha256": "674e48e231ab3b4faba5df03d85a5d727072989a43675369a8c931f3d589e957",
+  "cargo_lock_sha256": "22fcf2472b62cc4ee0b2bcfe27e9627c68dcf7d8025380ef07d0016f36c6e5f0",
   "bundle": {
     "path": "docs/third-party-notices.txt",
     "sha256": "0603928b52e3d989d0ea1e3e4eb263a0fdc6a3eb0d457452cebc40f6b9d93d32"
