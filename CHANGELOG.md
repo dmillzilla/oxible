@@ -1,6 +1,6 @@
 # Changelog
 
-## Unreleased
+## 0.1.3 — 2026-11-13
 
 - Exempt shell pipelines with truthy task-level `ignore_errors` from
   `risky-shell-pipe`, preserving independent failure-handling checks.

@@ -13,7 +13,7 @@ is currently offered.
 ## Supported versions
 
 Security fixes target the latest published version and the development branch.
-The current supported release is 0.1.2. Older pre-1.0 versions will not receive
+The current supported release is 0.1.3. Older pre-1.0 versions will not receive
 separate backports. Release notes identify fixes and the affected scope.
 
 ## Trust boundaries
