@@ -181,7 +181,18 @@ pub fn task<'a>(task: &'a Node, action: &Action<'a>, emit: &mut impl FnMut(&str,
         let unsupported_preserve =
             mode == Some("preserve") && !matches!(module, "copy" | "template");
         let requires_mode = if create_module {
-            action.argument_bool("create").unwrap_or(creates_by_default)
+            if action.has_argument("create") {
+                // An unresolved nonempty create expression can create a file.
+                // Module defaults apply only when create is absent; do not
+                // treat an explicit expression as the default false value.
+                action.argument_bool("create").unwrap_or_else(|| {
+                    action
+                        .argument("create")
+                        .is_some_and(|value| !value.is_empty())
+                })
+            } else {
+                creates_by_default
+            }
         } else {
             !matches!(action.argument("state"), Some("absent" | "link"))
                 && action.argument_bool("recurse") != Some(true)

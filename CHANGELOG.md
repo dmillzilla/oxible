@@ -1,5 +1,10 @@
 # Changelog
 
+## Unreleased
+
+- Require explicit file permissions when `lineinfile` or `blockinfile` uses
+  a templated `create` setting, including task-level argument mappings.
+
 ## 0.1.3 — 2026-11-13
 
 - Exempt shell pipelines with truthy task-level `ignore_errors` from

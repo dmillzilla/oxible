@@ -1,0 +1,298 @@
+[
+  {
+    "case": "lineinfile-omitted",
+    "source": "---\n- name: Update example configuration\n  ansible.builtin.lineinfile:\n    path: /tmp/oxible-example\n    line: hello\n",
+    "expected": {
+      "exit": 0,
+      "issues": []
+    }
+  },
+  {
+    "case": "lineinfile-true",
+    "source": "---\n- name: Update example configuration\n  ansible.builtin.lineinfile:\n    path: /tmp/oxible-example\n    line: hello\n    create: true\n",
+    "expected": {
+      "exit": 2,
+      "issues": [
+        {
+          "type": "issue",
+          "check_name": "risky-file-permissions",
+          "categories": [
+            "unpredictability"
+          ],
+          "url": "https://docs.ansible.com/projects/lint/rules/risky-file-permissions/",
+          "severity": "major",
+          "description": "File permissions unset or incorrect.",
+          "fingerprint": "8977438c200ac23646e0fe5caee51772e6d1ba4eaa2a7254ff60e4e809d1796d",
+          "location": {
+            "path": "tasks/main.yml",
+            "lines": {
+              "begin": 2
+            }
+          },
+          "content": {
+            "body": "Task/Handler: Update example configuration"
+          }
+        }
+      ]
+    }
+  },
+  {
+    "case": "lineinfile-false",
+    "source": "---\n- name: Update example configuration\n  ansible.builtin.lineinfile:\n    path: /tmp/oxible-example\n    line: hello\n    create: false\n",
+    "expected": {
+      "exit": 0,
+      "issues": []
+    }
+  },
+  {
+    "case": "lineinfile-template",
+    "source": "---\n- name: Update example configuration\n  ansible.builtin.lineinfile:\n    path: /tmp/oxible-example\n    line: hello\n    create: \"{{ allow_create }}\"\n",
+    "expected": {
+      "exit": 2,
+      "issues": [
+        {
+          "type": "issue",
+          "check_name": "risky-file-permissions",
+          "categories": [
+            "unpredictability"
+          ],
+          "url": "https://docs.ansible.com/projects/lint/rules/risky-file-permissions/",
+          "severity": "major",
+          "description": "File permissions unset or incorrect.",
+          "fingerprint": "8977438c200ac23646e0fe5caee51772e6d1ba4eaa2a7254ff60e4e809d1796d",
+          "location": {
+            "path": "tasks/main.yml",
+            "lines": {
+              "begin": 2
+            }
+          },
+          "content": {
+            "body": "Task/Handler: Update example configuration"
+          }
+        }
+      ]
+    }
+  },
+  {
+    "case": "lineinfile-template-false",
+    "source": "---\n- name: Update example configuration\n  ansible.builtin.lineinfile:\n    path: /tmp/oxible-example\n    line: hello\n    create: \"{{ false }}\"\n",
+    "expected": {
+      "exit": 2,
+      "issues": [
+        {
+          "type": "issue",
+          "check_name": "risky-file-permissions",
+          "categories": [
+            "unpredictability"
+          ],
+          "url": "https://docs.ansible.com/projects/lint/rules/risky-file-permissions/",
+          "severity": "major",
+          "description": "File permissions unset or incorrect.",
+          "fingerprint": "8977438c200ac23646e0fe5caee51772e6d1ba4eaa2a7254ff60e4e809d1796d",
+          "location": {
+            "path": "tasks/main.yml",
+            "lines": {
+              "begin": 2
+            }
+          },
+          "content": {
+            "body": "Task/Handler: Update example configuration"
+          }
+        }
+      ]
+    }
+  },
+  {
+    "case": "blockinfile-omitted",
+    "source": "---\n- name: Update example configuration\n  ansible.builtin.blockinfile:\n    path: /tmp/oxible-example\n    block: hello\n",
+    "expected": {
+      "exit": 0,
+      "issues": []
+    }
+  },
+  {
+    "case": "blockinfile-true",
+    "source": "---\n- name: Update example configuration\n  ansible.builtin.blockinfile:\n    path: /tmp/oxible-example\n    block: hello\n    create: true\n",
+    "expected": {
+      "exit": 2,
+      "issues": [
+        {
+          "type": "issue",
+          "check_name": "risky-file-permissions",
+          "categories": [
+            "unpredictability"
+          ],
+          "url": "https://docs.ansible.com/projects/lint/rules/risky-file-permissions/",
+          "severity": "major",
+          "description": "File permissions unset or incorrect.",
+          "fingerprint": "8977438c200ac23646e0fe5caee51772e6d1ba4eaa2a7254ff60e4e809d1796d",
+          "location": {
+            "path": "tasks/main.yml",
+            "lines": {
+              "begin": 2
+            }
+          },
+          "content": {
+            "body": "Task/Handler: Update example configuration"
+          }
+        }
+      ]
+    }
+  },
+  {
+    "case": "blockinfile-false",
+    "source": "---\n- name: Update example configuration\n  ansible.builtin.blockinfile:\n    path: /tmp/oxible-example\n    block: hello\n    create: false\n",
+    "expected": {
+      "exit": 0,
+      "issues": []
+    }
+  },
+  {
+    "case": "blockinfile-template",
+    "source": "---\n- name: Update example configuration\n  ansible.builtin.blockinfile:\n    path: /tmp/oxible-example\n    block: hello\n    create: \"{{ allow_create }}\"\n",
+    "expected": {
+      "exit": 2,
+      "issues": [
+        {
+          "type": "issue",
+          "check_name": "risky-file-permissions",
+          "categories": [
+            "unpredictability"
+          ],
+          "url": "https://docs.ansible.com/projects/lint/rules/risky-file-permissions/",
+          "severity": "major",
+          "description": "File permissions unset or incorrect.",
+          "fingerprint": "8977438c200ac23646e0fe5caee51772e6d1ba4eaa2a7254ff60e4e809d1796d",
+          "location": {
+            "path": "tasks/main.yml",
+            "lines": {
+              "begin": 2
+            }
+          },
+          "content": {
+            "body": "Task/Handler: Update example configuration"
+          }
+        }
+      ]
+    }
+  },
+  {
+    "case": "blockinfile-template-false",
+    "source": "---\n- name: Update example configuration\n  ansible.builtin.blockinfile:\n    path: /tmp/oxible-example\n    block: hello\n    create: \"{{ false }}\"\n",
+    "expected": {
+      "exit": 2,
+      "issues": [
+        {
+          "type": "issue",
+          "check_name": "risky-file-permissions",
+          "categories": [
+            "unpredictability"
+          ],
+          "url": "https://docs.ansible.com/projects/lint/rules/risky-file-permissions/",
+          "severity": "major",
+          "description": "File permissions unset or incorrect.",
+          "fingerprint": "8977438c200ac23646e0fe5caee51772e6d1ba4eaa2a7254ff60e4e809d1796d",
+          "location": {
+            "path": "tasks/main.yml",
+            "lines": {
+              "begin": 2
+            }
+          },
+          "content": {
+            "body": "Task/Handler: Update example configuration"
+          }
+        }
+      ]
+    }
+  },
+  {
+    "case": "lineinfile-template-mode",
+    "source": "---\n- name: Update example configuration\n  ansible.builtin.lineinfile:\n    path: /tmp/oxible-example\n    line: hello\n    create: \"{{ allow_create }}\"\n    mode: \"0644\"\n",
+    "expected": {
+      "exit": 0,
+      "issues": []
+    }
+  },
+  {
+    "case": "lineinfile-task-args",
+    "source": "---\n- name: Update example configuration\n  ansible.builtin.lineinfile:\n    path: /tmp/oxible-example\n    line: hello\n  args:\n    create: \"{{ allow_create }}\"\n",
+    "expected": {
+      "exit": 2,
+      "issues": [
+        {
+          "type": "issue",
+          "check_name": "risky-file-permissions",
+          "categories": [
+            "unpredictability"
+          ],
+          "url": "https://docs.ansible.com/projects/lint/rules/risky-file-permissions/",
+          "severity": "major",
+          "description": "File permissions unset or incorrect.",
+          "fingerprint": "8977438c200ac23646e0fe5caee51772e6d1ba4eaa2a7254ff60e4e809d1796d",
+          "location": {
+            "path": "tasks/main.yml",
+            "lines": {
+              "begin": 2
+            }
+          },
+          "content": {
+            "body": "Task/Handler: Update example configuration"
+          }
+        }
+      ]
+    }
+  },
+  {
+    "case": "lineinfile-module-overrides-args",
+    "source": "---\n- name: Update example configuration\n  ansible.builtin.lineinfile:\n    path: /tmp/oxible-example\n    line: hello\n    create: false\n  args:\n    create: \"{{ allow_create }}\"\n",
+    "expected": {
+      "exit": 0,
+      "issues": []
+    }
+  },
+  {
+    "case": "blockinfile-template-mode",
+    "source": "---\n- name: Update example configuration\n  ansible.builtin.blockinfile:\n    path: /tmp/oxible-example\n    block: hello\n    create: \"{{ allow_create }}\"\n    mode: \"0644\"\n",
+    "expected": {
+      "exit": 0,
+      "issues": []
+    }
+  },
+  {
+    "case": "blockinfile-task-args",
+    "source": "---\n- name: Update example configuration\n  ansible.builtin.blockinfile:\n    path: /tmp/oxible-example\n    block: hello\n  args:\n    create: \"{{ allow_create }}\"\n",
+    "expected": {
+      "exit": 2,
+      "issues": [
+        {
+          "type": "issue",
+          "check_name": "risky-file-permissions",
+          "categories": [
+            "unpredictability"
+          ],
+          "url": "https://docs.ansible.com/projects/lint/rules/risky-file-permissions/",
+          "severity": "major",
+          "description": "File permissions unset or incorrect.",
+          "fingerprint": "8977438c200ac23646e0fe5caee51772e6d1ba4eaa2a7254ff60e4e809d1796d",
+          "location": {
+            "path": "tasks/main.yml",
+            "lines": {
+              "begin": 2
+            }
+          },
+          "content": {
+            "body": "Task/Handler: Update example configuration"
+          }
+        }
+      ]
+    }
+  },
+  {
+    "case": "blockinfile-module-overrides-args",
+    "source": "---\n- name: Update example configuration\n  ansible.builtin.blockinfile:\n    path: /tmp/oxible-example\n    block: hello\n    create: false\n  args:\n    create: \"{{ allow_create }}\"\n",
+    "expected": {
+      "exit": 0,
+      "issues": []
+    }
+  }
+]
